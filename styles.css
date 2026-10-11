@@ -333,7 +333,7 @@ body.is-ready .hero__right .reveal-up:nth-child(2) { transition-delay: 1.75s; }
 .credits__list dt { text-align: right; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); padding-top: 0.35rem; }
 .credits__list dd { font-family: var(--serif); font-size: 1.6rem; }
 .credits__cta {
-  display: inline-block; margin-top: 1.6rem;
+  display: inline-block; margin-top: 1.6rem; padding: 0.05em 0.12em 0.2em;
   font-family: var(--serif); font-style: italic; font-size: clamp(2.2rem, 6.5vw, 5.5rem); line-height: 1.05;
   background: linear-gradient(90deg, var(--paper) 0 50%, var(--accent) 50% 100%) 100% 0 / 200% 100% no-repeat;
   background-position: 0 0;
