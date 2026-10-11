@@ -495,14 +495,24 @@
   }
 
   let soundOn = false;
-  soundBtn.addEventListener("click", () => {
-    soundOn = !soundOn;
+  const setSound = (on) => {
+    soundOn = on;
     if (!audio) audio = buildAudio();
     if (audio.ctx.state === "suspended") audio.ctx.resume();
     audio.master.gain.setTargetAtTime(soundOn ? 0.55 : 0, audio.ctx.currentTime, 0.4);
     soundBtn.setAttribute("aria-pressed", String(soundOn));
     soundLabel.textContent = soundOn ? `Sound on · ${BPM} BPM` : "Sound off";
-  });
+  };
+  soundBtn.addEventListener("click", () => setSound(!soundOn));
+
+  // Browsers block audio until a user gesture, so sound starts on the first click, tap or key press.
+  setSound(true);
+  const unlock = (e) => {
+    if (soundBtn.contains(e.target)) return;
+    if (soundOn && audio.ctx.state !== "running") audio.ctx.resume();
+    ["pointerdown", "keydown", "touchend"].forEach((t) => removeEventListener(t, unlock, true));
+  };
+  ["pointerdown", "keydown", "touchend"].forEach((t) => addEventListener(t, unlock, true));
   document.addEventListener("visibilitychange", () => {
     if (!audio || !soundOn) return;
     document.hidden ? audio.ctx.suspend() : audio.ctx.resume();
