@@ -458,6 +458,14 @@ a.scene { display: block; color: inherit; }
 .role-modal__title { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.02; margin-top: 0.8rem; color: #e8c98f; }
 .role-modal__co { font-family: var(--sans); font-size: 1.05rem; margin-top: 0.4rem; }
 .role-modal__body { margin: 1.6rem 0 2rem; padding-top: 1.6rem; border-top: 1px solid var(--faint); color: var(--dim); line-height: 1.6; }
+.role-steps { list-style: none; margin-top: 1.4rem; border-left: 1px solid rgba(217,194,154,0.3); }
+.role-steps li { position: relative; padding: 0 0 1.2rem 1.2rem; }
+.role-steps li:last-child { padding-bottom: 0; }
+.role-steps li::before { content: ""; position: absolute; left: -4px; top: 0.35rem; width: 7px; height: 7px; border-radius: 50%; background: #e8c98f; }
+.role-steps li:not(:first-child)::before { background: var(--ink); border: 1px solid rgba(217,194,154,0.6); }
+.role-steps span { display: block; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.role-steps b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.25rem; color: var(--paper); margin-top: 0.2rem; }
+.role-steps em { display: block; font-style: normal; font-size: 0.92rem; line-height: 1.5; margin-top: 0.2rem; }
 .role-modal__skills { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
 .role-modal__skills li { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(217,194,154,0.3); border-radius: 999px; padding: 0.4rem 0.8rem; }
 

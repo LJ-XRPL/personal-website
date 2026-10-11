@@ -255,7 +255,7 @@
     $(".role-modal__meta", roleModal).textContent = `${$(".role__yr", li).textContent} · ${$(".role__loc", li).textContent}`;
     $(".role-modal__title", roleModal).textContent = $(".role__title", li).textContent;
     $(".role-modal__co", roleModal).textContent = $(".role__co", li).textContent;
-    $(".role-modal__body", roleModal).innerHTML = $("p", more).outerHTML;
+    $(".role-modal__body", roleModal).innerHTML = [...more.children].filter((el) => el.tagName !== "UL").map((el) => el.outerHTML).join("");
     $(".role-modal__skills", roleModal).innerHTML = $("ul", more).innerHTML;
     roleModal.showModal();
   };
