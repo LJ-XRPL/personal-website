@@ -550,6 +550,9 @@ a.scene { display: block; color: inherit; }
   .scene__info h3 { grid-row: auto; }
   .credits__list div { grid-template-columns: 1fr; gap: 0.2rem; text-align: center; }
   .credits__list dt { text-align: center; }
+  .credits__links { flex-wrap: wrap; gap: 1.1rem 1.8rem; font-size: 0.7rem; }
+  .credits__links li { white-space: nowrap; }
+  .credits__cta { font-size: clamp(1.6rem, 8.5vw, 2.4rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
