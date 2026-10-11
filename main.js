@@ -320,12 +320,14 @@
   strip.addEventListener("pointerdown", (e) => {
     if (e.pointerType !== "mouse") return;
     dragging = true; dragged = false; sx0 = lastX = e.clientX; sl0 = strip.scrollLeft; sv = 0;
-    strip.setPointerCapture(e.pointerId);
   });
   strip.addEventListener("pointermove", (e) => {
     if (!dragging) return;
     strip.scrollLeft = sl0 - (e.clientX - sx0);
-    if (Math.abs(e.clientX - sx0) > 6) dragged = true;
+    if (!dragged && Math.abs(e.clientX - sx0) > 6) {
+      dragged = true;
+      strip.setPointerCapture(e.pointerId);
+    }
     sv = e.clientX - lastX; lastX = e.clientX;
   });
   const endDrag = () => {
@@ -337,10 +339,39 @@
       if (Math.abs(sv) > 0.3) requestAnimationFrame(glide);
     })();
   };
-  strip.addEventListener("pointerup", endDrag);
+  addEventListener("pointerup", endDrag);
   strip.addEventListener("pointercancel", endDrag);
   strip.addEventListener("click", (e) => { if (dragged) { e.preventDefault(); dragged = false; } }, true);
   strip.addEventListener("dragstart", (e) => e.preventDefault());
+
+  /* ---------- Video modal ---------- */
+  const videoModal = $("#videoModal");
+  const videoPlayer = $(".video-modal__player", videoModal);
+  strip.addEventListener("click", (e) => {
+    const a = e.target.closest("a.frame");
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    const id = new URL(a.href).searchParams.get("v");
+    if (!/youtube\.com$/.test(new URL(a.href).hostname) || !id) return;
+    e.preventDefault();
+    const title = $("h4", a).textContent;
+    $(".role-modal__meta", videoModal).textContent = `${$(".frame__type", a).textContent} · ${$(".frame__yr", a).textContent}`;
+    $(".role-modal__title", videoModal).textContent = title;
+    $(".video-modal__link", videoModal).href = a.href;
+    const f = document.createElement("iframe");
+    f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    f.title = `${title} with Luke Judges`;
+    videoPlayer.replaceChildren(f);
+    if (audio && soundOn) setSound(false);
+    videoModal.showModal();
+  });
+  $(".role-modal__close", videoModal).addEventListener("click", () => videoModal.close());
+  videoModal.addEventListener("click", (e) => {
+    const r = videoModal.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) videoModal.close();
+  });
+  videoModal.addEventListener("close", () => videoPlayer.replaceChildren());
 
   /* ---------- Deep house soundtrack (opt-in) ---------- */
   const soundBtn = $("#soundToggle"), soundLabel = $("#soundLabel");
