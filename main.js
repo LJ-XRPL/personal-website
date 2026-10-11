@@ -41,7 +41,11 @@
     requestAnimationFrame(() => document.body.classList.add("is-ready"));
   }
 
-  if (reduced) {
+  const mobile = matchMedia("(max-width: 760px), (pointer: coarse)").matches;
+  let seenIntro = false;
+  try { seenIntro = localStorage.getItem("seenIntro") === "1"; localStorage.setItem("seenIntro", "1"); } catch {}
+
+  if (reduced || mobile || seenIntro) {
     startFilm();
   } else {
     const per = 750;
@@ -505,11 +509,12 @@
   };
   soundBtn.addEventListener("click", () => setSound(!soundOn));
 
-  // Browsers block audio until a user gesture, so sound starts on the first click, tap or key press.
-  setSound(true);
+  // Browsers block audio until a user gesture, so on desktop sound starts on the first click or key press.
+  // On phones it stays opt-in so a first tap never surprises anyone.
+  if (!mobile) setSound(true);
   const unlock = (e) => {
     if (soundBtn.contains(e.target)) return;
-    if (soundOn && audio.ctx.state !== "running") audio.ctx.resume();
+    if (audio && soundOn && audio.ctx.state !== "running") audio.ctx.resume();
     ["pointerdown", "keydown", "touchend"].forEach((t) => removeEventListener(t, unlock, true));
   };
   ["pointerdown", "keydown", "touchend"].forEach((t) => addEventListener(t, unlock, true));
