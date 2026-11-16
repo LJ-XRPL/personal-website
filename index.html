@@ -43,6 +43,7 @@
   "sameAs": [
     "https://www.linkedin.com/in/luke-judges/",
     "https://x.com/luke_judges",
+    "https://www.tiktok.com/@lukejudges",
     "https://github.com/LJ-XRPL"
   ],
   "knowsAbout": ["strategic partnerships", "XRP Ledger", "developer ecosystems", "AI inference", "blockchain infrastructure"]
@@ -547,7 +548,7 @@
   .tmap-stage.fit .pin-l { transform-origin: 0 50%; transform: translate(calc(7px / var(--s)), -50%) scale(calc(1 / var(--s))); }
   .tmap-stage.fit .pin.left .pin-l { transform-origin: 100% 50%; transform: translate(calc(-7px / var(--s)), -50%) scale(calc(1 / var(--s))); }
   @media (max-width: 760px) {
-    .tmap-cities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .tmap-cities { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .tmap-cities button { display: flex; justify-content: space-between; align-items: baseline; text-align: left; white-space: nowrap; }
   }
   @media (max-width: 520px) { .tmap-cities { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -813,6 +814,21 @@
 
   /* Ripple role: full logo (symbol + name), sized to the mark column */
   .when .logo--wm { height: auto; width: 74px; max-width: 100%; vertical-align: middle; }
+
+  /* xrpl boot line: a one-line live chain of real ledgers, same type as the other boot lines */
+  #lj-xrpl.xch-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .xc { color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .xc-t { color: var(--dim); margin-right: 1ch; }
+  .xc-win { display: inline-block; vertical-align: bottom; overflow: hidden; white-space: nowrap; }
+  .xc-row { display: inline-block; white-space: nowrap; will-change: transform; }
+  .xc-row.go { transition: transform .45s cubic-bezier(.3, .7, .2, 1); }
+  .xc-b .br, .xc-d { color: var(--faint); }
+  .xc-b.open .hx { color: var(--dim); }
+  .xc-b.seal .hx, .xc-b.seal .br { color: #fff; text-shadow: 0 0 6px rgba(255, 255, 255, .85), 0 0 14px rgba(255, 255, 255, .45); }
+  .xc-b .hx, .xc-b .br { transition: color .7s ease-out, text-shadow .7s ease-out; }
+  .xc-n.tick { animation: lj-xic-blink .4s ease-out; }
+  .xc.wrap .xc-win { display: block; }
+  @media (prefers-reduced-motion: reduce) { .xc-row.go, .xc-b .hx, .xc-b .br { transition: none; } .xc-n.tick { animation: none; } }
 </style>
 </head>
 <body>
@@ -1097,7 +1113,7 @@
       <li><a href="https://www.youtube.com/watch?v=K9nHALwkZeQ"><span class="tag">interview · 2025</span><span><h3>Paris Blockchain Week</h3><p>With XRPL Commons, on kicking off the XRPL Foundation work.</p></span></a></li>
     </ul>
     <div class="tmap" id="tmap">
-      <div class="tmap-top"><span><span class="sig">$</span> talks --map</span><span class="tmap-sum">8 places &middot; 10 appearances</span></div>
+      <div class="tmap-top"><span><span class="sig">$</span> talks --map</span><span class="tmap-sum">8 places + online &middot; 12 appearances</span></div>
       <div class="tmap-stage">
         <pre class="tmap-art" aria-hidden="true">                  ....... ..:..::.  ....:::::::::::::.           .            .....    ...:::::::..  .    ..
 .    .::::........:::::::..::.:::::::.   .::::::::::.            ...::...    ......::::::::::::::::::::::::::::::.......
@@ -1137,6 +1153,7 @@
         <button type="button" data-city="dubai" aria-pressed="false">dubai<span>1</span></button>
         <button type="button" data-city="singapore" aria-pressed="false">singapore<span>1</span></button>
         <button type="button" data-city="sydney" aria-pressed="false">sydney<span>1</span></button>
+        <button type="button" data-city="online" aria-pressed="false">online<span>2</span></button>
       </div>
       <div class="tmap-panel" id="tmap-panel" aria-live="polite"><p class="c"># hover a dot or pick a place</p></div>
     </div>
@@ -1149,6 +1166,7 @@
     <ul class="links">
       <li><a href="https://www.linkedin.com/in/luke-judges/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>linkedin</a></li>
       <li><a href="https://x.com/luke_judges"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>@luke_judges</a></li>
+      <li><a href="https://www.tiktok.com/@lukejudges"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>@lukejudges</a></li>
       <li><a href="https://github.com/LJ-XRPL"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>github</a></li>
     </ul>
     <p class="fine">views my own, not those of my employer. nothing here is financial advice.</p>
@@ -1480,6 +1498,7 @@
   const PINS = {"newyork": [7, 35], "paris": [5, 60], "cannes": [6, 62], "istanbul": [7, 69], "dubai": [10, 78], "abudhabi": [11, 77], "singapore": [15, 94], "sydney": [22, 110]};
   const COLS = 120;
   const CITY = {
+    online: "Online",
     newyork: "New York", paris: "Paris", cannes: "Cannes", istanbul: "Istanbul", sydney: "Sydney",
     abudhabi: "Abu Dhabi", dubai: "Dubai", singapore: "Singapore",
   };
@@ -1499,7 +1518,7 @@
   const talks = {};
   document.querySelectorAll(".press li").forEach(li => {
     const a = li.querySelector("a"), h = li.querySelector("h3"), tag = li.querySelector(".tag");
-    const city = h && WHERE[h.textContent.trim()];
+    const city = h && (WHERE[h.textContent.trim()] || "online");  // no venue: interviews published online
     if (!city) return;
     (talks[city] = talks[city] || []).push({ li, href: a.href, title: h.textContent.trim(), tag: tag ? tag.textContent.trim() : "" });
   });
@@ -1531,6 +1550,14 @@
     el.addEventListener("click", () => pick(city));
   });
   const chips = root.querySelectorAll(".tmap-cities button");
+  // counts come from the media list, so the map always adds up to it
+  chips.forEach(b => { const s = b.querySelector("span"); if (s) s.textContent = (talks[b.dataset.city] || []).length; });
+  {
+    const all = Object.values(talks).reduce((a, l) => a + l.length, 0);
+    const nPlaces = Object.keys(talks).filter(c => c !== "online").length;
+    const sum = root.querySelector(".tmap-sum");
+    if (sum) sum.textContent = nPlaces + " places" + (talks.online ? " + online" : "") + " \u00b7 " + all + " appearances";
+  }
   chips.forEach(b => b.addEventListener("click", () => pick(b.dataset.city)));
 
   const panel = document.getElementById("tmap-panel");
@@ -2904,6 +2931,8 @@
     backoff = 3000;
     if (changed) blink();
     paint();
+    document.dispatchEvent(new CustomEvent("lj:ledger", { detail: {
+      index: next.index, txns: next.txns, hash: src.ledger_hash || null, live: src.type === "ledgerClosed" } }));
     return true;
   }
   function hangup() {
@@ -2961,6 +2990,13 @@
       if (my !== gen) return;
       let msg;
       try { msg = JSON.parse(ev.data); } catch (e) { return; }
+      if (msg && typeof msg.id === "string" && msg.id.indexOf("lj-bf-") === 0) {
+        const L = msg.result && msg.result.ledger;
+        if (L) document.dispatchEvent(new CustomEvent("lj:ledger-old", { detail: {
+          index: +L.ledger_index, hash: L.ledger_hash || null,
+          txns: Array.isArray(L.transactions) ? L.transactions.length : null } }));
+        return;
+      }
       if (msg && (msg.status === "error" || msg.error)) {
         try { sock.close(); } catch (e) {}
         return;
@@ -2969,6 +3005,12 @@
       if (take(src, url)) {
         got = true;
         clearTimeout(kill);
+        if (msg.type !== "ledgerClosed" && typeof src.ledger_index === "number") {
+          for (let k = 0; k <= 4; k++) {
+            try { sock.send(JSON.stringify({ id: "lj-bf-" + k, command: "ledger", ledger_index: src.ledger_index - k, transactions: true })); }
+            catch (e) {}
+          }
+        }
       }
     };
     sock.onerror = () => {};
@@ -3510,5 +3552,161 @@
   };
 })();
 </script>
+<script>
+(() => {
+  // One-line live chain for the xrpl boot line: #<newest ledger> [hash]-[hash]-...-[open].
+  // Data comes from the lj-xic socket: "lj:ledger" (subscribe answer + every ledgerClosed)
+  // and "lj:ledger-old" (backfilled recent ledgers). Hashes are the real ledger hashes.
+  const val = document.getElementById("lj-xrpl");
+  if (!val) return;
+  const line = val.closest("p");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const BW = 6, STEP = BW + 1;                 // "[ABCD]" + "-"
+  const MAXN = 5;
+  const commas = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const HEX = "0123456789ABCDEF";
+  const scramble = () => { let s = ""; for (let i = 0; i < 4; i++) s += HEX[(Math.random() * 16) | 0]; return s; };
+  const mk = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+
+  const wrap = mk("span", "lj-x xch-v");
+  const xc = mk("span", "lj-x xc");
+  xc.setAttribute("aria-hidden", "true");
+  const num = mk("span", "xc-n", "connecting\u2026");
+  const tx = mk("span", "xc-t", "");
+  const win = mk("span", "xc-win"), row = mk("span", "xc-row");
+  win.appendChild(row);
+  xc.append(num, tx, win);
+  val.replaceWith(wrap);
+  wrap.append(val, xc);
+  val.classList.add("xch-sr");
+
+  const known = new Map();   // ledger index -> { txns, hash }
+  let head = 0, n = MAXN, busy = false, dirty = false, openedAt = performance.now();
+  const secs = () => { const s = Math.max(0, (performance.now() - openedAt) / 1000); return (s < 10 ? s.toFixed(1) + "s" : Math.min(99, Math.round(s)) + "s ").slice(0, 4); };
+
+  function fill(b, i, open) {
+    const d = known.get(i);
+    const hx = open ? secs() : (d && d.hash ? d.hash.slice(0, 4).toUpperCase() : "\u00b7\u00b7\u00b7\u00b7");
+    b.textContent = "";
+    b.append(mk("span", "br", "["), mk("span", "hx", hx), mk("span", "br", "]"));
+    b.title = open ? "ledger #" + commas(i) + " \u00b7 open " + secs() : "ledger #" + commas(i) + (d && d.txns != null ? " \u00b7 " + d.txns + " txns" : "");
+  }
+  function blockEl(i, open) { const b = mk("span", "xc-b" + (open ? " open" : "")); b.dataset.i = i; fill(b, i, open); return b; }
+  const dash = () => mk("span", "xc-d", "-");
+
+  function size() {
+    // fit n blocks in the value column; if even 3 won't fit beside the number, put the chain on the next line
+    const probe = mk("span", "", "0000000000");
+    probe.style.cssText = "position:absolute;visibility:hidden;white-space:pre";
+    line.appendChild(probe);
+    const ch = probe.getBoundingClientRect().width / 10;
+    probe.remove();
+    const valueW = line.clientWidth - 13 * ch;
+    const cols = valueW / ch;
+    const PRE = 26;   // "#108,364,990 \u00b7 265 txns "
+    const inline = cols >= PRE + 3 * STEP - 1;
+    xc.classList.toggle("wrap", !inline);
+    const room = inline ? cols - PRE : cols;
+    const next = Math.max(2, Math.min(MAXN, Math.floor((room + 1) / STEP)));
+    win.style.width = (next * STEP - 1) + "ch";
+    if (next !== n) { n = next; render(); }
+  }
+
+  function render() {
+    if (busy) { dirty = true; return; }
+    row.classList.remove("go");
+    row.style.transition = "none";
+    row.style.transform = "";
+    row.textContent = "";
+    if (!head) return;
+    for (let i = head - (n - 2); i <= head; i++) row.append(blockEl(i, false), dash());
+    row.append(blockEl(head + 1, true));
+  }
+
+  function advance() {
+    const open = row.lastElementChild;
+    if (!open || +open.dataset.i !== head || reduce) return render();
+    busy = true;
+    open.classList.remove("open");
+    fill(open, head, false);
+    open.classList.add("seal");
+    setTimeout(() => open.classList.remove("seal"), 650);
+    row.append(dash(), blockEl(head + 1, true));
+    if (row.querySelectorAll(".xc-b").length <= n) { busy = false; return; }
+    void row.offsetWidth;
+    row.style.transition = "";
+    row.classList.add("go");
+    row.style.transform = "translateX(-" + STEP + "ch)";
+    let done = false;
+    const end = () => {
+      if (done) return;
+      done = true;
+      row.classList.remove("go");
+      row.style.transition = "none";
+      row.firstElementChild && row.firstElementChild.remove();
+      row.firstElementChild && row.firstElementChild.remove();
+      row.style.transform = "";
+      busy = false;
+      if (dirty) { dirty = false; render(); }
+    };
+    row.addEventListener("transitionend", end, { once: true });
+    setTimeout(end, 700);
+  }
+
+  function setTx() {
+    const d = known.get(head);
+    tx.textContent = head ? " \u00b7 " + (d && d.txns != null ? d.txns : "\u2026") + " txns" : "";
+  }
+  function setNum() {
+    num.textContent = head ? "#" + commas(head) : "connecting\u2026";
+    setTx();
+    if (!reduce && head) { num.classList.remove("tick"); void num.offsetWidth; num.classList.add("tick"); }
+  }
+
+  document.addEventListener("lj:ledger", e => {
+    const d = e.detail || {};
+    if (typeof d.index !== "number") return;
+    const was = known.get(d.index) || {};
+    known.set(d.index, { txns: d.txns != null ? d.txns : was.txns, hash: d.hash || was.hash });
+    if (d.index > head) {
+      const step = head && d.index === head + 1;
+      head = d.index;
+      openedAt = performance.now();
+      setNum();
+      if (step && !document.hidden) advance(); else render();
+    } else {
+      const b = row.querySelector('.xc-b[data-i="' + d.index + '"]:not(.open)');
+      if (b) fill(b, d.index, false);
+      if (d.index === head) setTx();
+    }
+    for (const k of known.keys()) if (k < head - 12) known.delete(k);
+  });
+  document.addEventListener("lj:ledger-old", e => {
+    const d = e.detail || {};
+    if (!isFinite(d.index)) return;
+    const was = known.get(d.index) || {};
+    known.set(d.index, { txns: d.txns != null ? d.txns : was.txns, hash: d.hash || was.hash });
+    const b = row.querySelector('.xc-b[data-i="' + d.index + '"]:not(.open)');
+    if (b) fill(b, d.index, false);
+    if (d.index === head) setTx();
+  });
+
+  setInterval(() => {
+    if (document.hidden) return;
+    const snap = window.__lj && window.__lj.xrpl ? window.__lj.xrpl.snapshot() : null;
+    if (snap && snap.mode === "offline") { num.textContent = "offline"; win.hidden = true; return; }
+    win.hidden = false;
+    const open = row.lastElementChild;
+    if (open && open.classList.contains("open")) fill(open, +open.dataset.i, true);
+  }, 100);
+
+  if (window.ResizeObserver) new ResizeObserver(() => size()).observe(line);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
+  size();
+  window.__lj = window.__lj || {};
+  window.__lj.xchain = () => ({ head, n, blocks: [...row.querySelectorAll(".xc-b")].map(b => (b.classList.contains("open") ? "open:" : "") + b.dataset.i + ":" + b.textContent) });
+})();
+</script>
+
 </body>
 </html>
