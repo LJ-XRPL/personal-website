@@ -265,23 +265,53 @@
   .rfq-go { color: var(--ink) !important; border-color: var(--faint) !important; }
   .rfq-go[disabled] { opacity: .45; cursor: default; }
   .rfq-out { list-style: none; margin: 10px 0 0; padding: 0; font-size: 12.5px; color: var(--dim); min-height: 1.6em; }
-  .rfq-out li { display: grid; grid-template-columns: 8ch 10ch minmax(0, 1fr) 7ch; gap: 0 12px; align-items: center; padding: 1px 0; }
-  .rfq-out li.c, .rfq-out li.line { display: block; }
+  .rfq-out > li { padding: 1px 0 1px 8ch; text-indent: -8ch; }
+  .rfq-out > li.c, .rfq-out > li.bids-li { padding-left: 0; text-indent: 0; }
+  .rfq-out .k, .rfq-out .rfq-stamp, .rfq-out .rfq-window, .rfq-bids { text-indent: 0; }
   .rfq-out li.c { color: var(--faint); }
-  .rfq-out .k { color: var(--faint); }
-  .rfq-out .n { color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .rfq-out .v { text-align: right; color: var(--faint); font-variant-numeric: tabular-nums; }
-  .rfq-out .bar { display: block; height: 7px; background: #3a3a3a; max-width: 100%; }
-  .rfq-out .bar.sealed { background: repeating-linear-gradient(90deg, #3a3a3a 0 2px, transparent 2px 4px); }
-  .rfq-out li.win .n, .rfq-out li.win .v { color: var(--ink); }
-  .rfq-out li.win .bar { background: var(--ink); }
-  .rfq-out li.second .v { color: var(--dim); }
-  .rfq-out li.second .bar { background: #6a6a6a; }
+  .rfq-out .k { color: var(--faint); display: inline-block; min-width: 8ch; }
   .rfq-out b { color: var(--ink); font-weight: 500; }
   .rfq-out .nw { white-space: nowrap; }
   .rfq-out .stream { color: var(--ink); }
   .rfq-out .cur { display: inline-block; width: .55em; height: 1em; background: var(--ink); vertical-align: -2px; margin-left: 1px; }
-  @media (max-width: 640px) { .rfq-out li { grid-template-columns: 7ch 9ch minmax(0, 1fr) 6ch; gap: 0 8px; } }
+  .rfq-window { display: inline-block; width: 16ch; height: 5px; vertical-align: 2px; margin: 0 8px; background: #1c1c1c; }
+  .rfq-window i { display: block; height: 100%; width: 100%; background: var(--dim); transition: width linear; }
+  .rfq-bids { position: relative; margin: 2px 0; }
+  .rfq-bid-row {
+    display: grid; grid-template-columns: 8ch 10ch minmax(0, 1fr) 7ch; gap: 0 12px; align-items: center;
+    padding: 1px 0; will-change: transform;
+  }
+  .rfq-bid-row .n { color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rfq-bid-row .v { text-align: right; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .rfq-bid-row .bw { height: 7px; }
+  .rfq-bid-row .bar { display: block; height: 7px; width: 0; background: #3a3a3a; transition: width .45s cubic-bezier(.2,.8,.2,1), background-color .3s; }
+  .rfq-bid-row.sealed .bar { background: repeating-linear-gradient(90deg, #4a4a4a 0 2px, transparent 2px 4px); animation: rfq-shimmer .9s linear infinite; }
+  @keyframes rfq-shimmer { from { background-position: 0 0; } to { background-position: 8px 0; } }
+  .rfq-bid-row.waiting .n { color: var(--faint); }
+  .rfq-bid-row.land .n { animation: rfq-land .5s ease-out; }
+  @keyframes rfq-land { 0% { color: var(--ink); } 100% { color: var(--dim); } }
+  .rfq-bid-row.win .n, .rfq-bid-row.win .v, .rfq-bid-row.win .k { color: var(--ink); }
+  .rfq-bid-row.win .bar { background: var(--ink); }
+  .rfq-bid-row.win { animation: rfq-flash .7s ease-out; }
+  @keyframes rfq-flash { 0% { background: rgba(232,232,232,.16); } 100% { background: transparent; } }
+  .rfq-bid-row.second .v { color: var(--ink); }
+  .rfq-bid-row.second .bar { background: #6a6a6a; }
+  .rfq-bid-row.second.pay .v { animation: rfq-pay .45s ease-in-out 3; }
+  @keyframes rfq-pay { 50% { color: var(--bg); background: var(--ink); } }
+  .rfq-bid-row.out .n, .rfq-bid-row.out .v { text-decoration: line-through; color: var(--faint); }
+  .rfq-meter { color: var(--faint); font-variant-numeric: tabular-nums; }
+  .rfq-meter b { color: var(--ink); }
+  .rfq-stamp {
+    display: inline-block; margin-left: 10px; padding: 0 6px; border: 1px solid var(--ink); color: var(--ink);
+    letter-spacing: .12em; font-size: 11px; transform: rotate(-3deg); animation: rfq-stamp .35s cubic-bezier(.2,1.6,.4,1);
+  }
+  @keyframes rfq-stamp { from { transform: rotate(-3deg) scale(2.2); opacity: 0; } to { transform: rotate(-3deg) scale(1); opacity: 1; } }
+  .rfq-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (max-width: 640px) { .rfq-bid-row { grid-template-columns: 7ch 9ch minmax(0, 1fr) 6ch; gap: 0 8px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .rfq-bid-row .bar, .rfq-window i { transition: none; }
+    .rfq-bid-row.sealed .bar, .rfq-bid-row.land .n, .rfq-bid-row.win, .rfq-bid-row.second.pay .v, .rfq-stamp { animation: none; }
+  }
 </style>
 </head>
 <body>
@@ -398,9 +428,10 @@
         <label class="rfq-bid">bid as a provider $<input id="rfq-you" type="number" min="0.05" max="0.9" step="0.01" placeholder="&mdash;" inputmode="decimal" aria-label="Your bid in dollars per million tokens">/1M tok</label>
         <button type="button" class="rfq-go" id="rfq-go">send request &crarr;</button>
       </div>
-      <ol class="rfq-out" id="rfq-out" aria-live="polite">
+      <ol class="rfq-out" id="rfq-out">
         <li class="c"># pick a request and send it. five providers bid blind; the cheapest wins and is paid the runner-up&rsquo;s price.</li>
       </ol>
+      <p class="rfq-sr" id="rfq-sr" aria-live="polite"></p>
     </div>
   </section>
 
@@ -886,6 +917,7 @@
   const out = document.getElementById("rfq-out");
   const go = document.getElementById("rfq-go");
   const you = document.getElementById("rfq-you");
+  const sr = document.getElementById("rfq-sr");
   const CALM = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const MAX = 0.90; // the buyer's ceiling, $ per 1M tokens
   const PROMPTS = [
@@ -894,7 +926,8 @@
     { q: "what is x402?", a: "it puts HTTP's 402 Payment Required to work, so a client can pay per request in USDC without an account." },
   ];
   const PROVIDERS = ["gpu-fra-1", "gpu-sin-2", "gpu-dxb-1", "gpu-iad-3", "gpu-syd-1"];
-  let p = 0, busy = false;
+  const SPIN = "|/-\\";
+  let p = 0, busy = false, ran = false;
 
   root.querySelectorAll(".rfq-prompts button").forEach(b => b.addEventListener("click", () => {
     if (busy) return;
@@ -903,88 +936,181 @@
   }));
 
   const wait = ms => new Promise(r => setTimeout(r, CALM ? 0 : ms));
+  const frame = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
   const money = v => "$" + v.toFixed(2);
-  const id = () => "rq_" + Math.random().toString(16).slice(2, 8);
   const esc = s => s.replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
+  const id = () => "rq_" + Math.random().toString(16).slice(2, 8);
 
-  function row(cls, k, n, barW, sealed, v) {
+  function line(html, cls = "") {
     const li = document.createElement("li");
     if (cls) li.className = cls;
-    li.innerHTML = `<span class="k">${k}</span><span class="n">${esc(n)}</span>` +
-      `<span><span class="bar${sealed ? " sealed" : ""}" style="width:${Math.round(barW * 100)}%"></span></span>` +
-      `<span class="v">${v}</span>`;
-    out.appendChild(li);
-    return li;
-  }
-  function line(html, cls = "line") {
-    const li = document.createElement("li");
-    li.className = cls;
     li.innerHTML = html;
     out.appendChild(li);
     return li;
   }
+  async function type(el, html, speed = 9) {
+    // Types the visible text of `html`, then swaps in the formatted markup.
+    if (CALM) { el.innerHTML = html; return; }
+    const tmp = document.createElement("span");
+    tmp.innerHTML = html;
+    const text = tmp.textContent;
+    for (let i = 1; i <= text.length; i += 2) { el.textContent = text.slice(0, i); await wait(speed); }
+    el.innerHTML = html;
+  }
+  async function scramble(el, final, ms = 320) {
+    if (CALM) { el.textContent = final; return; }
+    const end = performance.now() + ms;
+    while (performance.now() < end) {
+      el.textContent = "$0." + String(Math.floor(Math.random() * 80) + 10);
+      await wait(45);
+    }
+    el.textContent = final;
+  }
 
   async function run() {
     if (busy) return;
-    busy = true; go.disabled = true;
-    out.innerHTML = "";
+    busy = true; ran = true; go.disabled = true;
+    out.innerHTML = ""; sr.textContent = "";
     const req = id(), prompt = PROMPTS[p];
     const mine = parseFloat(you.value);
     const bids = PROVIDERS.map(name => ({
-      name, price: Math.round((0.22 + Math.random() * 0.6) * 100) / 100, ms: 40 + Math.floor(Math.random() * 160),
+      name, price: Math.round((0.22 + Math.random() * 0.6) * 100) / 100, ms: 250 + Math.floor(Math.random() * 850),
     }));
-    if (mine > 0 && mine <= MAX) bids.push({ name: "you", price: Math.round(mine * 100) / 100, ms: 12, you: true });
-    const over = mine > MAX;
+    if (mine > 0 && mine <= MAX) bids.push({ name: "you", price: Math.round(mine * 100) / 100, ms: 120, you: true });
 
-    line(`<span class="k">&gt;</span> <b>${req}</b> &ldquo;${esc(prompt.q)}&rdquo; &middot; <span class="nw">max ${money(MAX)}/1M tok</span>`);
-    if (over) line(`<span class="k">you</span> bid ${money(mine)}, over the ${money(MAX)} max, so the router drops it`);
-    await wait(350);
+    // 1. The request goes out.
+    await type(line(""), `<span class="k">&gt;</span><b>${req}</b> &ldquo;${esc(prompt.q)}&rdquo; <span class="nw">&middot; max ${money(MAX)}/1M tok</span>`);
+    if (mine > MAX) line(`<span class="k">you</span>bid ${money(mine)}, over the ${money(MAX)} max, so the router drops it`);
 
-    // Bids arrive sealed, in the order they land.
-    const sealed = [...bids].sort((a, b) => a.ms - b.ms).map(b => {
-      const li = row(b.you ? "you" : "", "sealed", b.name, 1, true, `${b.ms}ms`);
-      li.hidden = true;
-      return [b, li];
-    });
-    for (const [b, li] of sealed) { await wait(b.ms * 1.4); li.hidden = false; }
-    await wait(450);
+    // 2. Broadcast, with the auction window draining.
+    const windowMs = Math.max(...bids.map(b => b.ms)) + 400;
+    const bc = line(`<span class="k">window</span>broadcast &rarr; ${bids.length} providers<span class="rfq-window"><i></i></span><span class="rfq-left">${windowMs}ms</span>`);
+    const drain = bc.querySelector(".rfq-window i"), left = bc.querySelector(".rfq-left");
 
-    // The router clears: lowest price wins, and is paid the second-lowest price.
-    sealed.forEach(([, li]) => li.remove());
+    const holder = line("", "bids-li");
+    const box = document.createElement("div");
+    box.className = "rfq-bids";
+    box.setAttribute("aria-hidden", "true");
+    holder.appendChild(box);
+    const rows = new Map();
+    for (const b of bids) {
+      const r = document.createElement("div");
+      r.className = "rfq-bid-row waiting";
+      r.innerHTML = `<span class="k">|</span><span class="n">${esc(b.name)}</span><span class="bw"><span class="bar"></span></span><span class="v">&middot;&middot;</span>`;
+      box.appendChild(r);
+      rows.set(b, r);
+    }
+    await frame();
+    drain.style.transitionDuration = CALM ? "0ms" : windowMs + "ms";
+    drain.style.width = "0%";
+
+    let spin = 0;
+    const t0 = performance.now();
+    const ticker = CALM ? 0 : setInterval(() => {
+      spin = (spin + 1) % SPIN.length;
+      rows.forEach(r => { if (r.classList.contains("waiting")) r.querySelector(".k").textContent = SPIN[spin]; });
+      left.textContent = Math.max(0, Math.round(windowMs - (performance.now() - t0))) + "ms";
+    }, 70);
+
+    // 3. Sealed bids land as they arrive.
+    await Promise.all(bids.map(async b => {
+      await wait(b.ms);
+      const r = rows.get(b);
+      r.classList.remove("waiting");
+      r.classList.add("sealed", "land");
+      r.querySelector(".k").textContent = "sealed";
+      r.querySelector(".v").textContent = b.ms + "ms";
+      r.querySelector(".bar").style.width = "100%";
+    }));
+    await wait(Math.max(0, windowMs - (performance.now() - t0)));
+    clearInterval(ticker);
+    left.textContent = "0ms";
+    bc.innerHTML = `<span class="k">window</span>closed &middot; the router opens the bids`;
+    await wait(250);
+
+    // 4. Reveal: bars fall to their real price while the numbers settle.
+    await Promise.all(bids.map(async b => {
+      const r = rows.get(b);
+      r.classList.remove("sealed", "land");
+      r.querySelector(".k").textContent = "";
+      r.querySelector(".bar").style.width = Math.round(b.price / MAX * 100) + "%";
+      await scramble(r.querySelector(".v"), money(b.price));
+    }));
+    await wait(200);
+
+    // 5. Sort by price, sliding each row to its place.
     const ranked = [...bids].sort((a, b) => a.price - b.price || a.ms - b.ms);
-    const win = ranked[0], second = ranked[1];
-    ranked.forEach((b, i) => {
-      const cls = [i === 0 ? "win" : i === 1 ? "second" : "", b.you ? "you" : ""].join(" ").trim();
-      row(cls, i === 0 ? "cleared" : "", b.name, b.price / MAX, false, money(b.price));
-    });
-    line(win.you
-      ? `<b>you</b> win at ${money(win.price)} and are paid ${money(second.price)}, the runner-up&rsquo;s price`
-      : `<b>${esc(win.name)}</b> wins at ${money(win.price)} and is paid ${money(second.price)}, the runner-up&rsquo;s price`);
-    await wait(500);
+    const first = new Map([...rows].map(([b, r]) => [r, r.getBoundingClientRect().top]));
+    ranked.forEach(b => box.appendChild(rows.get(b)));
+    if (!CALM) {
+      rows.forEach(r => {
+        const dy = first.get(r) - r.getBoundingClientRect().top;
+        r.style.transition = "none";
+        r.style.transform = `translateY(${dy}px)`;
+      });
+      await frame();
+      rows.forEach(r => { r.style.transition = "transform .5s cubic-bezier(.2,.8,.2,1)"; r.style.transform = ""; });
+      await wait(520);
+    }
 
-    // Tokens stream back.
+    // 6. The cheapest wins and is paid the runner-up's price.
+    const win = ranked[0], second = ranked[1];
+    const wr = rows.get(win), sr2 = rows.get(second);
+    wr.classList.add("win");
+    wr.querySelector(".k").textContent = "cleared";
+    sr2.classList.add("second", "pay");
+    sr2.querySelector(".k").textContent = "price";
+    ranked.slice(2).forEach(b => rows.get(b).classList.add("out"));
+    line(win.you
+      ? `<span class="k"></span><b>you</b> win at ${money(win.price)} and are paid ${money(second.price)}, the runner-up&rsquo;s price`
+      : `<span class="k"></span><b>${esc(win.name)}</b> wins at ${money(win.price)} and is paid ${money(second.price)}, the runner-up&rsquo;s price`);
+    await wait(700);
+
+    // 7. Tokens stream back while the meter runs.
     const words = prompt.a.split(" ");
-    const s = line(`<span class="k">stream</span> <span class="stream"></span><span class="cur"></span>`);
-    const target = s.querySelector(".stream");
+    const tokens = Math.round(words.length * 1.3);
+    const s = line(`<span class="k">stream</span><span class="stream"></span><span class="cur"></span>`);
+    const meter = line(`<span class="k">meter</span><span class="rfq-meter"><b>0</b> tok &middot; <b>$0.0000000</b></span>`);
+    const target = s.querySelector(".stream"), [mt, mc] = meter.querySelectorAll("b");
     for (let i = 0; i < words.length; i++) {
       target.textContent += (i ? " " : "") + words[i];
-      await wait(55);
+      const t = Math.round((i + 1) * 1.3);
+      mt.textContent = t;
+      mc.textContent = "$" + (t * second.price / 1e6).toFixed(7);
+      await wait(48 + Math.random() * 40);
     }
     s.querySelector(".cur").remove();
+    mt.textContent = tokens;
 
-    const tokens = Math.round(words.length * 1.3);
+    // 8. Settlement.
     const cost = tokens * second.price / 1e6;
-    line(`<span class="k">receipt</span> ${req} &middot; ${esc(win.name)} &middot; <span class="nw">${tokens} tok &times; ${money(second.price)}/1M = <b>$${cost.toFixed(7)}</b></span> USDC over x402 &middot; simulated`);
+    const rc = line("");
+    await type(rc, `<span class="k">receipt</span>${req} &middot; ${esc(win.name)} &middot; <span class="nw">${tokens} tok &times; ${money(second.price)}/1M = <b>$${cost.toFixed(7)}</b></span> USDC over x402 &middot; simulated`, 6);
+    await wait(120);
+    const stamp = document.createElement("span");
+    stamp.className = "rfq-stamp";
+    stamp.textContent = "SETTLED";
+    rc.appendChild(stamp);
     if (bids.some(b => b.you)) {
       const m = bids.find(b => b.you);
+      await wait(250);
       line(win.you
-        ? `<span class="k">you</span> won, and were paid ${money(second.price)}: more than your ${money(m.price)} bid. bidding your true cost was safe.`
-        : `<span class="k">you</span> bid ${money(m.price)}; ${esc(win.name)} came in under you at ${money(win.price)}.`);
+        ? `<span class="k">you</span>won, and were paid ${money(second.price)}: more than your ${money(m.price)} bid. bidding your true cost was safe.`
+        : `<span class="k">you</span>bid ${money(m.price)}; ${esc(win.name)} came in under you at ${money(win.price)}.`);
     }
+    sr.textContent = `${win.you ? "You" : win.name} won at ${money(win.price)} and was paid ${money(second.price)}. Simulated receipt: ${tokens} tokens, $${cost.toFixed(7)} in USDC.`;
     busy = false; go.disabled = false;
   }
+
   go.addEventListener("click", run);
   you.addEventListener("keydown", e => { if (e.key === "Enter") run(); });
+  // Run once on its own the first time it scrolls into view.
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => {
+      if (es.some(e => e.isIntersecting) && !ran) { io.disconnect(); run(); }
+    }, { threshold: 0.6 });
+    io.observe(root);
+  }
   window.__rfq = { run, busy: () => busy };
 })();
 </script>
