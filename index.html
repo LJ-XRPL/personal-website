@@ -474,9 +474,141 @@
   @media (max-width: 640px) {
     .pt-frame { justify-content: center; padding: 16px 12px 12px; gap: 16px 24px; }
   }
+
+  html.ljb-on { overflow: hidden; }
+  #ljb {
+    position: fixed; inset: 0; z-index: 9999; background: #040404; color: var(--ink);
+    font-family: inherit; cursor: default; user-select: none;
+  }
+  #ljb::before {
+    content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .04) 0 1px, transparent 1px 3px);
+  }
+  #ljb::after {
+    content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 52%, rgba(0, 0, 0, .7) 100%);
+  }
+  .ljb-screen {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 30px; transform-origin: 50% 50%;
+    animation: ljb-on .5s cubic-bezier(.2, .8, .2, 1) both, ljb-flicker 2.4s steps(3) infinite;
+  }
+  @keyframes ljb-on {
+    0% { transform: scale(.02, .003); filter: brightness(5); }
+    35% { transform: scale(1, .003); filter: brightness(4); }
+    100% { transform: none; filter: none; }
+  }
+  @keyframes ljb-flicker { 0%, 100% { opacity: 1; } 50% { opacity: .96; } 75% { opacity: .985; } }
+  .ljb-bios {
+    position: absolute; top: 22px; left: 26px; margin: 0; font: inherit; font-size: 12px; line-height: 1.7;
+    color: var(--dim); white-space: pre; text-shadow: 0 0 6px rgba(232, 232, 232, .35);
+  }
+  .ljb-logo { --px: clamp(9px, 3.4vw, 22px); display: grid; grid-template-columns: repeat(14, var(--px)); grid-auto-rows: var(--px); gap: 2px; }
+  .ljb-logo i { display: block; background: var(--ink); opacity: 0; box-shadow: 0 0 12px rgba(232, 232, 232, .55); }
+  .ljb-logo i.on { opacity: 1; animation: ljb-px .25s ease-out; }
+  .ljb-logo i.x { background: none; box-shadow: none; }
+  @keyframes ljb-px { from { background: #fff; box-shadow: 0 0 22px #fff; } }
+  .ljb-load { font-size: 13px; letter-spacing: .08em; color: var(--ink); text-shadow: 0 0 8px rgba(232, 232, 232, .5); white-space: pre; }
+  .ljb-load .d { color: var(--dim); }
+  .ljb-cur { display: inline-block; width: .6em; height: 1.05em; margin-left: 4px; vertical-align: -3px; background: var(--ink); box-shadow: 0 0 8px rgba(232, 232, 232, .6); animation: ljb-blink 1s steps(1) infinite; }
+  @keyframes ljb-blink { 50% { opacity: 0; } }
+  .ljb-skip { position: absolute; bottom: 22px; left: 0; right: 0; text-align: center; color: var(--faint); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; }
+  #ljb.off .ljb-screen { animation: ljb-off .42s cubic-bezier(.6, 0, .9, .4) forwards; }
+  @keyframes ljb-off {
+    0% { transform: none; filter: none; }
+    55% { transform: scale(1, .003); filter: brightness(4); }
+    100% { transform: scale(0, .003); filter: brightness(6); }
+  }
+  #ljb.off { animation: ljb-fade .35s .38s ease-out forwards; }
+  @keyframes ljb-fade { to { opacity: 0; visibility: hidden; } }
+  @media (max-width: 560px) {
+    .ljb-bios { left: 16px; top: 16px; font-size: 11px; }
+    .ljb-load { font-size: 12px; }
+  }
 </style>
 </head>
 <body>
+<script>
+(() => {
+  const q = new URLSearchParams(location.search);
+  const force = q.has("boot");
+  if (!force) {
+    if (q.has("noboot") || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (/bot|crawl|spider|slurp|lighthouse|headless|preview/i.test(navigator.userAgent)) return;
+    try { if (sessionStorage.getItem("lj-boot")) return; sessionStorage.setItem("lj-boot", "1"); } catch (e) { return; }
+  }
+  const root = document.documentElement;
+  root.classList.add("ljb-on");
+  const L = ["##....", "##....", "##....", "##....", "##....", "##....", "##....", "######", "######"];
+  const J = ["######", "######", "....##", "....##", "....##", "....##", "##..##", "######", ".####."];
+  const rows = L.map((l, i) => l + ".." + J[i]);
+  const box = document.createElement("div");
+  box.id = "ljb";
+  box.setAttribute("aria-hidden", "true");
+  box.innerHTML = '<div class="ljb-screen"><pre class="ljb-bios"></pre><div class="ljb-logo">' +
+    rows.join("").split("").map(c => c === "#" ? "<i></i>" : '<i class="x"></i>').join("") +
+    '</div><div class="ljb-load"></div><div class="ljb-skip">press any key</div></div>';
+  document.body.prepend(box);
+  const bios = box.querySelector(".ljb-bios"), load = box.querySelector(".ljb-load");
+  const px = [...box.querySelectorAll(".ljb-logo i:not(.x)")];
+  const timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  let done = false;
+
+  const LINES = [
+    "LJ-BIOS v2.6  (c) 2026 luke judges",
+    "",
+    "cpu ......... dubai / london",
+    "memory ...... %K ok",
+    "chains ...... xrpl  solana  x402",
+    "boot ........ lukejudges.com",
+  ];
+  let shown = 0, mem = 0;
+  const paintBios = () => { bios.textContent = LINES.slice(0, shown).join("\n").replace("%", mem); };
+  LINES.forEach((_, i) => at(380 + i * 120, () => { shown = i + 1; paintBios(); }));
+  at(740, () => {
+    const t = setInterval(() => { mem = Math.min(640, mem + 64); paintBios(); if (mem >= 640) clearInterval(t); }, 45);
+    timers.push(t);
+  });
+
+  // The letters light up pixel by pixel, in random order.
+  const order = px.map((p, i) => [Math.random(), p]).sort((a, b) => a[0] - b[0]).map(x => x[1]);
+  order.forEach((p, i) => at(520 + i * (760 / order.length), () => p.classList.add("on")));
+
+  // A chunky block progress bar.
+  const W = 16;
+  let fill = 0;
+  const bar = () => {
+    const pct = Math.round(fill / W * 100);
+    load.innerHTML = `LOADING <span class="d">[</span>${"\u2588".repeat(fill)}<span class="d">${"\u2591".repeat(W - fill)}]</span> ${String(pct).padStart(3)}%`;
+  };
+  bar();
+  let t0 = 700;
+  while (fill < W) {
+    const step = Math.min(W - fill, 1 + Math.floor(Math.random() * 3));
+    fill += step;
+    const f = fill;
+    at(t0, () => { fill = f; bar(); });
+    t0 += 70 + Math.random() * 110;
+  }
+  fill = 0;
+  at(Math.max(t0, 1900), () => { load.innerHTML = 'READY<span class="ljb-cur"></span>'; });
+
+  function finish() {
+    if (done) return;
+    done = true;
+    timers.forEach(t => { clearTimeout(t); clearInterval(t); });
+    box.classList.add("off");
+    setTimeout(() => { box.remove(); root.classList.remove("ljb-on"); }, 760);
+    ["keydown", "pointerdown", "touchstart", "wheel"].forEach(ev => removeEventListener(ev, finish, true));
+  }
+  at(Math.max(t0, 1900) + 520, finish);
+  setTimeout(finish, 4500); // never trap anyone
+  ["keydown", "pointerdown", "touchstart", "wheel"].forEach(ev => addEventListener(ev, finish, { capture: true, passive: true }));
+  window.__ljb = { finish, done: () => done };
+})();
+</script>
+
 <header class="bar">
   <span class="who"><b>luke</b>@judges:~</span>
   <nav>
