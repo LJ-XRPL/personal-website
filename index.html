@@ -114,11 +114,17 @@
     border-top: 1px solid var(--line); padding-top: 18px;
   }
 
-  .entry { display: grid; grid-template-columns: 132px 1fr; gap: 8px 22px; padding: 9px 0; }
+  .entry { display: grid; grid-template-columns: 196px 1fr; gap: 8px 22px; padding: 9px 0; align-items: start; }
+  .when { display: grid; grid-template-columns: 78px 1fr; gap: 10px; align-items: center; min-height: 22px; }
+  .when .logo, .when .word { margin-right: 0; }
+  .when .word { font-size: 11px; }
   .entry .k { color: var(--faint); }
   .entry h3 { font-size: 14.5px; font-weight: 500; margin: 0; }
   .entry p { margin: 2px 0 0; color: var(--dim); }
-  @media (max-width: 640px) { .entry { grid-template-columns: 1fr; gap: 2px; } }
+  @media (max-width: 640px) {
+    .entry { grid-template-columns: 1fr; gap: 2px; }
+    .when { grid-template-columns: 64px 1fr; }
+  }
 
   .sub { list-style: none; margin: 8px 0 0; padding: 0; }
   .sub li { padding: 5px 0 5px 16px; border-left: 1px solid var(--line); }
@@ -186,9 +192,9 @@
   <section id="roles">
     <h2>roles</h2>
     <article class="entry">
-      <span class="k">2023 – now</span>
+      <div class="when"><img class="logo logo--ink" src="assets/logos/ripple.svg" alt="" /><span class="k">2023 – now</span></div>
       <div>
-        <h3><img class="logo logo--ink" src="assets/logos/ripple.svg" alt="" />Global Partner Success Lead</h3>
+        <h3>Global Partner Success Lead</h3>
         <p>Ripple · Dubai. I own the global team. Three roles, all about turning partner interest into products that ship and get used.</p>
         <ol class="sub">
           <li><span>2025 – now</span><b>Global Partner Success Lead, RippleX</b><em>I own the global partner team, and the journey from first conversation to live product: scoping integrations, working with product and engineering on what partners need, and supporting them after launch.</em></li>
@@ -198,48 +204,57 @@
       </div>
     </article>
     <article class="entry">
-      <span class="k">2024</span>
+      <div class="when"><span></span><span class="k">2024</span></div>
       <div><h3>Seed investor</h3><p>DeepFlows, ArenaTwo. Early seed investments in both.</p></div>
     </article>
     <article class="entry">
-      <span class="k">2023 – 2025</span>
-      <div><h3><span class="word word--stake">STAKE<b>CITY</b></span>Founder, Stake City</h3><p>Dubai. Ran a Solana validator business that grew to $30M in delegated assets.</p></div>
+      <div class="when"><span class="word word--stake">STAKE<b>CITY</b></span><span class="k">2023 – 2025</span></div>
+      <div><h3>Founder, Stake City</h3><p>Dubai. Ran a Solana validator business that grew to $30M in delegated assets.</p></div>
     </article>
     <article class="entry">
-      <span class="k">2022 – 2025</span>
-      <div><h3><span class="word">synx</span>Founder, Synx</h3><p>London. Built a blockchain-based storage app on Solana for iOS, Android, desktop and Backpack. Used by people in 180+ countries and backed by Layer One Ventures.</p></div>
+      <div class="when"><span class="word">synx</span><span class="k">2022 – 2025</span></div>
+      <div><h3>Founder, Synx</h3><p>London. Built a blockchain-based storage app on Solana for iOS, Android, desktop and Backpack. Used by people in 180+ countries and backed by Layer One Ventures.</p></div>
     </article>
     <article class="entry">
-      <span class="k">earlier</span>
-      <div><h3><img class="logo logo--ink" src="assets/logos/gartner.svg" alt="" />Strategic operations &amp; IT consultancy, Gartner</h3><p>UK. Research-led strategy, executive communication, operations.</p></div>
+      <div class="when"><img class="logo logo--ink" src="assets/logos/gartner.svg" alt="" /><span class="k">earlier</span></div>
+      <div><h3>Strategic operations &amp; IT consultancy, Gartner</h3><p>UK. Research-led strategy, executive communication, operations.</p></div>
     </article>
     <article class="entry">
-      <span class="k">earlier</span>
-      <div><h3><span class="word word--pa">PA<small>CONSULTING</small></span>Consultant, cloud &amp; security, PA Consulting</h3><p>UK. Led security on client programs across satellites and cloud.</p></div>
+      <div class="when"><span class="word word--pa">PA<small>CONSULTING</small></span><span class="k">earlier</span></div>
+      <div><h3>Consultant, cloud &amp; security, PA Consulting</h3><p>UK. Led security on client programs across satellites and cloud.</p></div>
     </article>
     <article class="entry">
-      <span class="k">origin</span>
-      <div><h3><span class="word word--uk">UKFast</span>Sales &amp; systems administration, UKFast</h3><p>UK. Where it started: sales, Linux, servers and customer support at a hosting company.</p></div>
+      <div class="when"><span class="word word--uk">UKFast</span><span class="k">origin</span></div>
+      <div><h3>Sales &amp; systems administration, UKFast</h3><p>UK. Where it started: sales, Linux, servers and customer support at a hosting company.</p></div>
     </article>
   </section>
 
   <section id="companies">
     <h2>ventures I founded</h2>
     <p class="comment">started these. not roles, not investments.</p>
-    <article class="co">
-      <h3><img class="logo logo--lg" src="assets/logos/omnious.svg" alt="" /><a href="https://canopyx.ai">CanopyX</a> <span>founded · was Omnious</span></h3>
-      <p>An RFQ market for AI inference. Every request opens a sealed second-price auction: providers bid, the router clears, tokens stream back with a receipt. Settled per request in USDC over x402.</p>
-      <p class="meta">2026 · canopyx.ai</p>
+    <article class="entry">
+      <div class="when"><img class="logo logo--lg" src="assets/logos/omnious.svg" alt="" /><span class="k">2026</span></div>
+      <div>
+        <h3><a href="https://canopyx.ai">CanopyX</a> <span>founded · was Omnious</span></h3>
+        <p>An RFQ market for AI inference. Every request opens a sealed second-price auction: providers bid, the router clears, tokens stream back with a receipt. Settled per request in USDC over x402.</p>
+        <p class="meta">canopyx.ai</p>
+      </div>
     </article>
-    <article class="co">
-      <h3><span class="word">synx</span>Synx <span>founded</span></h3>
-      <p>A Dropbox on Solana. Blockchain-based storage across iOS, Android, desktop and Backpack xNFT, so your data could never be lost or stolen. Used by thousands of people in 180+ countries; backed by Layer One Ventures.</p>
-      <p class="meta">2022 – 2025 · London</p>
+    <article class="entry">
+      <div class="when"><span class="word">synx</span><span class="k">2022 – 2025</span></div>
+      <div>
+        <h3>Synx <span>founded</span></h3>
+        <p>A Dropbox on Solana. Blockchain-based storage across iOS, Android, desktop and Backpack xNFT, so your data could never be lost or stolen. Used by thousands of people in 180+ countries; backed by Layer One Ventures.</p>
+        <p class="meta">London</p>
+      </div>
     </article>
-    <article class="co">
-      <h3><span class="word word--stake">STAKE<b>CITY</b></span>Stake City <span>founded</span></h3>
-      <p>A Solana validator business, run from Dubai, that grew to $30M in delegated digital assets.</p>
-      <p class="meta">2023 – 2025 · Dubai</p>
+    <article class="entry">
+      <div class="when"><span class="word word--stake">STAKE<b>CITY</b></span><span class="k">2023 – 2025</span></div>
+      <div>
+        <h3>Stake City <span>founded</span></h3>
+        <p>A Solana validator business, run from Dubai, that grew to $30M in delegated digital assets.</p>
+        <p class="meta">Dubai</p>
+      </div>
     </article>
   </section>
 
