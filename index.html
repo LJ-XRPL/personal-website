@@ -74,6 +74,30 @@
   .boot p { margin: 0; }
   .ok { color: var(--ink); }
 
+  .run { margin: 30px 0 0; padding-top: 18px; border-top: 1px dashed var(--line); }
+  .run-top, .run-foot { display: flex; justify-content: space-between; gap: 16px; color: var(--dim); font-size: 12.5px; }
+  .run-top .sig { color: var(--faint); }
+  .run-hud { color: var(--ink); font-variant-numeric: tabular-nums; }
+  #game {
+    display: block; width: 100%; height: 170px; margin: 10px 0 8px;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    cursor: pointer; outline: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  #game:focus-visible { outline: 1px solid var(--faint); outline-offset: 4px; }
+  .run-foot a { color: var(--dim); border-bottom-color: var(--line); }
+  .run-log { list-style: none; margin: 12px 0 0; padding: 0; color: var(--dim); }
+  .run-log li.c { color: var(--faint); }
+  .run-log li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .run-log b { color: var(--ink); font-weight: 500; }
+  .run-log .t { display: inline-block; width: 10ch; color: var(--faint); }
+  .run-top > span, .run-foot > * { white-space: nowrap; }
+  @media (max-width: 560px) {
+    header.bar { padding: 12px 16px; gap: 10px; font-size: 13px; }
+    nav { gap: 12px; }
+    .screen { padding: 0 16px 64px; }
+    .run-log .t { width: 8ch; }
+  }
+
   h1 { font-size: 15px; font-weight: 500; margin: 12px 0 0; color: var(--ink); }
   h1 .path { color: var(--dim); font-weight: 400; }
   .portrait {
@@ -227,6 +251,15 @@
       <div class="when"><span class="word word--uk">UKFast</span><span class="k">origin</span></div>
       <div><h3>Sales &amp; systems administration, UKFast</h3><p>UK. Where it started: sales, Linux, servers and customer support at a hosting company.</p></div>
     </article>
+
+    <div class="run" id="run" role="region" aria-label="A small game. Run the roles above in order and jump each company.">
+      <div class="run-top"><span><span class="sig">$</span> roles --run</span><span class="run-hud" id="hud" aria-hidden="true">origin &middot; media 0/5</span></div>
+      <canvas id="game" height="170" tabindex="0" aria-label="Career runner. Click or tap to start, then space, the up arrow, or tap to jump."></canvas>
+      <div class="run-foot"><span id="prompt">every block is a role above, oldest first</span></div>
+      <ol class="run-log" id="log">
+        <li class="c"># the mics are talks</li>
+      </ol>
+    </div>
   </section>
 
   <section id="companies">
@@ -286,5 +319,323 @@
     <p class="fine">views my own, not those of my employer. nothing here is financial advice.</p>
   </footer>
 </div>
+<script>
+(() => {
+  const cv = document.getElementById("game");
+  if (!cv || !cv.getContext) return;
+  const ctx = cv.getContext("2d");
+  const hud = document.getElementById("hud");
+  const promptEl = document.getElementById("prompt");
+  const logEl = document.getElementById("log");
+  const INK = "#e8e8e8", DIM = "#8a8a8a", FAINT = "#4d4d4d", LINE = "#262626", BG = "#0a0a0a";
+  const FONT = '"Geist Mono", ui-monospace, Menlo, monospace';
+  const q = new URLSearchParams(location.search);
+  const AUTOPILOT = q.has("demo");
+  const MANUAL = q.has("manual");
+  const CALM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const TAP = matchMedia("(pointer: coarse)").matches;
+  const KEY = TAP ? "tap" : "space";
+
+  // 16 x 22 runner, facing right: grey suit, white shirt, headset mic.
+  const TOP = [
+    "......wwwww.....",
+    ".....wwwwwww....",
+    ".....wwwwwww....",
+    ".....wwwww.ww...",
+    ".....wwwwwwww...",
+    ".....wwwwwww....",
+    "......wwww.w....",
+    ".......ww.......",
+    "....sswwwwss....",
+    "...sssswwssss...",
+    "...sssswwssss...",
+    "...ssssswssss...",
+    "...ssssssssss...",
+    "...ssssssssss...",
+    "...wssssssssw...",
+    "....ssssssss....",
+  ];
+  const feet = rows => rows.map((r, i) => r.replace(/#/g, i === rows.length - 1 || (i === rows.length - 2 && !rows[rows.length - 1].includes("#")) ? "w" : "s"));
+  const LEGS = {
+    stand: feet(["....###..###....", "....###..###....", "....##....##....", "....##....##....", "....##....##....", "...###...###...."]),
+    a:     feet(["....###..###....", "...###....###...", "..###......##...", "..##.......##...", ".##.........##..", ".##..........##."]),
+    b:     feet([".....######.....", ".....###.##.....", "....###..##.....", "....##...##.....", "....##...###....", "...###...###...."]),
+    jump:  feet(["....###..###....", "...###...###....", "..###....##.....", "..##.....##.....", ".........###....", "................"]),
+  };
+  const SUIT = "#8f8f8f";
+  const MIC = [".###.", "#####", "#####", "#####", ".###.", "..#..", ".###."];
+  const S = 2, RH = 44;
+
+  // The level is the career, in order. Every label is on the page below.
+  const LEVEL = [
+    { era: "origin",  name: "UKFast",              note: "sales, Linux, servers and support", label: { word: "UKFast", italic: true }, h: 26, w: 18 },
+    { era: "earlier", name: "PA Consulting",       note: "cloud & security consultant",       label: { word: "PA" }, h: 34, w: 16 },
+    { era: "earlier", name: "Gartner",             note: "strategic operations & IT consultancy", label: { logo: "assets/logos/gartner.svg", ar: 100 / 23, lh: 10 }, h: 30, w: 22 },
+    { era: "2022",    name: "Synx",                note: "founded. storage on Solana, 180+ countries", label: { word: "synx" }, h: 40, w: 16 },
+    { era: "2023",    name: "Stake City",          note: "founded. Solana validator, $30M delegated", label: { word: "STAKE CITY", small: true }, h: 30, w: 26 },
+    { era: "2023",    name: "Ripple",              note: "strategic partnerships on the XRP Ledger", label: { logo: "assets/logos/ripple.svg", ar: 1, lh: 14 }, h: 42, w: 18 },
+    { era: "2024",    name: "DeepFlows, ArenaTwo", note: "seed investor", label: { word: "seed", small: true }, h: 22, w: 26 },
+    { era: "2025",    name: "Ripple",              note: "director, XRPL ecosystem partnerships", label: { logo: "assets/logos/ripple.svg", ar: 1, lh: 14 }, h: 38, w: 20 },
+    { era: "2026",    name: "CanopyX",             note: "founded. an RFQ market for AI inference", label: { logo: "assets/logos/omnious.svg", ar: 1, lh: 16 }, h: 34, w: 22 },
+  ];
+  let x = 640;
+  LEVEL.forEach((o, i) => { o.x = x; x += i === 7 ? 1100 : 560; });
+  const MEDIA = [
+    { x: LEVEL[7].x + 200, era: "2025", type: "talk",     name: "EthCC[8], Cannes" },
+    { x: LEVEL[7].x + 480, era: "2025", type: "talk",     name: "XRPL Apex, Singapore" },
+    { x: LEVEL[7].x + 760, era: "2025", type: "fireside", name: "Solana Breakpoint, Abu Dhabi" },
+    { x: LEVEL[8].x + 240, era: "2026", type: "panel",    name: "Istanbul Blockchain Week" },
+    { x: LEVEL[8].x + 540, era: "2026", type: "talk",     name: "Crypto Expo Dubai" },
+  ];
+  const FLAG = LEVEL[8].x + 880;
+  const WORDS = ["XRPL", "x402", "USDC", "Solana", "RWA", "RFQ", "validator", "ledger", "Dubai", "London"];
+
+  let W = 900, H = 170, GY = 140, RX = 64, dpr = 1;
+  let state = "idle", worldX = 0, y = 0, vy = 0, ground = true, t = 0, era = "origin", got = 0, raf = 0, last = 0;
+  const G = 2400, V = 640;
+
+  function tint(label) {
+    const img = new Image();
+    img.onload = () => {
+      const k = Math.min(2, window.devicePixelRatio || 1);
+      const w = Math.round(label.lh * label.ar * k), h = Math.round(label.lh * k);
+      const oc = document.createElement("canvas");
+      oc.width = w; oc.height = h;
+      const c = oc.getContext("2d");
+      c.drawImage(img, 0, 0, w, h);
+      c.globalCompositeOperation = "source-in";
+      c.fillStyle = INK;
+      c.fillRect(0, 0, w, h);
+      label.tex = oc;
+      draw();
+    };
+    img.src = label.logo;
+  }
+  LEVEL.forEach(o => o.label.logo && tint(o.label));
+
+  function resize() {
+    const r = cv.getBoundingClientRect();
+    W = Math.max(280, Math.round(r.width));
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    RX = W < 520 ? 28 : 64;
+    draw();
+  }
+
+  function sprite(rows, sx, sy, s, pal) {
+    for (let r = 0; r < rows.length; r++)
+      for (let c = 0; c < rows[r].length; c++) {
+        const col = pal[rows[r][c]];
+        if (!col) continue;
+        ctx.fillStyle = col;
+        ctx.fillRect(sx + c * s, sy + r * s, s, s);
+      }
+  }
+
+  function draw() {
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+
+    if (!CALM) {
+      ctx.font = `10px ${FONT}`;
+      ctx.fillStyle = "#333";
+      const span = Math.max(W + 160, WORDS.length * 150);
+      WORDS.forEach((w, i) => {
+        const sx = (((i * 150 + 60 - worldX * 0.22) % span) + span) % span - 80;
+        // At rest, a word cut off by the edge reads as a bug, so leave it out.
+        if (state === "idle" && (sx < 0 || sx + ctx.measureText(w).width > W - 4)) return;
+        ctx.fillText(w, sx, 26 + (i % 3) * 22);
+      });
+    }
+
+    ctx.fillStyle = FAINT;
+    ctx.fillRect(0, GY, W, 1);
+    for (let k = 0; k < W / 23 + 2; k++) {
+      const gx = (((k * 23 - worldX) % (W + 23)) + W + 23) % (W + 23);
+      ctx.fillRect(gx, GY + 6 + (k % 3) * 4, k % 2 ? 2 : 4, 1);
+    }
+
+    ctx.textAlign = "center";
+    for (const o of LEVEL) {
+      const ox = o.x - worldX;
+      if (ox < -60 || ox > W + 60) continue;
+      ctx.fillStyle = o.passed ? DIM : INK;
+      ctx.fillRect(ox, GY - o.h, o.w, o.h);
+      ctx.fillStyle = BG;
+      for (let sy = GY - o.h + 5; sy < GY - 3; sy += 7) {
+        ctx.fillRect(ox + 3, sy, o.w - 6, 1);
+        ctx.fillRect(ox + o.w - 5, sy + 2, 2, 2);
+      }
+    }
+
+    for (const m of MEDIA) {
+      const mx = m.x - worldX;
+      if (m.taken || mx < -20 || mx > W + 20) continue;
+      sprite(MIC, mx, GY - 79, 2, { "#": INK });
+    }
+
+    const fx = FLAG - worldX;
+    if (fx < W + 40) {
+      ctx.fillStyle = INK;
+      ctx.fillRect(fx, GY - 64, 2, 64);
+      ctx.fillRect(fx + 2, GY - 64, 24, 13);
+      ctx.fillStyle = BG;
+      ctx.font = `9px ${FONT}`;
+      ctx.fillText("now", fx + 14, GY - 54);
+      ctx.fillStyle = FAINT;
+      ctx.fillText("2026", fx + 1, GY + 22);
+    }
+    ctx.textAlign = "left";
+
+    const top = GY - RH + y;
+    const pal = state === "crash" ? { w: DIM, s: "#4a4a4a" } : { w: INK, s: SUIT };
+    sprite(TOP, RX, top, S, pal);
+    const legs = !ground ? LEGS.jump : state === "run" ? (Math.floor(t * 11) % 2 ? LEGS.a : LEGS.b) : LEGS.stand;
+    sprite(legs, RX, top + TOP.length * S, S, pal);
+
+    // Labels last, so a crash never hides the name of what you hit.
+    ctx.textAlign = "center";
+    for (const o of LEVEL) {
+      const ox = o.x - worldX;
+      if (ox < -60 || ox > W + 60) continue;
+      const cx = ox + o.w / 2, lt = GY - o.h - 8;
+      const L = o.label;
+      if (L.tex) {
+        const w = L.lh * L.ar, h = L.lh;
+        ctx.globalAlpha = o.passed ? 0.45 : 1;
+        ctx.drawImage(L.tex, cx - w / 2, lt - h, w, h);
+        ctx.globalAlpha = 1;
+      } else if (L.word) {
+        ctx.fillStyle = o.passed ? DIM : INK;
+        ctx.font = `${L.italic ? "italic " : ""}${L.small ? 9 : 11}px ${FONT}`;
+        ctx.fillText(L.word, cx, lt - 1);
+      }
+      ctx.fillStyle = FAINT;
+      ctx.font = `9px ${FONT}`;
+      ctx.fillText(o.era, cx, GY + 22);
+    }
+    ctx.textAlign = "left";
+
+    ctx.font = `11px ${FONT}`;
+    if (state === "idle") {
+      ctx.fillStyle = DIM;
+      ctx.fillText(`${TAP ? "tap" : "click"} to run \u2192`, RX + 48, GY - 18);
+    } else if (state === "crash") {
+      ctx.fillStyle = INK;
+      ctx.fillText("err", RX + 6, top - 8);
+    }
+  }
+
+  function log(html) {
+    const li = document.createElement("li");
+    li.dataset.run = "1";
+    li.setAttribute("aria-hidden", "true");
+    li.innerHTML = html;
+    logEl.appendChild(li);
+    const runs = logEl.querySelectorAll("li[data-run]");
+    if (runs.length > 5) runs[0].remove();
+  }
+  const setHud = () => { hud.textContent = `${era} \u00b7 media ${got}/5`; };
+
+  function reset() {
+    worldX = 0; y = 0; vy = 0; ground = true; t = 0; era = "origin"; got = 0;
+    LEVEL.forEach(o => { o.passed = false; });
+    MEDIA.forEach(m => { m.taken = false; });
+    logEl.querySelectorAll("li[data-run]").forEach(li => li.remove());
+    setHud();
+  }
+  function start() {
+    state = "run";
+    promptEl.textContent = `${KEY} to jump`;
+    last = performance.now();
+    if (!MANUAL && !raf) raf = requestAnimationFrame(frame);
+  }
+  function jump() { if (ground) { vy = -V; ground = false; } }
+  function press() {
+    if (state === "idle") start();
+    else if (state === "run") jump();
+    else { reset(); start(); }
+  }
+  function crash(o) {
+    state = "crash";
+    log(`<span class="t">err</span>ran into <b>${o.name}</b>`);
+    promptEl.textContent = `crashed \u00b7 ${KEY} to retry`;
+  }
+  function finish() {
+    state = "done";
+    era = "now"; setHud();
+    log(`<span class="t">now</span><b>Global Partner Success Lead, RippleX</b> \u2014 owns the global team`);
+    log(`<span class="t">$</span>ls ventures <b>\u2193</b>`);
+    promptEl.textContent = `run complete \u00b7 ${KEY} to run again`;
+  }
+
+  const hit = (a, b) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
+
+  function step(dt) {
+    if (state !== "run") { draw(); return; }
+    const speed = 300 + 70 * Math.min(1, worldX / FLAG);
+    worldX += speed * dt;
+    t += dt;
+    if (!ground) {
+      vy += G * dt; y += vy * dt;
+      if (y >= 0) { y = 0; vy = 0; ground = true; }
+    }
+
+    if (AUTOPILOT && ground) {
+      const front = RX + 26;
+      const o = LEVEL.find(o => !o.passed && o.x - worldX + o.w > RX);
+      const m = MEDIA.find(m => !m.taken && m.x - worldX + 10 > RX);
+      if (o && o.x - worldX - front < 34 + speed * 0.04) jump();
+      else if (m && m.x - worldX - front < 26 && (!o || o.x - m.x > 200)) jump();
+    }
+
+    const rb = [RX + 9, GY - RH + y + 4, RX + 24, GY + y];
+    for (const o of LEVEL) {
+      const ox = o.x - worldX;
+      if (!o.passed && hit(rb, [ox + 2, GY - o.h + 2, ox + o.w - 2, GY])) { crash(o); draw(); return; }
+      if (!o.passed && ox + o.w < RX + 9) {
+        o.passed = true; era = o.era; setHud();
+        log(`<span class="t">${o.era}</span>cleared <b>${o.name}</b> \u2014 ${o.note}`);
+      }
+    }
+    for (const m of MEDIA) {
+      const mx = m.x - worldX;
+      if (!m.taken && hit(rb, [mx, GY - 79, mx + 10, GY - 65])) {
+        m.taken = true; got++; setHud();
+        log(`<span class="t">${m.era}</span><b>${m.name}</b> \u2014 ${m.type}`);
+      }
+    }
+    if (worldX + RX + 26 >= FLAG - 4) { worldX = FLAG - 4 - RX - 26; finish(); }
+    draw();
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.033, (now - last) / 1000);
+    last = now;
+    step(dt);
+    raf = state === "run" ? requestAnimationFrame(frame) : 0;
+  }
+
+  cv.addEventListener("pointerdown", e => { e.preventDefault(); cv.focus({ preventScroll: true }); press(); });
+  addEventListener("keydown", e => {
+    if (!["Space", "ArrowUp", "KeyW"].includes(e.code)) return;
+    // Before the first run, space only belongs to the game if the track has focus,
+    // so readers can still page down through the roles with the space bar.
+    const mine = e.target === cv || (e.target === document.body && state !== "idle");
+    if (!mine) return;
+    const r = cv.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    e.preventDefault();
+    if (e.repeat && state !== "run") return;
+    press();
+  });
+  addEventListener("resize", resize);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  resize();
+  window.__run = { press, step, state: () => state, got: () => got };
+})();
+</script>
 </body>
 </html>
