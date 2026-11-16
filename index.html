@@ -74,8 +74,35 @@
   .boot p { margin: 0; }
   .ok { color: var(--ink); }
 
-  h1 { font-size: 15px; font-weight: 500; margin: 28px 0 0; color: var(--ink); }
+  h1 { font-size: 15px; font-weight: 500; margin: 12px 0 0; color: var(--ink); }
   h1 .path { color: var(--dim); font-weight: 400; }
+  .portrait {
+    display: block;
+    width: 168px;
+    height: auto;
+    margin: 28px 0 4px;
+  }
+  .logo {
+    height: 16px;
+    width: auto;
+    vertical-align: -3px;
+    margin-right: 8px;
+  }
+  .logo--lg { height: 22px; vertical-align: -6px; }
+  .logo--ink { filter: brightness(0) invert(1); }
+  .word {
+    display: inline-block;
+    margin-right: 8px;
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    vertical-align: -1px;
+  }
+  .word--stake { font-weight: 400; letter-spacing: 0.16em; font-size: 11px; }
+  .word--stake b { font-weight: 700; }
+  .word--pa { letter-spacing: -0.03em; }
+  .word--pa small { font-weight: 400; font-size: 0.62em; letter-spacing: 0.16em; margin-left: 0.35em; }
+  .word--uk { font-style: italic; font-weight: 600; }
 
   .block { margin: 22px 0; }
   .comment { color: var(--dim); }
@@ -135,9 +162,8 @@
   <span class="who"><b>luke</b>@judges:~</span>
   <nav>
     <a href="#roles">roles</a>
-    <a href="#companies">companies</a>
+    <a href="#companies">ventures</a>
     <a href="#media">media</a>
-    <a href="#tips">tips</a>
     <a href="#contact">contact</a>
   </nav>
 </header>
@@ -149,6 +175,7 @@
     <p>status &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">live</span></p>
   </div>
 
+  <img class="portrait" src="assets/luke-cutout.webp" alt="Luke Judges" width="1024" height="1007" />
   <h1><span class="path">~/whoami</span> &nbsp;Luke Judges</h1>
 
   <div class="block">
@@ -161,10 +188,10 @@
     <article class="entry">
       <span class="k">2023 – now</span>
       <div>
-        <h3>Global Partner Success Lead</h3>
-        <p>Ripple · Dubai. Three roles, all about turning partner interest into products that ship and get used.</p>
+        <h3><img class="logo logo--ink" src="assets/logos/ripple.svg" alt="" />Global Partner Success Lead</h3>
+        <p>Ripple · Dubai. I own the global team. Three roles, all about turning partner interest into products that ship and get used.</p>
         <ol class="sub">
-          <li><span>2025 – now</span><b>Global Partner Success Lead, RippleX</b><em>Own the partner journey from first conversation to live product: scoping integrations, working with product and engineering on what partners need, and supporting them after launch.</em></li>
+          <li><span>2025 – now</span><b>Global Partner Success Lead, RippleX</b><em>I own the global partner team, and the journey from first conversation to live product: scoping integrations, working with product and engineering on what partners need, and supporting them after launch.</em></li>
           <li><span>2025</span><b>Director</b><em>Led partnership work across the XRPL ecosystem, with institutions, developer teams and ecosystem funds.</em></li>
           <li><span>2023 – 2025</span><b>Strategic Partnerships</b><em>Sourced and closed partnerships that brought new projects and institutions onto the XRP Ledger, from first pitch to launch.</em></li>
         </ol>
@@ -176,42 +203,43 @@
     </article>
     <article class="entry">
       <span class="k">2023 – 2025</span>
-      <div><h3>Founder, Stake City</h3><p>Dubai. Ran a Solana validator business that grew to $30M in delegated assets.</p></div>
+      <div><h3><span class="word word--stake">STAKE<b>CITY</b></span>Founder, Stake City</h3><p>Dubai. Ran a Solana validator business that grew to $30M in delegated assets.</p></div>
     </article>
     <article class="entry">
       <span class="k">2022 – 2025</span>
-      <div><h3>Founder, Synx</h3><p>London. Built a blockchain-based storage app on Solana for iOS, Android, desktop and Backpack. Used by people in 180+ countries and backed by Layer One Ventures.</p></div>
+      <div><h3><span class="word">synx</span>Founder, Synx</h3><p>London. Built a blockchain-based storage app on Solana for iOS, Android, desktop and Backpack. Used by people in 180+ countries and backed by Layer One Ventures.</p></div>
     </article>
     <article class="entry">
       <span class="k">earlier</span>
-      <div><h3>Strategic operations &amp; IT consultancy, Gartner</h3><p>UK. Research-led strategy, executive communication, operations.</p></div>
+      <div><h3><img class="logo logo--ink" src="assets/logos/gartner.svg" alt="" />Strategic operations &amp; IT consultancy, Gartner</h3><p>UK. Research-led strategy, executive communication, operations.</p></div>
     </article>
     <article class="entry">
       <span class="k">earlier</span>
-      <div><h3>Consultant, cloud &amp; security, PA Consulting</h3><p>UK. Led security on client programs across satellites and cloud.</p></div>
+      <div><h3><span class="word word--pa">PA<small>CONSULTING</small></span>Consultant, cloud &amp; security, PA Consulting</h3><p>UK. Led security on client programs across satellites and cloud.</p></div>
     </article>
     <article class="entry">
       <span class="k">origin</span>
-      <div><h3>Sales &amp; systems administration, UKFast</h3><p>UK. Where it started: sales, Linux, servers and customer support at a hosting company.</p></div>
+      <div><h3><span class="word word--uk">UKFast</span>Sales &amp; systems administration, UKFast</h3><p>UK. Where it started: sales, Linux, servers and customer support at a hosting company.</p></div>
     </article>
   </section>
 
   <section id="companies">
-    <h2>companies</h2>
+    <h2>ventures I founded</h2>
+    <p class="comment">started these. not roles, not investments.</p>
     <article class="co">
-      <h3><a href="https://canopyx.ai">CanopyX</a> <span>(was Omnious)</span></h3>
+      <h3><img class="logo logo--lg" src="assets/logos/omnious.svg" alt="" /><a href="https://canopyx.ai">CanopyX</a> <span>founded · was Omnious</span></h3>
       <p>An RFQ market for AI inference. Every request opens a sealed second-price auction: providers bid, the router clears, tokens stream back with a receipt. Settled per request in USDC over x402.</p>
-      <p class="meta">2026 · founder · canopyx.ai</p>
+      <p class="meta">2026 · canopyx.ai</p>
     </article>
     <article class="co">
-      <h3>Synx</h3>
+      <h3><span class="word">synx</span>Synx <span>founded</span></h3>
       <p>A Dropbox on Solana. Blockchain-based storage across iOS, Android, desktop and Backpack xNFT, so your data could never be lost or stolen. Used by thousands of people in 180+ countries; backed by Layer One Ventures.</p>
-      <p class="meta">2022 – 2025 · founder · London</p>
+      <p class="meta">2022 – 2025 · London</p>
     </article>
     <article class="co">
-      <h3>Stake City</h3>
+      <h3><span class="word word--stake">STAKE<b>CITY</b></span>Stake City <span>founded</span></h3>
       <p>A Solana validator business, run from Dubai, that grew to $30M in delegated digital assets.</p>
-      <p class="meta">2023 – 2025 · founder · Dubai</p>
+      <p class="meta">2023 – 2025 · Dubai</p>
     </article>
   </section>
 
@@ -230,20 +258,6 @@
       <li><a href="https://ripple.com/insights/apex-2025-speakers/"><span class="tag">talk · 2025</span><span><h3>XRPL Apex</h3><p>Hosted the panel on the XRPL Foundation's strategy and future. Singapore.</p></span></a></li>
       <li><a href="https://www.youtube.com/watch?v=K9nHALwkZeQ"><span class="tag">interview · 2025</span><span><h3>Paris Blockchain Week</h3><p>With XRPL Commons, on kicking off the XRPL Foundation work.</p></span></a></li>
     </ul>
-  </section>
-
-  <section class="tips" id="tips">
-    <h2>dev tips</h2>
-    <ol>
-      <li>This page is one file and has no JavaScript. Everything a crawler needs is in the HTML it fetches first.</li>
-      <li>The <code>&lt;title&gt;</code> carries the role, not just the name. Search results are built from it.</li>
-      <li>A <code>link rel="canonical"</code> tells Google which host is the real one when both www and apex resolve.</li>
-      <li>JSON-LD <code>Person</code> markup gives the name, role, locations and profiles as structured data, not just prose.</li>
-      <li><code>robots: index, follow</code> is explicit. Nothing here is gated, rendered client-side, or hidden behind a login.</li>
-      <li>Headings are real <code>h1</code> and <code>h2</code> elements in reading order. Styling never replaces structure.</li>
-      <li>Every outbound link is a plain <code>&lt;a href&gt;</code>. No click handlers, so link equity and discovery both work.</li>
-      <li>Served as static files by Caddy on this server and published through a Cloudflare Tunnel. No app server in the path.</li>
-    </ol>
   </section>
 
   <footer id="contact">
