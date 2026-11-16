@@ -3,237 +3,259 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Luke Judges</title>
-<meta name="description" content="Luke Judges. Global Partner Success Lead at RippleX. Founder of Synx, Stake City and CanopyX. Dubai and London." />
+<title>Luke Judges — Global Partner Success Lead, RippleX</title>
+<meta name="description" content="Luke Judges, Global Partner Success Lead at RippleX in Dubai. Founder of Synx, Stake City and CanopyX. Ten years taking frontier technology to market, from satellites and cloud to crypto and AI." />
+<meta name="author" content="Luke Judges" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://www.lukejudges.com/" />
 <link rel="icon" href="favicon.ico" sizes="any" />
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Luke Judges — Global Partner Success Lead, RippleX" />
+<meta property="og:description" content="Partnerships that take frontier technology from launch to real-world use. RippleX, Synx, Stake City, CanopyX. Dubai and London." />
+<meta property="og:url" content="https://www.lukejudges.com/" />
+<meta property="og:image" content="https://www.lukejudges.com/assets/luke-stage.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Luke Judges",
+  "jobTitle": "Global Partner Success Lead, RippleX",
+  "url": "https://www.lukejudges.com/",
+  "email": "mailto:lukejudges@gmail.com",
+  "image": "https://www.lukejudges.com/assets/luke-stage.jpg",
+  "address": [
+    {"@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE"},
+    {"@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB"}
+  ],
+  "worksFor": {"@type": "Organization", "name": "Ripple"},
+  "sameAs": [
+    "https://www.linkedin.com/in/luke-judges/",
+    "https://x.com/luke_judges",
+    "https://github.com/LJ-XRPL"
+  ],
+  "knowsAbout": ["strategic partnerships", "XRP Ledger", "developer ecosystems", "AI inference", "blockchain infrastructure"]
+}
+</script>
 <style>
-  :root {
-    --bg: #08090a;
-    --ink: #f7f8f8;
-    --body: #d0d6e0;
-    --muted: #8a8f98;
-    --faint: #62666d;
-    --line: rgba(255,255,255,0.08);
-    --accent: #7170ff;
-    --measure: 680px;
-  }
+  :root { --bg: #0a0a0a; --ink: #e8e8e8; --dim: #8a8a8a; --faint: #4d4d4d; --line: #1f1f1f; }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--body);
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    font-feature-settings: "cv01", "ss03";
-    font-size: 16px;
-    line-height: 1.6;
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 14.5px; line-height: 1.65;
+    font-feature-settings: "liga";
     -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--ink); text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; }
-  a:hover { color: var(--accent); }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-  .wrap { max-width: var(--measure); margin: 0 auto; padding: 0 24px; }
+  a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--faint); }
+  a:hover { border-bottom-color: var(--ink); }
+  a:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
 
-  header.top {
+  header.bar {
     position: sticky; top: 0; z-index: 2;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 24px;
-    background: rgba(8,9,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: 12px 28px; background: var(--bg);
+    border-bottom: 1px solid var(--line);
   }
-  .mark { font-weight: 600; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
-  nav { display: flex; gap: 20px; }
-  nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .who { color: var(--dim); }
+  .who b { color: var(--ink); font-weight: 500; }
+  nav { display: flex; gap: 18px; }
+  nav a { color: var(--dim); border-bottom: none; }
   nav a:hover { color: var(--ink); }
 
-  .hero { padding: 88px 0 56px; }
-  .eyebrow {
-    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--faint); margin: 0 0 20px;
-  }
-  h1 {
-    font-size: clamp(40px, 8vw, 64px); font-weight: 500; line-height: 1;
-    letter-spacing: -0.04em; color: var(--ink); margin: 0 0 28px;
-  }
-  .lede { font-size: 19px; line-height: 1.5; color: var(--body); margin: 0 0 16px; max-width: 38em; }
-  .now { color: var(--muted); margin: 0; }
+  .screen { max-width: 980px; margin: 0 auto; padding: 0 28px 80px; }
 
-  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  .boot { padding: 56px 0 12px; color: var(--dim); }
+  .boot p { margin: 0; }
+  .ok { color: var(--ink); }
+
+  h1 { font-size: 15px; font-weight: 500; margin: 28px 0 0; color: var(--ink); }
+  h1 .path { color: var(--dim); font-weight: 400; }
+
+  .block { margin: 22px 0; }
+  .comment { color: var(--dim); }
+  .comment::before { content: "# "; color: var(--faint); }
+
   h2 {
-    font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--faint); margin: 0 0 28px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--faint); margin: 44px 0 14px;
+    border-top: 1px solid var(--line); padding-top: 18px;
   }
 
-  .roles { list-style: none; margin: 0; padding: 0; }
-  .roles > li { padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .roles > li:last-child { border-bottom: none; }
-  .row { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
-  .roles h3 { font-size: 17px; font-weight: 500; color: var(--ink); margin: 0; letter-spacing: -0.01em; }
-  .when { font-size: 13px; color: var(--faint); white-space: nowrap; }
-  .where { font-size: 14px; color: var(--muted); margin: 2px 0 8px; }
-  .roles p { margin: 0 0 6px; }
-  .steps { list-style: none; margin: 10px 0 0; padding: 0; }
-  .steps li { padding: 8px 0; }
-  .steps b { color: var(--ink); font-weight: 500; }
-  .steps span { color: var(--faint); font-size: 13px; margin-right: 8px; }
-  .steps em { display: block; font-style: normal; color: var(--muted); }
+  .entry { display: grid; grid-template-columns: 132px 1fr; gap: 8px 22px; padding: 9px 0; }
+  .entry .k { color: var(--faint); }
+  .entry h3 { font-size: 14.5px; font-weight: 500; margin: 0; }
+  .entry p { margin: 2px 0 0; color: var(--dim); }
+  @media (max-width: 640px) { .entry { grid-template-columns: 1fr; gap: 2px; } }
 
-  .cards { display: grid; gap: 16px; }
-  .card {
-    display: block; padding: 20px; border-radius: 8px;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--line);
-    text-decoration: none; color: var(--body);
-  }
-  a.card:hover { border-color: rgba(255,255,255,0.2); }
-  .card h3 { margin: 0 0 6px; font-size: 17px; font-weight: 500; color: var(--ink); }
-  .card h3 span { color: var(--faint); font-weight: 400; }
-  .card p { margin: 0; }
-  .meta { display: block; margin-top: 10px; font-size: 13px; color: var(--faint); }
+  .sub { list-style: none; margin: 8px 0 0; padding: 0; }
+  .sub li { padding: 5px 0 5px 16px; border-left: 1px solid var(--line); }
+  .sub b { font-weight: 500; }
+  .sub span { color: var(--faint); margin-right: 10px; }
+  .sub em { display: block; font-style: normal; color: var(--dim); }
+
+  .co { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .co:last-child { border-bottom: none; }
+  .co h3 { font-size: 14.5px; font-weight: 500; margin: 0; }
+  .co h3 span { color: var(--faint); font-weight: 400; }
+  .co p { margin: 4px 0 0; color: var(--dim); }
+  .co .meta { color: var(--faint); }
 
   .press { list-style: none; margin: 0; padding: 0; }
-  .press li { border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .press a { display: block; padding: 14px 0; text-decoration: none; }
-  .press a:hover h3 { color: var(--accent); }
-  .press h3 { margin: 2px 0; font-size: 16px; font-weight: 500; color: var(--ink); }
-  .press p { margin: 0; color: var(--muted); font-size: 14px; }
-  .tag { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); }
+  .press li { border-bottom: 1px solid var(--line); }
+  .press a { display: grid; grid-template-columns: 150px 1fr; gap: 18px; padding: 9px 0; border-bottom: none; }
+  .press a:hover h3 { color: var(--ink); }
+  .press .tag { color: var(--faint); }
+  .press h3 { font-size: 14.5px; font-weight: 500; margin: 0; }
+  .press p { margin: 1px 0 0; color: var(--dim); }
+  @media (max-width: 640px) { .press a { grid-template-columns: 1fr; gap: 1px; } }
 
-  footer { padding: 48px 0 72px; border-top: 1px solid var(--line); }
-  .cta { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
-  .links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 18px 0; }
-  .links a { text-decoration: none; color: var(--muted); font-size: 14px; }
-  .links a:hover { color: var(--ink); }
-  .fine { font-size: 13px; color: var(--faint); margin: 0; }
+  .tips { margin-top: 44px; border: 1px solid var(--line); }
+  .tips h2 { margin: 0; border: none; padding: 12px 16px; background: #111; }
+  .tips ol { list-style: none; margin: 0; padding: 4px 16px 12px; counter-reset: tip; }
+  .tips li { counter-increment: tip; padding: 8px 0; color: var(--dim); border-bottom: 1px solid var(--line); }
+  .tips li:last-child { border-bottom: none; }
+  .tips li::before { content: counter(tip, decimal-leading-zero) "  "; color: var(--faint); }
+  .tips code { color: var(--ink); }
+
+  footer { margin-top: 36px; color: var(--dim); }
+  footer .links { display: flex; gap: 22px; list-style: none; padding: 0; margin: 12px 0; }
+  footer .links a { border-bottom: none; color: var(--dim); }
+  footer .links a:hover { color: var(--ink); }
+  .fine { color: var(--faint); font-size: 12.5px; }
 </style>
 </head>
 <body>
-<header class="top">
-  <a class="mark" href="#top">Luke Judges</a>
+<header class="bar">
+  <span class="who"><b>luke</b>@judges:~</span>
   <nav>
-    <a href="#roles">Roles</a>
-    <a href="#companies">Companies</a>
-    <a href="#media">Media</a>
-    <a href="#contact">Contact</a>
+    <a href="#roles">roles</a>
+    <a href="#companies">companies</a>
+    <a href="#media">media</a>
+    <a href="#tips">tips</a>
+    <a href="#contact">contact</a>
   </nav>
 </header>
 
-<main id="top">
-  <div class="wrap hero">
-    <p class="eyebrow">Dubai &amp; London</p>
-    <h1>Luke Judges</h1>
-    <p class="lede">Luke builds the partnerships that take frontier technology from launch to real-world use.</p>
-    <p class="now">Now showing: Global Partner Success Lead, RippleX. Ten years taking new technology to market, across satellites, cloud, crypto and now AI. Partnerships at Ripple by day, founder of Synx and Stake City, and building CanopyX on the side.</p>
+<div class="screen">
+  <div class="boot">
+    <p>lukejudges.com &mdash; boot sequence</p>
+    <p>location &nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">Dubai &amp; London</span></p>
+    <p>status &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">live</span></p>
+  </div>
+
+  <h1><span class="path">~/whoami</span> &nbsp;Luke Judges</h1>
+
+  <div class="block">
+    <p class="comment">builds the partnerships that take frontier technology from launch to real-world use.</p>
+    <p>Global Partner Success Lead, RippleX. Ten years taking new technology to market, across satellites, cloud, crypto and now AI. Partnerships at Ripple by day, founder of Synx and Stake City, and building CanopyX on the side.</p>
   </div>
 
   <section id="roles">
-    <div class="wrap">
-      <h2>Roles</h2>
-      <ol class="roles">
-        <li>
-          <div class="row"><h3>Global Partner Success Lead</h3><span class="when">2023 – now</span></div>
-          <p class="where">Ripple · Dubai</p>
-          <p>Three roles at Ripple, all about turning partner interest into products that ship and get used.</p>
-          <ol class="steps">
-            <li><span>2025 – now</span><b>Global Partner Success Lead, RippleX</b><em>Own the partner journey from first conversation to live product: scoping integrations, working with product and engineering on what partners need, and supporting them after launch.</em></li>
-            <li><span>2025</span><b>Director</b><em>Led partnership work across the XRPL ecosystem, with institutions, developer teams and ecosystem funds.</em></li>
-            <li><span>2023 – 2025</span><b>Strategic Partnerships</b><em>Sourced and closed partnerships that brought new projects and institutions onto the XRP Ledger, from first pitch to launch.</em></li>
-          </ol>
-        </li>
-        <li>
-          <div class="row"><h3>Seed investor</h3><span class="when">2024</span></div>
-          <p class="where">DeepFlows, ArenaTwo · AI</p>
-          <p>Early seed investments in DeepFlows and ArenaTwo.</p>
-        </li>
-        <li>
-          <div class="row"><h3>Founder</h3><span class="when">2023 – 2025</span></div>
-          <p class="where">Stake City · Dubai</p>
-          <p>Ran a Solana validator business out of Dubai, which grew to $30M in delegated assets.</p>
-        </li>
-        <li>
-          <div class="row"><h3>Founder</h3><span class="when">2022 – 2025</span></div>
-          <p class="where">Synx · London</p>
-          <p>Built a blockchain-based storage app on Solana for iOS, Android, desktop and Backpack. Used by people in 180+ countries and backed by Layer One Ventures.</p>
-        </li>
-        <li>
-          <div class="row"><h3>Strategic operations &amp; IT consultancy</h3><span class="when">Earlier</span></div>
-          <p class="where">Gartner · UK</p>
-          <p>Strategic operations and IT consultancy work.</p>
-        </li>
-        <li>
-          <div class="row"><h3>Consultant, cloud &amp; security</h3><span class="when">Earlier</span></div>
-          <p class="where">PA Consulting · UK</p>
-          <p>Led security on client programs across satellites and cloud.</p>
-        </li>
-        <li>
-          <div class="row"><h3>Sales &amp; systems administration</h3><span class="when">Origin</span></div>
-          <p class="where">UKFast · UK</p>
-          <p>Where it all started: sales and systems administration at a UK hosting company.</p>
-        </li>
-      </ol>
-    </div>
+    <h2>roles</h2>
+    <article class="entry">
+      <span class="k">2023 – now</span>
+      <div>
+        <h3>Global Partner Success Lead</h3>
+        <p>Ripple · Dubai. Three roles, all about turning partner interest into products that ship and get used.</p>
+        <ol class="sub">
+          <li><span>2025 – now</span><b>Global Partner Success Lead, RippleX</b><em>Own the partner journey from first conversation to live product: scoping integrations, working with product and engineering on what partners need, and supporting them after launch.</em></li>
+          <li><span>2025</span><b>Director</b><em>Led partnership work across the XRPL ecosystem, with institutions, developer teams and ecosystem funds.</em></li>
+          <li><span>2023 – 2025</span><b>Strategic Partnerships</b><em>Sourced and closed partnerships that brought new projects and institutions onto the XRP Ledger, from first pitch to launch.</em></li>
+        </ol>
+      </div>
+    </article>
+    <article class="entry">
+      <span class="k">2024</span>
+      <div><h3>Seed investor</h3><p>DeepFlows, ArenaTwo. Early seed investments in both.</p></div>
+    </article>
+    <article class="entry">
+      <span class="k">2023 – 2025</span>
+      <div><h3>Founder, Stake City</h3><p>Dubai. Ran a Solana validator business that grew to $30M in delegated assets.</p></div>
+    </article>
+    <article class="entry">
+      <span class="k">2022 – 2025</span>
+      <div><h3>Founder, Synx</h3><p>London. Built a blockchain-based storage app on Solana for iOS, Android, desktop and Backpack. Used by people in 180+ countries and backed by Layer One Ventures.</p></div>
+    </article>
+    <article class="entry">
+      <span class="k">earlier</span>
+      <div><h3>Strategic operations &amp; IT consultancy, Gartner</h3><p>UK. Research-led strategy, executive communication, operations.</p></div>
+    </article>
+    <article class="entry">
+      <span class="k">earlier</span>
+      <div><h3>Consultant, cloud &amp; security, PA Consulting</h3><p>UK. Led security on client programs across satellites and cloud.</p></div>
+    </article>
+    <article class="entry">
+      <span class="k">origin</span>
+      <div><h3>Sales &amp; systems administration, UKFast</h3><p>UK. Where it started: sales, Linux, servers and customer support at a hosting company.</p></div>
+    </article>
   </section>
 
   <section id="companies">
-    <div class="wrap">
-      <h2>Companies I founded</h2>
-      <div class="cards">
-        <a class="card" href="https://canopyx.ai" target="_blank" rel="noopener">
-          <h3>CanopyX <span>(was Omnious)</span></h3>
-          <p>An RFQ market for AI inference. Every request opens a sealed second-price auction: providers bid, the router clears, tokens stream back with a receipt. Settled per request in USDC over x402.</p>
-          <span class="meta">2026 · Founder · canopyx.ai ↗</span>
-        </a>
-        <article class="card">
-          <h3>Synx</h3>
-          <p>A Dropbox on Solana. Blockchain-based storage across iOS, Android, desktop and Backpack xNFT, so your data could never be lost or stolen. Used by thousands of people in 180+ countries; backed by Layer One Ventures.</p>
-          <span class="meta">2022 – 2025 · Founder · London</span>
-        </article>
-        <article class="card">
-          <h3>Stake City</h3>
-          <p>A Solana validator business, run from Dubai, that grew to $30M in delegated digital assets.</p>
-          <span class="meta">2023 – 2025 · Founder · Dubai</span>
-        </article>
-      </div>
-    </div>
+    <h2>companies</h2>
+    <article class="co">
+      <h3><a href="https://canopyx.ai">CanopyX</a> <span>(was Omnious)</span></h3>
+      <p>An RFQ market for AI inference. Every request opens a sealed second-price auction: providers bid, the router clears, tokens stream back with a receipt. Settled per request in USDC over x402.</p>
+      <p class="meta">2026 · founder · canopyx.ai</p>
+    </article>
+    <article class="co">
+      <h3>Synx</h3>
+      <p>A Dropbox on Solana. Blockchain-based storage across iOS, Android, desktop and Backpack xNFT, so your data could never be lost or stolen. Used by thousands of people in 180+ countries; backed by Layer One Ventures.</p>
+      <p class="meta">2022 – 2025 · founder · London</p>
+    </article>
+    <article class="co">
+      <h3>Stake City</h3>
+      <p>A Solana validator business, run from Dubai, that grew to $30M in delegated digital assets.</p>
+      <p class="meta">2023 – 2025 · founder · Dubai</p>
+    </article>
   </section>
 
   <section id="media">
-    <div class="wrap">
-      <h2>Media</h2>
-      <p style="margin-top:-12px">Talks, panels, firesides and interviews.</p>
-      <ul class="press">
-        <li><a href="https://cryptoexpodubai.com/" target="_blank" rel="noopener"><span class="tag">Talk · 2026</span><h3>Crypto Expo Dubai</h3><p>Digital assets across the MENA region. September 2026, Dubai.</p></a></li>
-        <li><a href="https://www.tradingview.com/news/coinpedia:8da89130c094b:0-xrp-ledger-news-rwas-hit-5-1-billion-as-ripple-executive-predicts-another-100x-growth/" target="_blank" rel="noopener"><span class="tag">Interview · 2026</span><h3>Tokenization on the XRPL</h3><p>How tokenized real-world assets on the XRP Ledger grew from $50M to $5.1B in a year.</p></a></li>
-        <li><a href="https://www.youtube.com/watch?v=Qu13M3NO2K4" target="_blank" rel="noopener"><span class="tag">Interview · 2026</span><h3>Krippenreiter TV</h3><p>Ripple's trillion-dollar end state for the XRPL, and how RWA tokenization works on it.</p></a></li>
-        <li><a href="https://www.youtube.com/watch?v=qNATkV828NU" target="_blank" rel="noopener"><span class="tag">Panel · 2026</span><h3>Istanbul Blockchain Week</h3><p>The MENA &amp; Asia RWA playbook: where real tokenization is happening.</p></a></li>
-        <li><a href="https://ct.com/commissioned/defi-rwas-and-180k-in-prizes-cointelegraph-connect-closes-out-ethcc-week-in-cannes" target="_blank" rel="noopener"><span class="tag">Panel · 2026</span><h3>Cointelegraph Connect</h3><p>Infrastructure Adoption panel, Cannes edition.</p></a></li>
-        <li><a href="https://www.youtube.com/watch?v=95OW8BnjvKM" target="_blank" rel="noopener"><span class="tag">Fireside · 2025</span><h3>Solana Breakpoint</h3><p>XRP comes to Solana, with Vibhu Norby of the Solana Foundation. Abu Dhabi.</p></a></li>
-        <li><a href="https://www.youtube.com/watch?v=PLA_kywLjto" target="_blank" rel="noopener"><span class="tag">Talk · 2025</span><h3>EthCC[8]</h3><p>Driving DeFi &amp; RWAs through blockchain programmability. Cannes.</p></a></li>
-        <li><a href="https://www.youtube.com/watch?v=A4ITra1o_H4" target="_blank" rel="noopener"><span class="tag">Interview · 2025</span><h3>Sovereign EVM Day</h3><p>Why Ripple built the XRPL EVM sidechain on Cosmos. Cannes.</p></a></li>
-        <li><a href="https://ripple.com/insights/apex-2025-speakers/" target="_blank" rel="noopener"><span class="tag">Talk · 2025</span><h3>XRPL Apex</h3><p>Hosted the panel on the XRPL Foundation's strategy and future. Singapore.</p></a></li>
-        <li><a href="https://www.youtube.com/watch?v=K9nHALwkZeQ" target="_blank" rel="noopener"><span class="tag">Interview · 2025</span><h3>Paris Blockchain Week</h3><p>With XRPL Commons, on kicking off the XRPL Foundation work.</p></a></li>
-      </ul>
-    </div>
-  </section>
-</main>
-
-<footer id="contact">
-  <div class="wrap">
-    <p class="eyebrow">Speaking, partnerships, investments</p>
-    <a class="cta" href="mailto:lukejudges@gmail.com">lukejudges@gmail.com</a>
-    <ul class="links">
-      <li><a href="https://www.linkedin.com/in/luke-judges/" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="https://x.com/luke_judges" target="_blank" rel="noopener">X / @luke_judges</a></li>
-      <li><a href="https://github.com/LJ-XRPL" target="_blank" rel="noopener">GitHub</a></li>
+    <h2>media</h2>
+    <p class="comment">talks, panels, firesides and interviews.</p>
+    <ul class="press">
+      <li><a href="https://cryptoexpodubai.com/"><span class="tag">talk · 2026</span><span><h3>Crypto Expo Dubai</h3><p>Digital assets across the MENA region. September 2026, Dubai.</p></span></a></li>
+      <li><a href="https://www.tradingview.com/news/coinpedia:8da89130c094b:0-xrp-ledger-news-rwas-hit-5-1-billion-as-ripple-executive-predicts-another-100x-growth/"><span class="tag">interview · 2026</span><span><h3>Tokenization on the XRPL</h3><p>How tokenized real-world assets on the XRP Ledger grew from $50M to $5.1B in a year.</p></span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=Qu13M3NO2K4"><span class="tag">interview · 2026</span><span><h3>Krippenreiter TV</h3><p>Ripple's trillion-dollar end state for the XRPL, and how RWA tokenization works on it.</p></span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=qNATkV828NU"><span class="tag">panel · 2026</span><span><h3>Istanbul Blockchain Week</h3><p>The MENA &amp; Asia RWA playbook: where real tokenization is happening.</p></span></a></li>
+      <li><a href="https://ct.com/commissioned/defi-rwas-and-180k-in-prizes-cointelegraph-connect-closes-out-ethcc-week-in-cannes"><span class="tag">panel · 2026</span><span><h3>Cointelegraph Connect</h3><p>Infrastructure Adoption panel, Cannes edition.</p></span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=95OW8BnjvKM"><span class="tag">fireside · 2025</span><span><h3>Solana Breakpoint</h3><p>XRP comes to Solana, with Vibhu Norby of the Solana Foundation. Abu Dhabi.</p></span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=PLA_kywLjto"><span class="tag">talk · 2025</span><span><h3>EthCC[8]</h3><p>Driving DeFi &amp; RWAs through blockchain programmability. Cannes.</p></span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=A4ITra1o_H4"><span class="tag">interview · 2025</span><span><h3>Sovereign EVM Day</h3><p>Why Ripple built the XRPL EVM sidechain on Cosmos. Cannes.</p></span></a></li>
+      <li><a href="https://ripple.com/insights/apex-2025-speakers/"><span class="tag">talk · 2025</span><span><h3>XRPL Apex</h3><p>Hosted the panel on the XRPL Foundation's strategy and future. Singapore.</p></span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=K9nHALwkZeQ"><span class="tag">interview · 2025</span><span><h3>Paris Blockchain Week</h3><p>With XRPL Commons, on kicking off the XRPL Foundation work.</p></span></a></li>
     </ul>
-    <p class="fine">Views my own, not those of my employer. Nothing here is financial advice.</p>
-  </div>
-</footer>
+  </section>
+
+  <section class="tips" id="tips">
+    <h2>dev tips</h2>
+    <ol>
+      <li>This page is one file and has no JavaScript. Everything a crawler needs is in the HTML it fetches first.</li>
+      <li>The <code>&lt;title&gt;</code> carries the role, not just the name. Search results are built from it.</li>
+      <li>A <code>link rel="canonical"</code> tells Google which host is the real one when both www and apex resolve.</li>
+      <li>JSON-LD <code>Person</code> markup gives the name, role, locations and profiles as structured data, not just prose.</li>
+      <li><code>robots: index, follow</code> is explicit. Nothing here is gated, rendered client-side, or hidden behind a login.</li>
+      <li>Headings are real <code>h1</code> and <code>h2</code> elements in reading order. Styling never replaces structure.</li>
+      <li>Every outbound link is a plain <code>&lt;a href&gt;</code>. No click handlers, so link equity and discovery both work.</li>
+      <li>Served as static files by Caddy on this server and published through a Cloudflare Tunnel. No app server in the path.</li>
+    </ol>
+  </section>
+
+  <footer id="contact">
+    <h2>contact</h2>
+    <p>speaking, partnerships, investments &nbsp;<a href="mailto:lukejudges@gmail.com">lukejudges@gmail.com</a></p>
+    <ul class="links">
+      <li><a href="https://www.linkedin.com/in/luke-judges/">linkedin</a></li>
+      <li><a href="https://x.com/luke_judges">x / @luke_judges</a></li>
+      <li><a href="https://github.com/LJ-XRPL">github</a></li>
+    </ul>
+    <p class="fine">views my own, not those of my employer. nothing here is financial advice.</p>
+  </footer>
+</div>
 </body>
 </html>
