@@ -525,6 +525,24 @@
     .ljb-bios { left: 16px; top: 16px; font-size: 11px; }
     .ljb-load { font-size: 12px; }
   }
+
+  /* talks map: drawn at 12px, measured, then scaled to fit (some phone browsers enlarge small text) */
+  .tmap { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  .tmap-art { position: relative; z-index: 1; }
+  .tmap-arcs { z-index: 0; }
+  .tmap-stage.fit { --s: 1; width: var(--w, 100%); height: var(--h, auto); max-width: none; }
+  .tmap-stage.fit .tmap-art {
+    position: absolute; left: 0; top: 0; width: max-content; font-size: 12px; overflow: visible;
+    transform: scale(var(--s)); transform-origin: 0 0;
+  }
+  .tmap-stage.fit .pin::before, .tmap-stage.fit .pin::after { transform: scale(calc(1 / var(--s))); }
+  .tmap-stage.fit .pin-l { transform-origin: 0 50%; transform: translate(calc(7px / var(--s)), -50%) scale(calc(1 / var(--s))); }
+  .tmap-stage.fit .pin.left .pin-l { transform-origin: 100% 50%; transform: translate(calc(-7px / var(--s)), -50%) scale(calc(1 / var(--s))); }
+  @media (max-width: 760px) {
+    .tmap-cities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .tmap-cities button { display: flex; justify-content: space-between; align-items: baseline; text-align: left; white-space: nowrap; }
+  }
+  @media (max-width: 520px) { .tmap-cities { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 </style>
 </head>
 <body>
@@ -1263,6 +1281,35 @@
       `<h3>${esc(CITY[city])} <span>\u00b7 ${n} ${n === 1 ? "appearance" : "appearances"}${city === "dubai" ? " \u00b7 home" : ""}</span></h3>` +
       `<ul>${list.map(t => `<li><span class="tag">${esc(t.tag)}</span><a href="${esc(t.href)}">${esc(t.title)} \u2197</a></li>`).join("")}</ul>`;
   }
+})();
+</script>
+
+<script>
+(() => {
+  // Fit the talks map to its column: draw at 12px, measure what the browser rendered, scale to fit.
+  const root = document.getElementById("tmap");
+  if (!root || !window.ResizeObserver) return;
+  const stage = root.querySelector(".tmap-stage"), art = root.querySelector(".tmap-art");
+  if (!stage || !art) return;
+  stage.classList.add("fit");
+  let last = "";
+  function fit() {
+    const w = art.offsetWidth, h = art.offsetHeight, avail = root.clientWidth;
+    if (!w || !h || !avail) return;
+    const key = w + "x" + h + "@" + avail;
+    if (key === last) return;
+    last = key;
+    const s = Math.min(1, avail / w);
+    stage.style.setProperty("--s", s.toFixed(4));
+    stage.style.setProperty("--w", (w * s).toFixed(2) + "px");
+    stage.style.setProperty("--h", (h * s).toFixed(2) + "px");
+  }
+  fit();
+  const ro = new ResizeObserver(fit);
+  ro.observe(root);
+  ro.observe(art);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  window.__tmapFit = fit;
 })();
 </script>
 
