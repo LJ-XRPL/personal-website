@@ -829,7 +829,23 @@
   .xc-n.tick { animation: lj-xic-blink .4s ease-out; }
   .xc.wrap .xc-win { display: block; }
   @media (prefers-reduced-motion: reduce) { .xc-row.go, .xc-b .hx, .xc-b .br { transition: none; } .xc-n.tick { animation: none; } }
+
+  /* in-page jumps stop just below the sticky header */
+  #roles, #companies, #media, #contact, #tmap, #partners, #run { scroll-margin-top: 58px; }
+  #roles:focus, #companies:focus, #media:focus, #contact:focus { outline: none; }
 </style>
+<script>
+// Start at the top: a #section typed, remembered or autocompleted doesn't open the page halfway down.
+// Links from other sites (e.g. a search result's "Roles") still jump to their section.
+(function () {
+  try { history.scrollRestoration = "manual"; } catch (e) {}
+  var ref = document.referrer || "";
+  var fromElsewhere = ref && !/^https?:\/\/([^\/]*\.)?lukejudges\.com(\/|$)/i.test(ref);
+  if (location.hash && !fromElsewhere) {
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+  }
+})();
+</script>
 </head>
 <body>
 <script>
@@ -3705,6 +3721,24 @@
   size();
   window.__lj = window.__lj || {};
   window.__lj.xchain = () => ({ head, n, blocks: [...row.querySelectorAll(".xc-b")].map(b => (b.classList.contains("open") ? "open:" : "") + b.dataset.i + ":" + b.textContent) });
+})();
+</script>
+
+<script>
+(() => {
+  // In-page links scroll without writing #section into the address (so the site reopens at the top).
+  document.addEventListener("click", e => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = decodeURIComponent(a.getAttribute("href").slice(1));
+    const el = id && document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ block: "start" });
+    if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
+    el.focus({ preventScroll: true });
+  });
 })();
 </script>
 
