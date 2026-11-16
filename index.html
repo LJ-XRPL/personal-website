@@ -312,6 +312,167 @@
     .rfq-bid-row .bar, .rfq-window i { transition: none; }
     .rfq-bid-row.sealed .bar, .rfq-bid-row.land .n, .rfq-bid-row.win, .rfq-bid-row.second.pay .v, .rfq-stamp { animation: none; }
   }
+
+  .vd { margin: 28px 0 0; padding-top: 14px; border-top: 1px dashed var(--line); }
+  .vd-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 12.5px; color: var(--dim); }
+  .vd-head .sig { color: var(--faint); }
+  .vd-tabs { display: flex; gap: 2px; }
+  .vd-tab {
+    font: inherit; font-size: 12.5px; background: none; border: 0; border-bottom: 1px solid transparent;
+    color: var(--faint); padding: 2px 7px; cursor: pointer;
+  }
+  .vd-tab:hover, .vd-tab:focus-visible { color: var(--ink); outline: none; }
+  .vd-tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+  .vd-nav { margin-left: auto; display: flex; align-items: center; gap: 8px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .vd-nav button { font: inherit; font-size: 12.5px; background: none; border: 1px solid var(--line); color: var(--dim); padding: 0 7px; cursor: pointer; }
+  .vd-nav button:hover, .vd-nav button:focus-visible { color: var(--ink); border-color: var(--faint); outline: none; }
+  .vd-nav button:disabled { opacity: .3; cursor: default; }
+  .vd-track {
+    position: relative; display: flex; align-items: flex-start; gap: 48px; margin-top: 16px;
+    overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none;
+    overscroll-behavior-x: contain; transition: height .3s ease;
+  }
+  .vd-track::-webkit-scrollbar { display: none; }
+  .vd-pane { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+  .vd .rfq { margin: 0; padding-top: 0; border-top: 0; }
+  .vd-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; color: var(--dim); font-size: 12.5px; }
+  .vd-top .sig, .vd-tag { color: var(--faint); }
+  .vd-note { margin: 8px 0 0; color: var(--faint); font-size: 12.5px; }
+  .vd-btns { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+  .vd-btns button {
+    font: inherit; font-size: 12.5px; color: var(--dim); background: transparent;
+    border: 1px solid var(--line); padding: 3px 8px; cursor: pointer;
+  }
+  .vd-btns button:hover, .vd-btns button:focus-visible { color: var(--ink); border-color: var(--faint); outline: none; }
+  .vd-btns button[aria-pressed="true"] { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+  .vd-btns button.go { color: var(--ink); border-color: var(--faint); }
+  .vd-btns button:disabled { opacity: .4; cursor: default; }
+
+  /* synx: a file window beside a radial map of storage cities */
+  .sx-app { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: center; margin-top: 16px; }
+  .sx.over .sx-win { border-color: var(--ink); }
+  .sx-win { border: 1px solid var(--line); font-size: 12.5px; }
+  .sx-title { display: flex; justify-content: space-between; gap: 10px; padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--dim); }
+  .sx-title span { color: var(--faint); }
+  .sx-list { list-style: none; margin: 0; padding: 4px 0; }
+  .sx-row {
+    width: 100%; font: inherit; font-size: 12.5px; background: none; border: 0; color: var(--dim); cursor: pointer;
+    display: grid; grid-template-columns: 2ch minmax(0, 1fr) 6.5ch 14ch; gap: 0 8px; align-items: center;
+    text-align: left; padding: 4px 10px;
+  }
+  .sx-row:hover, .sx-row:focus-visible { color: var(--ink); outline: none; }
+  .sx-row[aria-pressed="true"] { background: #161616; color: var(--ink); }
+  .sx-row .ic { color: var(--faint); }
+  .sx-row .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sx-row .sz { text-align: right; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .sx-row .st { white-space: nowrap; color: var(--faint); }
+  .sx-row .st.ok { color: var(--dim); }
+  .sx-row .st.warn { color: var(--ink); }
+  .sx-row .st.bad { color: var(--ink); }
+  .sx-win .vd-btns { padding: 8px 10px; border-top: 1px solid var(--line); }
+  .sx-meta { margin: 0; padding: 0 10px 9px; color: var(--faint); font-size: 11.5px; min-height: 2.6em; overflow-wrap: anywhere; }
+  .sx-meta a { font-size: 11.5px; }
+  .sx-meta .nw { white-space: nowrap; }
+  .sx-ring { position: relative; aspect-ratio: 4 / 3; min-height: 230px; }
+  .sx-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .sx-lines line { stroke: #2c2c2c; stroke-width: 1; stroke-dasharray: 2 3; vector-effect: non-scaling-stroke; transition: stroke .2s; }
+  .sx-lines line.hot { stroke: var(--dim); stroke-dasharray: none; }
+  .sx-lines line.off { stroke: #1a1a1a; }
+  .sx-core {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2;
+    width: 38%; min-width: 120px; box-sizing: border-box; padding: 7px 9px; background: var(--bg);
+    border: 1px solid var(--faint); font-size: 11.5px; color: var(--dim); text-align: center;
+  }
+  .sx-core b { display: block; color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sx-core .pr { display: block; height: 2px; margin-top: 5px; background: #1c1c1c; }
+  .sx-core .pr i { display: block; height: 100%; width: 0; background: var(--ink); transition: width .25s; }
+  .sx-core.done { border-color: var(--ink); }
+  .sx-core.bad { border-style: dashed; border-color: var(--ink); }
+  .sx-city {
+    position: absolute; transform: translate(-50%, -50%); z-index: 2; font: inherit; font-size: 11.5px;
+    background: var(--bg); color: var(--ink); border: 1px solid var(--line); padding: 3px 6px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 6ch; transition: border-color .2s;
+  }
+  .sx-city:hover, .sx-city:focus-visible { border-color: var(--dim); outline: none; }
+  .sx-city .sh { display: flex; gap: 3px; min-height: 13px; }
+  .sx-city .sh i { font-style: normal; font-size: 10px; line-height: 13px; min-width: 1.6ch; padding: 0 2px; border: 1px solid var(--faint); color: var(--dim); }
+  .sx-city .sh i.hot { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .sx-city.off { border-style: dashed; color: var(--faint); text-decoration: line-through; }
+  .sx-city.off .sh i { opacity: .3; }
+  .sx-fly {
+    position: absolute; z-index: 1; transform: translate(-50%, -50%); pointer-events: none;
+    font-size: 10px; line-height: 12px; padding: 0 3px; background: var(--ink); color: var(--bg);
+    transition: left .55s cubic-bezier(.3, .7, .2, 1), top .55s cubic-bezier(.3, .7, .2, 1);
+  }
+  .sx-lines { z-index: 0; }
+
+  /* stake city: a stake bar over a moving chain of blocks */
+  .sc-bar { display: flex; gap: 2px; height: 26px; margin-top: 16px; }
+  .sc-seg {
+    flex: 0 0 auto; box-sizing: border-box; overflow: hidden; white-space: nowrap; padding: 0 6px;
+    background: #262626; color: var(--faint); font-size: 11px; line-height: 26px;
+    transition: width .7s ease, background-color .2s, color .2s;
+  }
+  .sc-seg.me { box-shadow: inset 0 3px 0 var(--ink); color: var(--dim); }
+  .sc-seg.lead { background: var(--ink); color: var(--bg); }
+  .sc-seg.off { background: repeating-linear-gradient(45deg, #4a4a4a 0 1px, transparent 1px 4px); color: var(--faint); }
+  .sc-under { display: flex; justify-content: space-between; gap: 12px; margin-top: 6px; color: var(--faint); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .sc-under b { color: var(--ink); font-weight: 500; }
+  .sc-chain { overflow: hidden; margin-top: 20px; padding: 1px 0; }
+  .sc-rail { display: flex; gap: 14px; will-change: transform; }
+  .sc-tile {
+    position: relative; flex: 0 0 auto; box-sizing: border-box; border: 1px solid #333; padding: 7px 9px;
+    display: flex; flex-direction: column; gap: 4px; font-size: 11.5px; color: var(--faint);
+    transition: border-color .3s, color .3s, background-color .3s;
+  }
+  .sc-tile + .sc-tile::before { content: ""; position: absolute; left: -15px; top: 50%; width: 14px; border-top: 1px solid #5a5a5a; }
+  .sc-tile .sl { color: var(--dim); font-variant-numeric: tabular-nums; }
+  .sc-tile .ld { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sc-tile .ss { white-space: nowrap; }
+  .sc-tile .vt { display: flex; gap: 2px; }
+  .sc-tile .vt i { flex: 1; height: 5px; background: #222; }
+  .sc-tile .vt i.on { background: #6a6a6a; }
+  .sc-tile.c { border-color: var(--dim); color: var(--dim); }
+  .sc-tile.c .sl, .sc-tile.c .ld { color: var(--ink); }
+  .sc-tile.c .vt i.on { background: var(--ink); }
+  .sc-tile.x { border-style: dashed; background: repeating-linear-gradient(45deg, #1b1b1b 0 1px, transparent 1px 5px); }
+  .sc-tile.me { border-top: 3px solid var(--ink); padding-top: 5px; }
+  .sc-tile.me .ld { color: var(--ink); }
+  .sc-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin-top: 12px; color: var(--faint); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .sc-foot b { color: var(--ink); font-weight: 500; }
+  .sc .vd-btns { margin-top: 16px; }
+  .sc-msg { margin: 10px 0 0; min-height: 1.5em; color: var(--dim); font-size: 12.5px; }
+  .sc-msg::before { content: "\203a  "; color: var(--faint); }
+  .sc-msg.new { animation: sc-msg .5s ease-out; }
+  @keyframes sc-msg { from { color: var(--ink); } }
+
+  @media (max-width: 640px) {
+    .vd-track { gap: 28px; }
+    .sx-app { grid-template-columns: 1fr; gap: 14px; }
+    .sx-ring { order: -1; }
+    .sx-row { grid-template-columns: 2ch minmax(0, 1fr) 6.5ch 14ch; gap: 0 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vd-track, .sc-seg, .sc-tile, .sx-fly, .sx-core .pr i { transition: none; }
+    .sc-msg.new { animation: none; }
+  }
+
+  .partners { margin: 22px 0 6px; padding-top: 16px; border-top: 1px dashed var(--line); }
+  .pt-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; color: var(--dim); font-size: 12.5px; }
+  .pt-head .sig, .pt-tag { color: var(--faint); }
+  .pt-frame {
+    list-style: none; margin: 14px 0 0; padding: 20px 24px 16px; border: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 18px 28px;
+  }
+  .pt-frame li { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+  .pt-logo { display: flex; align-items: center; justify-content: center; height: 46px; }
+  .pt-logo img { display: block; width: auto; filter: brightness(0) invert(.62); transition: filter .2s; }
+  .pt-frame li:hover img { filter: brightness(0) invert(.95); }
+  .pt-frame small { color: var(--faint); font-size: 11px; letter-spacing: .02em; transition: color .2s; }
+  .pt-frame li:hover small { color: var(--dim); }
+  @media (max-width: 640px) {
+    .pt-frame { justify-content: center; padding: 16px 12px 12px; gap: 16px 24px; }
+  }
 </style>
 </head>
 <body>
@@ -379,6 +540,19 @@
       <div><h3>Sales &amp; systems administration, UKFast</h3><p>UK. Where it started: sales, Linux, servers and customer support at a hosting company.</p></div>
     </article>
 
+    <div class="partners" id="partners">
+      <div class="pt-head"><span><span class="sig">$</span> ls partners --flagship</span><span class="pt-tag">clients and partners across the roles above</span></div>
+      <ul class="pt-frame">
+        <li><span class="pt-logo"><img src="assets/partners/stripe.svg" alt="Stripe" title="Stripe &middot; ripple" style="height:22px" loading="lazy" /></span><small>ripple</small></li>
+        <li><span class="pt-logo"><img src="assets/partners/csd-br.png" alt="CSD BR" title="CSD BR &middot; ripple" style="height:26px" loading="lazy" /></span><small>ripple</small></li>
+        <li><span class="pt-logo"><img src="assets/partners/aviva-investors.svg" alt="Aviva Investors" title="Aviva Investors &middot; ripple" style="height:19px" loading="lazy" /></span><small>ripple</small></li>
+        <li><span class="pt-logo"><img src="assets/partners/ctrl-alt.svg" alt="Ctrl Alt" title="Ctrl Alt &middot; ripple" style="height:22px" loading="lazy" /></span><small>ripple</small></li>
+        <li><span class="pt-logo"><img src="assets/partners/accenture.svg" alt="Accenture" title="Accenture &middot; gartner" style="height:20px" loading="lazy" /></span><small>gartner</small></li>
+        <li><span class="pt-logo"><img src="assets/partners/aberdeen.svg" alt="Aberdeen Asset Management" title="Aberdeen Asset Management &middot; gartner" style="height:32px" loading="lazy" /></span><small>gartner</small></li>
+        <li><span class="pt-logo"><img src="assets/partners/ministry-of-defence.svg" alt="Ministry of Defence" title="Ministry of Defence &middot; pa consulting" style="height:42px" loading="lazy" /></span><small>pa consulting</small></li>
+      </ul>
+    </div>
+
     <div class="run" id="run" role="region" aria-label="A small game. Run the roles above in order and jump each company.">
       <div class="run-top"><span><span class="sig">$</span> roles --run</span><span class="run-hud" id="hud" aria-hidden="true">origin &middot; media 0/5</span></div>
       <canvas id="game" height="170" tabindex="0" aria-label="Career runner. Click or tap to start, then space, the up arrow, or tap to jump."></canvas>
@@ -417,7 +591,18 @@
       </div>
     </article>
   
-    <div class="rfq" id="rfq">
+    <div class="vd" id="vd">
+      <div class="vd-head">
+        <span><span class="sig">$</span> demo</span>
+        <div class="vd-tabs" role="tablist" aria-label="Venture demos">
+          <button type="button" class="vd-tab" role="tab" id="vt-0" aria-controls="rfq" aria-selected="true">canopyx</button>
+          <button type="button" class="vd-tab" role="tab" id="vt-1" aria-controls="synx" aria-selected="false" tabindex="-1">synx</button>
+          <button type="button" class="vd-tab" role="tab" id="vt-2" aria-controls="stake" aria-selected="false" tabindex="-1">stake city</button>
+        </div>
+        <div class="vd-nav"><button type="button" class="vd-prev" aria-label="Previous demo" disabled>&larr;</button><span class="vd-count">1/3</span><button type="button" class="vd-next" aria-label="Next demo">&rarr;</button></div>
+      </div>
+      <div class="vd-track">
+    <div class="rfq vd-pane" id="rfq" role="tabpanel" aria-labelledby="vt-0">
       <div class="rfq-top"><span><span class="sig">$</span> canopyx request</span><span class="rfq-tag">simulation &middot; not live prices</span></div>
       <div class="rfq-controls">
         <div class="rfq-prompts" role="group" aria-label="Pick a request">
@@ -432,6 +617,44 @@
         <li class="c"># pick a request and send it. five providers bid blind; the cheapest wins and is paid the runner-up&rsquo;s price.</li>
       </ol>
       <p class="rfq-sr" id="rfq-sr" aria-live="polite"></p>
+    </div>
+
+    <div class="vd-pane sx" id="synx" role="tabpanel" aria-labelledby="vt-1">
+      <div class="vd-top"><span><span class="sig">$</span> synx</span><span class="vd-tag">simulation &middot; runs in your browser, nothing is uploaded</span></div>
+      <p class="vd-note"># a dropbox on solana, simplified. a file is locked with a key only you hold, cut into 8 shards and copied to two cities each; solana keeps the record. knock cities out and see what still opens.</p>
+      <div class="sx-app">
+        <div class="sx-win">
+          <div class="sx-title">~/synx <span id="sx-count">3 files</span></div>
+          <ul class="sx-list" id="sx-list"></ul>
+          <div class="vd-btns">
+            <button type="button" class="sx-own">+ your file&hellip;</button>
+            <button type="button" class="go" id="sx-open" disabled>open &darr;</button>
+            <input type="file" id="sx-file" hidden />
+          </div>
+          <p class="sx-meta" id="sx-meta" aria-live="polite"></p>
+        </div>
+        <div class="sx-ring" id="sx-ring" role="group" aria-label="Storage cities. Press one to take it offline.">
+          <svg class="sx-lines" id="sx-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="sx-core" id="sx-core"><b>~/synx</b><span class="tx">pick a file</span><span class="pr"><i></i></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vd-pane sc" id="stake" role="tabpanel" aria-labelledby="vt-2">
+      <div class="vd-top"><span><span class="sig">$</span> solana validators --watch</span><span class="vd-tag">simulation &middot; not live network data</span></div>
+      <p class="vd-note"># every 400ms is a slot. one validator leads four in a row and makes the blocks, picked in proportion to its stake. the rest vote: 2/3 of stake confirms a block. delegators keep their SOL; the validator earns a commission.</p>
+      <div class="sc-bar" id="sc-bar" aria-hidden="true"></div>
+      <div class="sc-under" id="sc-under">&nbsp;</div>
+      <div class="sc-chain" id="sc-chain" aria-hidden="true"><div class="sc-rail" id="sc-rail"></div></div>
+      <div class="sc-foot" id="sc-foot">&nbsp;</div>
+      <div class="vd-btns">
+        <button type="button" class="go" id="sc-play">pause</button>
+        <button type="button" id="sc-del">delegate 200k SOL to stake-city</button>
+        <button type="button" id="sc-plug" aria-pressed="false">unplug stake-city</button>
+      </div>
+      <p class="sc-msg" id="sc-msg" aria-live="polite">&nbsp;</p>
+    </div>
+      </div>
     </div>
   </section>
 
@@ -1112,6 +1335,505 @@
     io.observe(root);
   }
   window.__rfq = { run, busy: () => busy };
+})();
+</script>
+
+<script>
+(() => {
+  const vd = document.getElementById("vd");
+  if (!vd) return;
+  const CALM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const wait = ms => new Promise(r => setTimeout(r, CALM ? 0 : ms));
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
+  const fmt = n => n.toLocaleString("en-US");
+  const $ = id => document.getElementById(id);
+
+  /* ---------- tabs: click through or swipe ---------- */
+  const track = vd.querySelector(".vd-track");
+  const panes = [...track.children];
+  const tabs = [...vd.querySelectorAll(".vd-tab")];
+  const prev = vd.querySelector(".vd-prev"), next = vd.querySelector(".vd-next"), count = vd.querySelector(".vd-count");
+  const shown = [];
+  let cur = -1;
+  const fit = () => { if (cur >= 0) track.style.height = panes[cur].offsetHeight + "px"; };
+  function set(i) {
+    if (i === cur) { fit(); return; }
+    cur = i;
+    tabs.forEach((t, j) => { t.setAttribute("aria-selected", String(j === i)); t.tabIndex = j === i ? 0 : -1; });
+    panes.forEach((p, j) => { p.inert = j !== i; });
+    prev.disabled = i === 0;
+    next.disabled = i === panes.length - 1;
+    count.textContent = (i + 1) + "/" + panes.length;
+    fit();
+    shown.forEach(fn => fn(panes[i].id));
+  }
+  function go(i) {
+    i = Math.max(0, Math.min(panes.length - 1, i));
+    track.scrollTo({ left: panes[i].offsetLeft, behavior: CALM ? "auto" : "smooth" });
+    set(i);
+  }
+  let settle = 0;
+  track.addEventListener("scroll", () => {
+    clearTimeout(settle);
+    settle = setTimeout(() => {
+      let best = 0;
+      panes.forEach((p, j) => { if (Math.abs(p.offsetLeft - track.scrollLeft) < Math.abs(panes[best].offsetLeft - track.scrollLeft)) best = j; });
+      set(best);
+    }, 120);
+  }, { passive: true });
+  tabs.forEach((t, j) => t.addEventListener("click", () => go(j)));
+  vd.querySelector(".vd-tabs").addEventListener("keydown", e => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    e.preventDefault();
+    go(cur + (e.key === "ArrowRight" ? 1 : -1));
+    tabs[cur].focus();
+  });
+  prev.addEventListener("click", () => go(cur - 1));
+  next.addEventListener("click", () => go(cur + 1));
+  if ("ResizeObserver" in window) { const ro = new ResizeObserver(fit); panes.forEach(p => ro.observe(p)); }
+  addEventListener("resize", () => { if (cur >= 0) track.scrollLeft = panes[cur].offsetLeft; fit(); });
+
+  /* ---------- synx: a file window and a map of storage cities ---------- */
+  const sx = $("synx"), ring = $("sx-ring"), lines = $("sx-lines"), core = $("sx-core");
+  const list = $("sx-list"), meta = $("sx-meta"), openBtn = $("sx-open"), fileIn = $("sx-file");
+  const subtle = window.crypto && crypto.subtle;
+  const CITIES = ["lon", "fra", "dxb", "sgp", "syd", "tyo", "sao", "nyc"];
+  const N = CITIES.length;
+  const homes = i => [i, (i + 3) % N]; // two copies, never in the same city
+  const POS = CITIES.map((_, j) => {
+    const a = (-90 + j * 360 / N) * Math.PI / 180;
+    return { x: 50 + 41 * Math.cos(a), y: 50 + 40 * Math.sin(a) };
+  });
+  const MID = { x: 50, y: 50 };
+  const off = new Set();
+  let sel = -1, busy = false, ran = false, hold = false, holdTok = 0;
+  const holdFor = ms => { // keep the centre message up; the newest hold wins
+    const id = ++holdTok;
+    hold = true;
+    if (ms) setTimeout(() => { if (holdTok === id && !busy) { hold = false; paint(); } }, ms);
+  };
+  const files = [
+    { name: "pitch-deck.pdf", size: 184320 },
+    { name: "holiday.jpg", size: 412672 },
+    { name: "notes.txt", text: "synx demo. this file was made in your browser and never leaves it.\n".repeat(90) },
+  ];
+  files.forEach(f => { if (f.text) f.size = new TextEncoder().encode(f.text).length; });
+
+  const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+  const short = h => h.slice(0, 8) + "\u2026" + h.slice(-6);
+  const size = n => n < 1024 ? n + " B" : n < 1048576 ? Math.round(n / 1024) + " KB" : (n / 1048576).toFixed(1) + " MB";
+  const B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+  const txSig = () => Array.from(crypto.getRandomValues(new Uint8Array(88)), b => B58[b % 58]).join("");
+  function bytesOf(f) {
+    if (f.text) return new TextEncoder().encode(f.text);
+    const b = new Uint8Array(f.size);
+    for (let o = 0; o < f.size; o += 65536) crypto.getRandomValues(b.subarray(o, Math.min(f.size, o + 65536)));
+    return b;
+  }
+
+  lines.innerHTML = POS.map(p => `<line x1="50" y1="50" x2="${p.x.toFixed(2)}" y2="${p.y.toFixed(2)}"></line>`).join("");
+  const lineEls = [...lines.querySelectorAll("line")];
+  const cityEls = CITIES.map((c, j) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "sx-city";
+    b.style.left = POS[j].x + "%";
+    b.style.top = POS[j].y + "%";
+    b.innerHTML = `<span class="nm">${c}</span><span class="sh"></span>`;
+    b.addEventListener("click", () => {
+      if (busy) return;
+      off.has(j) ? off.delete(j) : off.add(j);
+      hold = false;
+      paint();
+    });
+    ring.appendChild(b);
+    return b;
+  });
+
+  function health(f) {
+    // fewest live copies of any shard, and the first shard with none
+    let least = 2;
+    const gone = [];
+    for (let i = 0; i < N; i++) {
+      const live = homes(i).filter(j => !off.has(j)).length;
+      if (live < least) least = live;
+      if (live === 0) gone.push(i + 1);
+    }
+    return { least, gone, lost: gone.length ? gone[0] - 1 : -1 };
+  }
+  function status(f) {
+    if (f.busy) return ["", f.busy];
+    if (!f.up) return ["", "\u2191 upload"];
+    const h = health(f);
+    if (h.gone.length) return ["bad", h.gone.length === 1 ? "\u2715 shard " + h.gone[0] + " lost" : "\u2715 " + h.gone.length + " shards lost"];
+    if (h.least === 1) return ["warn", "! 1 copy left"];
+    return ["ok", "\u2713 2 copies"];
+  }
+  function paint() {
+    list.innerHTML = "";
+    files.forEach((f, i) => {
+      const [cls, txt] = status(f);
+      const li = document.createElement("li");
+      li.innerHTML = `<button type="button" class="sx-row" aria-pressed="${i === sel}"><span class="ic">&#9636;</span>` +
+        `<span class="nm">${esc(f.name)}</span><span class="sz">${size(f.size)}</span><span class="st ${cls}">${txt}</span></button>`;
+      li.firstChild.addEventListener("click", () => pick(i));
+      list.appendChild(li);
+    });
+    $("sx-count").textContent = files.length + " files";
+    const f = files[sel];
+    cityEls.forEach((b, j) => {
+      const down = off.has(j);
+      b.classList.toggle("off", down);
+      b.setAttribute("aria-pressed", String(down));
+      b.setAttribute("aria-label", CITIES[j] + (down ? ", offline. Press to bring back." : ", online. Press to take offline."));
+      lineEls[j].classList.toggle("off", down);
+      const sh = b.querySelector(".sh");
+      const want = f && f.up ? [j, (j - 3 + N) % N].sort((a, b) => a - b) : [];
+      const have = [...sh.children].map(e => +e.dataset.s);
+      if (want.join() !== have.join() && !(f && f.busy)) sh.innerHTML = want.map(s => `<i data-s="${s}">${s + 1}</i>`).join("");
+    });
+    openBtn.disabled = busy || !f || !f.up;
+    if (f && f.up && !f.busy && !hold) {
+      const h = health(f);
+      setCore(f.name, h.gone.length ? `${h.gone.length === 1 ? "shard" : "shards"} ${h.gone.join(", ")}: no live copy` : off.size ? `${N - off.size} of ${N} cities up` : `on ${N} cities`, h.gone.length ? "bad" : "");
+    }
+    if (f && !f.busy) {
+      meta.innerHTML = f.up
+        ? `<span class="nw">sha256 ${short(f.digest)}</span> &middot; <span class="nw">key on this device</span> &middot; <span class="nw">solana tx ${f.tx.slice(0, 5)}&hellip;${f.tx.slice(-4)} (simulated)</span>` + (f.saved ? ` &middot; <a href="${f.saved}" download="${esc(f.name)}">save restored copy</a>` : "")
+        : "not on synx yet. press it to upload.";
+    }
+  }
+  function setCore(name, txt, cls = "", progress = -1) {
+    core.className = "sx-core" + (cls ? " " + cls : "");
+    core.querySelector("b").textContent = name;
+    core.querySelector(".tx").textContent = txt;
+    core.querySelector(".pr i").style.width = progress < 0 ? "0" : Math.round(progress * 100) + "%";
+    core.querySelector(".pr").style.visibility = progress < 0 ? "hidden" : "visible";
+  }
+  function fly(from, to, label) {
+    if (CALM) return Promise.resolve();
+    const s = document.createElement("span");
+    s.className = "sx-fly";
+    s.textContent = label;
+    s.style.left = from.x + "%";
+    s.style.top = from.y + "%";
+    ring.appendChild(s);
+    void s.offsetWidth;
+    s.style.left = to.x + "%";
+    s.style.top = to.y + "%";
+    return new Promise(r => setTimeout(() => { s.remove(); r(); }, 580));
+  }
+  function lock(on) {
+    busy = on;
+    sx.querySelector(".sx-own").disabled = on;
+    paint();
+  }
+
+  async function pick(i) {
+    if (busy) return;
+    sel = i;
+    hold = false;
+    if (!files[i].up) return upload(i);
+    paint();
+  }
+  async function upload(i) {
+    const f = files[i];
+    if (!subtle) { meta.textContent = "this demo needs a secure (https) page for the browser's crypto."; return; }
+    ran = true;
+    sel = i;
+    f.busy = "hashing";
+    lock(true);
+    const name = f.name;
+    const bytes = f.bytes || bytesOf(f);
+    delete f.bytes;
+    setCore(name, "hashing", "", 0.1);
+    meta.textContent = "sha256 \u2026";
+    f.digest = hex(await subtle.digest("SHA-256", bytes));
+    meta.textContent = "sha256 " + short(f.digest);
+    await wait(350);
+    f.busy = "encrypting"; paint();
+    setCore(name, "encrypting with your key", "", 0.3);
+    f.key = await subtle.generateKey({ name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+    f.iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await subtle.encrypt({ name: "AES-GCM", iv: f.iv }, f.key, bytes));
+    await wait(450);
+    const per = Math.ceil(ct.length / N);
+    f.shards = Array.from({ length: N }, (_, s) => ct.slice(s * per, Math.min(ct.length, (s + 1) * per)));
+    f.sums = await Promise.all(f.shards.map(s => subtle.digest("SHA-256", s).then(hex)));
+    cityEls.forEach(b => { b.querySelector(".sh").innerHTML = ""; });
+    let placed = 0;
+    setCore(name, "spreading 0/16", "", 0.4);
+    const trips = [];
+    for (let s = 0; s < N; s++) {
+      for (const j of homes(s)) {
+        trips.push((async () => {
+          await wait((s * 2 + (j === s ? 0 : 1)) * 75);
+          lineEls[j].classList.add("hot");
+          await fly(MID, POS[j], s + 1);
+          lineEls[j].classList.remove("hot");
+          const sh = cityEls[j].querySelector(".sh");
+          sh.insertAdjacentHTML("beforeend", `<i data-s="${s}">${s + 1}</i>`);
+          [...sh.children].sort((a, b) => a.dataset.s - b.dataset.s).forEach(c => sh.appendChild(c));
+          placed++;
+          f.busy = `syncing ${placed}/16`;
+          setCore(name, `spreading ${placed}/16`, "", 0.4 + 0.5 * placed / 16);
+          const row = list.children[i];
+          if (row) row.querySelector(".st").textContent = f.busy;
+        })());
+      }
+    }
+    await Promise.all(trips);
+    f.tx = txSig();
+    setCore(name, "recording on solana", "", 0.95);
+    await wait(450);
+    f.up = true;
+    delete f.busy;
+    setCore(name, `on ${N} cities \u2713`, "done", 1);
+    holdFor(1800);
+    lock(false);
+  }
+  async function open() {
+    const f = files[sel];
+    if (!f || !f.up || busy) return;
+    holdFor(0);
+    lock(true);
+    const h = health(f);
+    if (h.gone.length) {
+      const one = h.gone.length === 1;
+      const both = homes(h.lost).map(j => CITIES[j]).join(" and ");
+      setCore(f.name, one ? `\u2715 shard ${h.gone[0]}: ${both} both down` : `\u2715 shards ${h.gone.join(", ")}: no copy up`, "bad");
+      meta.innerHTML = `can't open: every shard lives in two cities, and ${one ? `shard ${h.gone[0]}'s two are` : `shards ${h.gone.join(" and ")} each have both`} offline. real networks keep more copies.`;
+      busy = false; sx.querySelector(".sx-own").disabled = false; openBtn.disabled = false;
+      return;
+    }
+    if (f.saved) { URL.revokeObjectURL(f.saved); delete f.saved; }
+    const parts = [];
+    let got = 0;
+    setCore(f.name, `fetching 0/${N}`, "", 0);
+    await Promise.all(Array.from({ length: N }, (_, s) => (async () => {
+      const from = homes(s).find(j => !off.has(j));
+      await wait(s * 110);
+      const chip = cityEls[from].querySelector(`.sh i[data-s="${s}"]`);
+      chip && chip.classList.add("hot");
+      lineEls[from].classList.add("hot");
+      await fly(POS[from], MID, s + 1);
+      lineEls[from].classList.remove("hot");
+      chip && chip.classList.remove("hot");
+      if (hex(await subtle.digest("SHA-256", f.shards[s])) !== f.sums[s]) throw new Error("shard check failed");
+      parts[s] = f.shards[s];
+      got++;
+      setCore(f.name, `fetching ${got}/${N} \u00b7 from ${CITIES[from]}`, "", got / N * 0.8);
+    })()));
+    const all = new Uint8Array(parts.reduce((a, p) => a + p.length, 0));
+    let o = 0;
+    for (const p of parts) { all.set(p, o); o += p.length; }
+    setCore(f.name, "decrypting", "", 0.9);
+    const plain = await subtle.decrypt({ name: "AES-GCM", iv: f.iv }, f.key, all);
+    const again = hex(await subtle.digest("SHA-256", plain));
+    await wait(300);
+    const ok = again === f.digest;
+    setCore(f.name, ok ? "opened \u2713 matches solana" : "hash mismatch", ok ? "done" : "bad", 1);
+    if (f.own && ok) f.saved = URL.createObjectURL(new Blob([plain]));
+    busy = false;
+    sx.querySelector(".sx-own").disabled = false;
+    paint();
+    meta.innerHTML = `opened ${size(plain.byteLength)}${off.size ? ` with ${off.size} of ${N} cities down` : " from all 8 cities"} &middot; sha256 ${short(again)} ${ok ? "= the solana record" : "&ne; record"}` +
+      (f.saved ? ` &middot; <a href="${f.saved}" download="${esc(f.name)}">save restored copy</a>` : "");
+    holdFor(2600);
+  }
+  async function takeFile(file) {
+    if (!file || busy) return;
+    if (file.size > 25 * 1048576) { meta.textContent = `${file.name} is ${size(file.size)}. try something under 25 MB.`; return; }
+    const f = { name: file.name.length > 40 ? file.name.slice(0, 37) + "\u2026" : file.name, size: file.size, own: true, bytes: new Uint8Array(await file.arrayBuffer()) };
+    files.push(f);
+    if (files.length > 6) files.splice(3, 1);
+    upload(files.indexOf(f));
+  }
+  sx.querySelector(".sx-own").addEventListener("click", () => fileIn.click());
+  fileIn.addEventListener("change", () => { takeFile(fileIn.files[0]); fileIn.value = ""; });
+  sx.addEventListener("dragover", e => { e.preventDefault(); sx.classList.add("over"); });
+  sx.addEventListener("dragleave", e => { if (!sx.contains(e.relatedTarget)) sx.classList.remove("over"); });
+  sx.addEventListener("drop", e => { e.preventDefault(); sx.classList.remove("over"); takeFile(e.dataTransfer.files[0]); });
+  openBtn.addEventListener("click", open);
+  shown.push(id => { if (id === "synx" && !ran) upload(0); });
+  meta.textContent = "press a file to upload it, or drop your own here.";
+  paint();
+
+  /* ---------- stake city: stake bar over a moving chain ---------- */
+  const sc = $("stake"), bar = $("sc-bar"), under = $("sc-under"), chain = $("sc-chain"), rail = $("sc-rail");
+  const foot = $("sc-foot"), msg = $("sc-msg"), playBtn = $("sc-play"), delBtn = $("sc-del"), plugBtn = $("sc-plug");
+  const VALS = [
+    { n: "stake-city", s: 120, me: true }, { n: "fra-1", s: 360 }, { n: "nyc-1", s: 320 }, { n: "tyo-1", s: 280 },
+    { n: "ams-1", s: 260 }, { n: "sgp-1", s: 240 }, { n: "sao-1", s: 220 }, { n: "syd-1", s: 200 },
+  ]; // thousands of SOL
+  VALS.forEach(v => { v.on = true; v.cr = 0; });
+  const ME = VALS[0];
+  const EPOCH = 64, GROUPS = EPOCH / 4, SLOT_MS = 400, CAP = 1200, GAP = 14;
+  let slot = 0, epoch = 0, sched = [], pending = 0, timer = 0, paused = CALM, seen = false, active = false;
+  let missed = 0, skipped = 0, stalled = false;
+  const blocks = [];
+  let seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const total = () => VALS.reduce((a, v) => a + v.s, 0);
+  const pct = s => (s / total() * 100).toFixed(1) + "%";
+  const segs = VALS.map(v => { const d = document.createElement("div"); d.className = "sc-seg" + (v.me ? " me" : ""); d.textContent = v.n; bar.appendChild(d); return d; });
+  const say = html => { msg.innerHTML = html; msg.classList.remove("new"); void msg.offsetWidth; msg.classList.add("new"); };
+  const visible = () => (innerWidth <= 640 ? 3 : 6);
+
+  function schedule(first) {
+    const t = total();
+    const want = VALS.map(v => ({ v, q: v.s / t * GROUPS }));
+    want.forEach(w => { w.k = Math.floor(w.q); });
+    let left = GROUPS - want.reduce((a, w) => a + w.k, 0);
+    [...want].sort((a, b) => (b.q - b.k) - (a.q - a.k)).forEach(w => { if (left > 0) { w.k++; left--; } });
+    sched = [];
+    want.forEach(w => { for (let i = 0; i < w.k; i++) sched.push(w.v); });
+    for (let i = sched.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [sched[i], sched[j]] = [sched[j], sched[i]]; }
+    if (first) { const at = sched.indexOf(ME); if (at >= 0) [sched[at], sched[12]] = [sched[12], sched[at]]; }
+  }
+  function newEpoch(quiet) {
+    epoch++;
+    const add = pending;
+    if (pending) { ME.s += pending; pending = 0; }
+    schedule(epoch === 1);
+    const mine = sched.filter(v => v === ME).length * 4;
+    if (!quiet) say(add
+      ? `epoch ${epoch}: your ${add}k SOL is live. stake-city now holds ${pct(ME.s)} and leads <b>${mine} of ${EPOCH}</b> slots.`
+      : `epoch ${epoch}: stake-city holds ${pct(ME.s)} of stake and leads <b>${mine} of ${EPOCH}</b> slots.`);
+  }
+  function tick(quiet) {
+    const k = slot % EPOCH;
+    if (k === 0) newEpoch(quiet);
+    const leader = sched[Math.floor(k / 4)];
+    const b = { n: slot, leader, st: leader.on ? "p" : "x", voted: new Set(), v: 0 };
+    blocks.push(b);
+    if (blocks.length > 80) blocks.shift();
+    if (b.st === "x") {
+      if (leader === ME) skipped++;
+      const before = blocks[blocks.length - 2];
+      if (!quiet && !(before && before.leader === leader && before.st === "x")) say(`slot ${fmt(slot)}: ${leader.n} should lead but it's offline. <b>no block.</b>`);
+    }
+    const t = total();
+    const on = VALS.reduce((a, v) => a + (v.on ? v.s : 0), 0) / t;
+    for (const o of blocks) {
+      if (o.st !== "p" || o === b) continue;
+      const age = slot - o.n;
+      VALS.forEach((v, vi) => { if (v.on && !o.voted.has(vi) && (age >= 2 || rnd() < 0.7)) o.voted.add(vi); });
+      o.v = [...o.voted].reduce((a, vi) => a + VALS[vi].s, 0) / t;
+      if (o.v >= 2 / 3) {
+        o.st = "c";
+        o.voted.forEach(vi => VALS[vi].cr++);
+        if (!ME.on) missed++;
+      }
+    }
+    if (on < 2 / 3) {
+      if (!stalled && !quiet) say(`only ${(on * 100).toFixed(0)}% of stake is voting. <b>nothing can confirm</b> until 2/3 is back.`);
+      stalled = true;
+    } else stalled = false;
+    slot++;
+    if (!quiet) render(true);
+  }
+  function tileHtml(o) {
+    const words = o.st === "x" ? "skipped" : o.st === "c" ? "confirmed" : `voting ${Math.round(o.v * 100)}%`;
+    return `<span class="sl">#${fmt(o.n)}</span><span class="ld">${o.leader.n}</span>` +
+      `<span class="vt">${VALS.map((_, vi) => `<i${o.voted.has(vi) ? ' class="on"' : ""}></i>`).join("")}</span><span class="ss">${words}</span>`;
+  }
+  function paintTile(o) {
+    o.el.className = "sc-tile " + o.st + (o.leader === ME ? " me" : "");
+    o.el.innerHTML = tileHtml(o);
+  }
+  function sizeTiles() {
+    const n = visible();
+    const w = Math.max(60, (chain.clientWidth - (n - 1) * GAP) / n);
+    rail.querySelectorAll(".sc-tile").forEach(t => { t.style.width = w + "px"; });
+    return w;
+  }
+  function build() {
+    rail.innerHTML = "";
+    blocks.forEach(o => { delete o.el; });
+    blocks.slice(-visible()).forEach(o => { o.el = document.createElement("div"); paintTile(o); rail.appendChild(o.el); });
+    sizeTiles();
+  }
+  function render(fresh) {
+    const n = visible();
+    const newest = blocks[blocks.length - 1];
+    if (fresh && newest && !newest.el) {
+      newest.el = document.createElement("div");
+      rail.appendChild(newest.el);
+      paintTile(newest);
+      const w = sizeTiles();
+      while (rail.children.length > n) {
+        const gone = blocks.find(o => o.el === rail.firstElementChild);
+        if (gone) delete gone.el;
+        rail.firstElementChild.remove();
+      }
+      if (!CALM) {
+        rail.style.transition = "none";
+        rail.style.transform = `translateX(${w + GAP}px)`;
+        void rail.offsetWidth;
+        rail.style.transition = "transform .3s cubic-bezier(.2,.8,.2,1)";
+        rail.style.transform = "translateX(0)";
+      }
+    }
+    blocks.forEach(o => { if (o.el) paintTile(o); });
+    const t = total();
+    const lead = newest ? newest.leader : null;
+    VALS.forEach((v, i) => {
+      segs[i].style.width = `calc(${(v.s / t * 100).toFixed(3)}% - 2px)`;
+      segs[i].className = "sc-seg" + (v.me ? " me" : "") + (v === lead && newest.st !== "x" ? " lead" : "") + (v.on ? "" : " off");
+      const room = v.s / t * bar.clientWidth - 14;
+      segs[i].textContent = room >= v.n.length * 6.8 ? v.n : v.me ? "" : v.n.split("-")[0];
+    });
+    under.innerHTML = `<span><b>stake-city</b> ${pct(ME.s)} &middot; ${fmt(ME.s)}k SOL${pending ? ` &middot; +${pending}k next epoch` : ""}</span>` +
+      `<span>leader <b>${lead ? lead.n : ""}</b>${newest && newest.st === "x" ? " (offline)" : ""}</span>`;
+    const k = (slot - 1) % EPOCH;
+    let deep = 0, final = null;
+    for (let i = blocks.length - 1; i >= 0; i--) { if (blocks[i].st === "x") continue; if (deep === 32) { final = blocks[i]; break; } deep++; }
+    foot.innerHTML = `<span>epoch <b>${epoch}</b> &middot; slot <b>${fmt(slot - 1)}</b> &middot; ${k + 1}/${EPOCH}</span>` +
+      `<span>final up to <b>#${final ? fmt(final.n) : "&ndash;"}</b> (32 blocks back)</span>` +
+      `<span>stake-city: votes missed <b>${fmt(missed)}</b> &middot; slots skipped <b>${fmt(skipped)}</b></span>`;
+  }
+  function sync() {
+    const run = active && seen && !paused && document.visibilityState === "visible";
+    if (run && !timer) timer = setInterval(() => tick(false), SLOT_MS);
+    if (!run && timer) { clearInterval(timer); timer = 0; }
+  }
+  playBtn.addEventListener("click", () => {
+    paused = !paused;
+    playBtn.textContent = paused ? "run \u25b8" : "pause";
+    if (!paused && !timer) tick(false);
+    sync();
+  });
+  delBtn.addEventListener("click", () => {
+    if (ME.s + pending >= CAP) return;
+    pending += 200;
+    if (ME.s + pending >= CAP) delBtn.disabled = true;
+    say(`you delegated 200k SOL to stake-city. it counts from the next epoch, and <b>the SOL stays yours</b>.`);
+    render(false);
+  });
+  plugBtn.addEventListener("click", () => {
+    ME.on = !ME.on;
+    plugBtn.setAttribute("aria-pressed", String(!ME.on));
+    plugBtn.textContent = ME.on ? "unplug stake-city" : "plug stake-city back in";
+    say(ME.on ? "stake-city is back and voting." : "stake-city is offline: its votes stop and its leader slots will be skipped. <b>the job is staying up.</b>");
+    render(false);
+  });
+  for (let i = 0; i < 44; i++) tick(true);
+  build();
+  render(false);
+  say(`epoch 1: stake-city holds ${pct(ME.s)} of stake and leads <b>${sched.filter(v => v === ME).length * 4} of ${EPOCH}</b> slots.`);
+  if (CALM) playBtn.textContent = "run \u25b8";
+  addEventListener("resize", () => { build(); render(false); });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(es => { seen = es.some(e => e.isIntersecting); sync(); }, { threshold: 0.25 }).observe(sc);
+  } else seen = true;
+  document.addEventListener("visibilitychange", sync);
+  shown.push(id => { active = id === "stake"; if (active) { build(); render(false); } sync(); });
+
+  set(0);
+  window.__vd = { go, cur: () => cur };
+  window.__sx = { pick, open, busy: () => busy, toggle: j => cityEls[j].click(), files: () => files.map(f => ({ name: f.name, up: !!f.up, st: status(f)[1] })) };
+  window.__sc = { tick: () => tick(false), state: () => ({ slot, epoch, me: ME.s, on: ME.on, pending, running: !!timer, missed, skipped, tiles: rail.children.length }) };
 })();
 </script>
 </body>
