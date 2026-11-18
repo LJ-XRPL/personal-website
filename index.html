@@ -847,6 +847,199 @@
   /* in-page jumps stop just below the sticky header */
   #roles, #companies, #media, #contact, #tmap, #partners, #run { scroll-margin-top: 58px; }
   #roles:focus, #companies:focus, #media:focus, #contact:focus { outline: none; }
+
+/* lj-pay */
+.lj-pay {
+  margin: 30px 0 0;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+  max-width: 100%;
+  min-width: 0;
+}
+.lj-pay-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--dim);
+  font-size: 12.5px;
+}
+.lj-pay-cmd { min-width: 0; overflow-wrap: anywhere; color: var(--ink); }
+.lj-pay-sig { color: var(--dim); }
+.lj-pay-toggle, .lj-pay-go {
+  font: inherit;
+  font-size: 12.5px;
+  line-height: 1.2;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 6px 12px;
+  cursor: pointer;
+  flex: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.lj-pay-toggle:hover, .lj-pay-go:hover,
+.lj-pay-toggle:focus-visible, .lj-pay-go:focus-visible {
+  border-color: var(--faint);
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+}
+.lj-pay-go:disabled {
+  color: var(--dim);
+  border-color: var(--line);
+  cursor: default;
+}
+.lj-pay-panel { margin-top: 10px; max-width: 100%; min-width: 0; }
+.lj-pay-panel[hidden] { display: none !important; }
+.lj-pay-tag { margin: 0 0 10px; color: var(--dim); font-size: 12.5px; }
+.lj-pay-log {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.lj-pay-log:empty { display: none; margin: 0; }
+.lj-pay-log li {
+  display: grid;
+  grid-template-columns: 9ch minmax(0, 1fr);
+  margin: 0;
+  max-width: 100%;
+  min-width: 0;
+}
+.lj-pay-lab { color: var(--dim); }
+.lj-pay-val {
+  color: var(--ink);
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.lj-pay-val a { color: var(--ink); overflow-wrap: anywhere; }
+@media (pointer: coarse), (max-width: 669px) {
+  .lj-pay-toggle, .lj-pay-go {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lj-pay, .lj-pay * { animation: none !important; transition: none !important; }
+}
+
+  /* lj-grep: page search. inverted monochrome highlights, no accent. */
+  ::highlight(lj-grep) { background-color: #8a8a8a; color: #0a0a0a; }
+  ::highlight(lj-grep-cur) { background-color: #e8e8e8; color: #0a0a0a; }
+  .lj-grep {
+    margin: 6px 0 0; max-width: 100%; min-width: 0;
+  }
+  .lj-grep-hit {
+    display: block; width: 100%; max-width: 100%; box-sizing: border-box;
+    text-align: left; font: inherit; font-size: 12.5px; line-height: 1.45;
+    color: var(--dim); background: transparent;
+    border: 0; border-left: 1px solid var(--line); border-radius: 0;
+    padding: 2px 0 2px 8px; margin: 0; cursor: pointer;
+    overflow-wrap: anywhere; word-break: break-word; white-space: normal;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  }
+  .lj-grep-sec { color: var(--dim); }
+  .lj-grep-mid { color: var(--ink); }
+  .lj-grep-hit:hover { color: var(--ink); border-left-color: var(--faint); }
+  .lj-grep-hit:focus-visible { outline: 1px solid var(--ink); outline-offset: 2px; }
+  .lj-grep-hit[aria-current="true"] {
+    color: var(--bg); background: var(--ink); border-left-color: var(--ink);
+  }
+  .lj-grep-hit[aria-current="true"] .lj-grep-sec,
+  .lj-grep-hit[aria-current="true"] .lj-grep-mid { color: var(--bg); }
+  @media (pointer: coarse) {
+    .lj-grep-hit { font-size: 16px; padding: 8px 8px 8px 10px; min-height: 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lj-grep-hit { transition: none; }
+  }
+  @media print {
+    ::highlight(lj-grep), ::highlight(lj-grep-cur) { background-color: transparent; color: #000; }
+  }
+
+
+  /* lj-lb runner leaderboard */
+  .lj-lb { margin: 14px 0 0; max-width: 100%; min-width: 0; color: var(--dim); font-size: 12.5px; }
+  .lj-lb-top { color: var(--dim); }
+  .lj-lb-sig { color: var(--faint); }
+  .lj-lb-list { list-style: none; margin: 6px 0 0; padding: 0; max-width: 100%; min-width: 0; }
+  .lj-lb-list li {
+    display: flex; align-items: baseline; gap: 8px; min-width: 0; max-width: 100%;
+    line-height: 1.7; white-space: nowrap;
+  }
+  .lj-lb-rank { flex: none; width: 2ch; color: var(--faint); text-align: right; }
+  .lj-lb-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--ink); }
+  .lj-lb-sc { flex: none; color: var(--dim); font-variant-numeric: tabular-nums; }
+  .lj-lb-empty { color: var(--faint); }
+  .lj-lb-you, .lj-lb-note { margin: 8px 0 0; max-width: 100%; overflow-wrap: anywhere; color: var(--dim); }
+  .lj-lb-note { color: var(--faint); }
+  .lj-lb-save {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px;
+    margin: 8px 0 0; max-width: 100%; min-width: 0; color: var(--dim);
+  }
+  .lj-lb-in {
+    font: inherit; font-size: 12.5px; color: var(--ink); background: transparent;
+    border: 1px solid var(--line); border-radius: 0; padding: 3px 8px;
+    width: 12ch; max-width: 100%; min-width: 0; box-sizing: border-box;
+  }
+  .lj-lb-go {
+    font: inherit; font-size: 12.5px; color: var(--bg); background: var(--ink);
+    border: 1px solid var(--ink); padding: 3px 8px; cursor: pointer;
+  }
+  .lj-lb-go:disabled { background: var(--dim); border-color: var(--dim); cursor: default; }
+  .lj-lb[hidden], .lj-lb-save[hidden], .lj-lb-you[hidden], .lj-lb-note[hidden] { display: none !important; }
+  .lj-lb-in:focus-visible, .lj-lb-go:focus-visible { outline: 1px solid var(--faint); outline-offset: 2px; }
+  @media (pointer: coarse), (max-width: 669px) {
+    .lj-lb-in { font-size: 16px; min-height: 44px; }
+    .lj-lb-go { min-height: 44px; min-width: 44px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lj-lb, .lj-lb * { animation: none !important; transition: none !important; }
+  }
+  /* lj-saver */
+  #lj-saver {
+    position: fixed; inset: 0; z-index: 90; overflow: hidden;
+    background: var(--bg); color: var(--ink);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    cursor: none; user-select: none; -webkit-user-select: none;
+    touch-action: none;
+    transition: opacity .3s ease, visibility 0s linear .3s;
+  }
+  #lj-saver.on {
+    opacity: 1; visibility: visible;
+    transition: opacity .3s ease, visibility 0s linear 0s;
+  }
+  #lj-saver.on, #lj-saver.hold { pointer-events: auto; }
+  #lj-saver canvas { display: block; width: 100%; height: 100%; }
+  #lj-saver .lj-saver-hud {
+    position: absolute; top: 0; left: 0; right: 0; box-sizing: border-box;
+    max-width: 100%; padding: 16px 20px 36px; pointer-events: none;
+    background: linear-gradient(to bottom, var(--bg) 0 64px, transparent 112px);
+    font: 14.5px/1.45 "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  #lj-saver .lj-saver-line, #lj-saver .lj-saver-stat {
+    margin: 0; max-width: 100%; overflow-wrap: anywhere;
+  }
+  #lj-saver .lj-saver-line { color: var(--ink); }
+  #lj-saver .lj-saver-stat {
+    color: var(--dim); margin-top: 3px; font-size: 12.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #lj-saver, #lj-saver.on { transition: none; }
+  }
+
 </style>
 <script>
 // Start at the top: a #section typed, remembered or autocompleted doesn't open the page halfway down.
@@ -3905,5 +4098,2003 @@
 })();
 </script>
 
+
+<script>
+/* lj-pay */
+(() => {
+  const MARK = "lj-pay";
+  if (document.getElementById(MARK)) return;
+
+  const lj = (window.__lj = window.__lj || {});
+  lj.cmds = lj.cmds || {};
+
+  const FAUCET = "https://faucet.altnet.rippletest.net/accounts";
+  const SERVERS = [
+    "wss://s.altnet.rippletest.net:51233",
+    "wss://testnet.xrpl-labs.com"
+  ];
+  const LIB = "assets/vendor/xrpl-5.3.0.min.js";
+  const TEN_XRP_DROPS = "10000000";
+  const TIMEOUT_MS = 60000;
+  const COOLDOWN_MS = 30000;
+  const FAUCET_COOLDOWN_MS = 60000;
+  const LABEL = "real XRPL testnet · test XRP has no value";
+
+  let busyFlag = false;
+  let lastResult = null;
+  let nextAt = 0;
+  let client = null;
+  let printFn = null;
+  let goBtn = null;
+  let logEl = null;
+  let root = null;
+  let panel = null;
+  let toggleBtn = null;
+  let libPromise = null;
+  let tickers = [];
+  let deadline = 0;
+  let timedOut = false;
+
+  function fmt(label, text) {
+    const lab = String(label).padEnd(9).slice(0, 9);
+    const body = text == null ? "" : String(text);
+    return body.split("\n").map((ln, i) => (i ? "         " : lab) + ln).join("\n");
+  }
+
+  function emit(label, text) {
+    if (typeof printFn !== "function") return;
+    try { printFn(fmt(label, text)); } catch (e) {}
+  }
+
+  function mid(value, keep) {
+    const s = String(value || "");
+    const n = keep || 6;
+    if (s.length <= n * 2 + 1) return s;
+    return s.slice(0, n) + "…" + s.slice(-n);
+  }
+
+  function secs(ms) {
+    return (Math.max(0, ms) / 1000).toFixed(1) + "s";
+  }
+
+  function sleep(ms) {
+    return new Promise((resolve) => { setTimeout(resolve, ms); });
+  }
+
+  function stopTicks() {
+    tickers.forEach((id) => { clearInterval(id); });
+    tickers = [];
+  }
+
+  function errName(e) {
+    if (!e) return "";
+    const data = e.data;
+    if (data && data.error) return String(data.error);
+    return e.message ? String(e.message) : String(e);
+  }
+
+  function isNotFound(e) {
+    const t = errName(e);
+    return t === "actNotFound" || t.indexOf("actNotFound") !== -1 || t.indexOf("Account not found") !== -1;
+  }
+
+  function isTxnMissing(e) {
+    const t = errName(e);
+    return t === "txnNotFound" || t.indexOf("txnNotFound") !== -1;
+  }
+
+  function publicMsg(e) {
+    if (!e) return "request failed";
+    if (e.code === "timeout" || timedOut || e.name === "AbortError") return "timed out";
+    if (e.code === "faucet-busy") return "testnet faucet is busy · try again in a minute";
+    let m = e.message ? String(e.message) : "request failed";
+    if (m.indexOf("seed") !== -1 || m.indexOf("private") !== -1) return "request failed";
+    if (m.length > 160) m = m.slice(0, 160);
+    return m;
+  }
+
+  function checkDeadline() {
+    if (timedOut || Date.now() >= deadline) {
+      const e = new Error("timed out");
+      e.code = "timeout";
+      throw e;
+    }
+  }
+
+  async function pause(ms) {
+    const end = Date.now() + ms;
+    while (Date.now() < end) {
+      checkDeadline();
+      await sleep(Math.min(200, end - Date.now()));
+    }
+  }
+
+  function addLine(label, text) {
+    if (text != null) emit(label, text);
+    if (!logEl) return { set: function () {}, node: null };
+    const li = document.createElement("li");
+    li.className = "lj-x";
+    const lab = document.createElement("span");
+    lab.className = "lj-x lj-pay-lab";
+    lab.textContent = label;
+    const val = document.createElement("span");
+    val.className = "lj-x lj-pay-val";
+    val.textContent = text == null ? "" : String(text);
+    li.append(lab, val);
+    logEl.appendChild(li);
+    return {
+      node: val,
+      set: function (t) { val.textContent = t == null ? "" : String(t); }
+    };
+  }
+
+  function titled(text, full) {
+    const span = document.createElement("span");
+    span.className = "lj-x";
+    span.textContent = text;
+    if (full) span.title = full;
+    return span;
+  }
+
+  function expand() {
+    if (!panel || !toggleBtn) return;
+    panel.hidden = false;
+    toggleBtn.setAttribute("aria-expanded", "true");
+    toggleBtn.textContent = "collapse";
+  }
+
+  function collapse() {
+    if (!panel || !toggleBtn) return;
+    panel.hidden = true;
+    toggleBtn.setAttribute("aria-expanded", "false");
+    toggleBtn.textContent = "expand";
+  }
+
+  function mount() {
+    const section = document.getElementById("roles");
+    if (!section || document.getElementById(MARK)) return;
+    root = document.createElement("div");
+    root.id = MARK;
+    root.className = "lj-x lj-pay";
+    root.setAttribute("role", "region");
+    root.setAttribute("aria-label", "XRPL testnet payment");
+
+    const line = document.createElement("div");
+    line.className = "lj-x lj-pay-line";
+    const cmd = document.createElement("span");
+    cmd.className = "lj-x lj-pay-cmd";
+    const sig = document.createElement("span");
+    sig.className = "lj-x lj-pay-sig";
+    sig.textContent = "$";
+    cmd.append(sig, document.createTextNode(" xrpl pay --testnet"));
+    cmd.title = LABEL;
+
+    toggleBtn = document.createElement("button");
+    toggleBtn.type = "button";
+    toggleBtn.className = "lj-x lj-pay-toggle";
+    toggleBtn.textContent = "expand";
+    toggleBtn.setAttribute("aria-expanded", "false");
+    toggleBtn.setAttribute("aria-controls", "lj-pay-panel");
+    toggleBtn.setAttribute("aria-label", "expand testnet payment");
+
+    panel = document.createElement("div");
+    panel.id = "lj-pay-panel";
+    panel.className = "lj-x lj-pay-panel";
+    panel.hidden = true;
+
+    const tag = document.createElement("p");
+    tag.className = "lj-x lj-pay-tag";
+    tag.textContent = LABEL;
+
+    goBtn = document.createElement("button");
+    goBtn.type = "button";
+    goBtn.className = "lj-x lj-pay-go";
+    goBtn.textContent = "send 10 test XRP";
+
+    logEl = document.createElement("ol");
+    logEl.className = "lj-x lj-pay-log";
+    logEl.setAttribute("role", "log");
+    logEl.setAttribute("aria-live", "polite");
+    logEl.setAttribute("aria-relevant", "additions");
+    logEl.setAttribute("aria-label", "testnet payment output");
+
+    toggleBtn.addEventListener("click", () => {
+      if (panel.hidden) expand();
+      else collapse();
+    });
+    goBtn.addEventListener("click", () => { run(); });
+
+    line.append(cmd, toggleBtn);
+    panel.append(tag, goBtn, logEl);
+    root.append(line, panel);
+    section.appendChild(root);
+  }
+
+  function loadLib() {
+    if (window.xrpl && window.xrpl.Wallet && window.xrpl.Client) return Promise.resolve(window.xrpl);
+    if (libPromise) return libPromise;
+    libPromise = new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.className = "lj-x";
+      s.src = new URL(LIB, document.baseURI).href;
+      s.async = true;
+      s.onload = () => {
+        if (window.xrpl && window.xrpl.Wallet && window.xrpl.Client) resolve(window.xrpl);
+        else reject(new Error("xrpl.js did not load"));
+      };
+      s.onerror = () => reject(new Error("could not load xrpl.js"));
+      document.head.appendChild(s);
+    });
+    libPromise.catch(() => { libPromise = null; });
+    return libPromise;
+  }
+
+  function scrub(body) {
+    if (!body || typeof body !== "object") return;
+    delete body.seed;
+    delete body.secret;
+    delete body.privateKey;
+    if (body.account && typeof body.account === "object") {
+      delete body.account.seed;
+      delete body.account.secret;
+      delete body.account.privateKey;
+    }
+  }
+
+  function amountLabel(body) {
+    if (!body || typeof body !== "object") return "";
+    const raw = body.amount != null ? body.amount : (body.xrpAmount != null ? body.xrpAmount : body.balance);
+    if (raw == null || raw === "") return "";
+    const num = Number(raw);
+    if (!isFinite(num)) return String(raw) + " XRP";
+    if (num >= 1000000) return (num / 1000000) + " XRP";
+    return num + " XRP";
+  }
+
+  async function postFaucet(address) {
+    checkDeadline();
+    const ctrl = new AbortController();
+    const remain = Math.max(1, deadline - Date.now());
+    const timer = setTimeout(() => { ctrl.abort(); }, remain);
+    let res;
+    try {
+      res = await fetch(FAUCET, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ destination: address }),
+        signal: ctrl.signal
+      });
+    } catch (e) {
+      if (timedOut || e.name === "AbortError") {
+        const err = new Error("timed out");
+        err.code = "timeout";
+        throw err;
+      }
+      throw e;
+    } finally {
+      clearTimeout(timer);
+    }
+    if (res.status === 429 || res.status >= 500) {
+      const err = new Error("testnet faucet is busy · try again in a minute");
+      err.code = "faucet-busy";
+      throw err;
+    }
+    if (!res.ok) {
+      throw new Error("faucet HTTP " + res.status);
+    }
+    const body = await res.json();
+    scrub(body);
+    const funded = body && body.account && (body.account.classicAddress || body.account.address);
+    if (!funded) throw new Error("faucet returned no account");
+    if (funded !== address) throw new Error("faucet funded a different account");
+    return { amount: amountLabel(body) };
+  }
+
+  async function connect(xrpl) {
+    let last = null;
+    for (let i = 0; i < SERVERS.length; i++) {
+      checkDeadline();
+      const url = SERVERS[i];
+      const c = new xrpl.Client(url);
+      try {
+        await c.connect();
+        client = c;
+        return url;
+      } catch (e) {
+        last = e;
+        try { c.disconnect(); } catch (x) {}
+        if (client === c) client = null;
+      }
+    }
+    throw last || new Error("could not connect");
+  }
+
+  async function waitAccount(xrpl, address, onTick) {
+    while (Date.now() < deadline) {
+      checkDeadline();
+      onTick();
+      try {
+        const info = await client.request({
+          command: "account_info",
+          account: address,
+          ledger_index: "validated"
+        });
+        const drops = info.result.account_data.Balance;
+        const xrp = xrpl.dropsToXrp ? xrpl.dropsToXrp(drops) : String(Number(drops) / 1000000);
+        return { drops: String(drops), xrp: String(xrp) };
+      } catch (e) {
+        if (timedOut) throw e;
+        if (!isNotFound(e) && errName(e).indexOf("timeout") !== -1) throw e;
+        await pause(1200);
+      }
+    }
+    const err = new Error("timed out");
+    err.code = "timeout";
+    throw err;
+  }
+
+  function txFields(res) {
+    const r = (res && res.result) || {};
+    const tx = r.tx_json || r;
+    const meta = r.meta || r.metaData || {};
+    return {
+      hash: r.hash || tx.hash || "",
+      ledger: r.ledger_index,
+      validated: r.validated === true,
+      result: meta.TransactionResult || meta.transaction_result || "",
+      fee: tx.Fee != null ? String(tx.Fee) : (r.Fee != null ? String(r.Fee) : "")
+    };
+  }
+
+  async function waitValidated(hash, onTick) {
+    while (Date.now() < deadline) {
+      checkDeadline();
+      onTick();
+      try {
+        const res = await client.request({ command: "tx", transaction: hash });
+        const fields = txFields(res);
+        if (fields.validated && fields.hash) return fields;
+      } catch (e) {
+        if (timedOut) {
+          const err = new Error("timed out");
+          err.code = "timeout";
+          throw err;
+        }
+        if (!isTxnMissing(e)) await pause(800);
+      }
+      await pause(1000);
+    }
+    const err = new Error("timed out");
+    err.code = "timeout";
+    throw err;
+  }
+
+  function dropClient() {
+    const c = client;
+    client = null;
+    if (!c) return;
+    try { c.disconnect(); } catch (e) {}
+  }
+
+  async function doRun() {
+    let walletA = null;
+    let walletB = null;
+    let signed = null;
+    timedOut = false;
+    deadline = Date.now() + TIMEOUT_MS;
+    const killer = setTimeout(() => {
+      timedOut = true;
+      dropClient();
+    }, TIMEOUT_MS);
+    try {
+      if (logEl) logEl.replaceChildren();
+      if (typeof printFn === "function") {
+        try { printFn(LABEL); } catch (e) {}
+      }
+      const xrpl = await loadLib();
+      checkDeadline();
+
+      walletA = xrpl.Wallet.generate();
+      const addrA = walletA.classicAddress;
+      const aLine = addLine("wallet A", null);
+      if (aLine.node) aLine.node.append(titled(mid(addrA, 6), addrA));
+      emit("wallet A", mid(addrA, 6));
+
+      const fundLine = addLine("fund", "requesting");
+      const fundT0 = Date.now();
+      let lastPrint = 0;
+      const fundTick = setInterval(() => {
+        const t = "requesting · " + secs(Date.now() - fundT0);
+        fundLine.set(t);
+        if (Date.now() - lastPrint >= 2000) {
+          lastPrint = Date.now();
+          emit("fund", t);
+        }
+      }, 200);
+      tickers.push(fundTick);
+
+      const faucetP = postFaucet(addrA);
+      faucetP.catch(() => {});
+      const url = await connect(xrpl);
+      addLine("server", url);
+      const funded = await faucetP;
+      clearInterval(fundTick);
+      const got = funded.amount ? funded.amount + " from faucet" : "funded";
+      fundLine.set(got + " · waiting for account · " + secs(Date.now() - fundT0));
+      emit("fund", got + " · waiting for account");
+
+      let fundPrinted = Date.now();
+      const bal = await waitAccount(xrpl, addrA, () => {
+        const t = got + " · waiting for account · " + secs(Date.now() - fundT0);
+        fundLine.set(t);
+        if (Date.now() - fundPrinted >= 2000) {
+          fundPrinted = Date.now();
+          emit("fund", t);
+        }
+      });
+      const fundDone = got + " · balance " + bal.xrp + " XRP · " + secs(Date.now() - fundT0);
+      fundLine.set(fundDone);
+      emit("fund", fundDone);
+
+      walletB = xrpl.Wallet.generate();
+      const addrB = walletB.classicAddress;
+      const bLine = addLine("wallet B", null);
+      if (bLine.node) bLine.node.append(titled(mid(addrB, 6), addrB));
+      emit("wallet B", mid(addrB, 6));
+
+      const drops = xrpl.xrpToDrops ? xrpl.xrpToDrops("10") : TEN_XRP_DROPS;
+      if (String(drops) !== TEN_XRP_DROPS) throw new Error("refusing unexpected amount");
+      const prepared = await client.autofill({
+        TransactionType: "Payment",
+        Account: addrA,
+        Destination: addrB,
+        Amount: drops
+      });
+      signed = walletA.sign(prepared);
+      const signText = "10 XRP · " + mid(addrA, 6) + " → " + mid(addrB, 6);
+      const signLine = addLine("sign", null);
+      if (signLine.node) {
+        signLine.node.append(
+          document.createTextNode("10 XRP · "),
+          titled(mid(addrA, 6), addrA),
+          document.createTextNode(" → "),
+          titled(mid(addrB, 6), addrB)
+        );
+      }
+      emit("sign", signText);
+
+      const submitAt = Date.now();
+      const subLine = addLine("submit", url + " · 0.0s");
+      const subTick = setInterval(() => {
+        subLine.set(url + " · " + secs(Date.now() - submitAt));
+      }, 200);
+      tickers.push(subTick);
+      const submitted = await client.submit(signed.tx_blob);
+      const prelim = submitted && submitted.result && submitted.result.engine_result;
+      if (prelim && String(prelim).indexOf("tem") === 0) {
+        throw new Error(String(prelim));
+      }
+      const hash = signed.hash;
+      const fields = await waitValidated(hash, () => {
+        subLine.set(url + " · " + secs(Date.now() - submitAt));
+      });
+      const elapsedMs = Date.now() - submitAt;
+      clearInterval(subTick);
+      subLine.set(url + " · " + secs(elapsedMs));
+      emit("submit", url + " · " + secs(elapsedMs));
+
+      if (!fields.validated) throw new Error("not validated");
+      if (fields.hash && fields.hash.toUpperCase() !== String(hash).toUpperCase()) throw new Error("hash mismatch");
+      const code = fields.result || prelim || "";
+      const ledger = Number(fields.ledger);
+      const fee = fields.fee;
+      if (!isFinite(ledger) || fee === "" || !/^[A-Fa-f0-9]{64}$/.test(fields.hash)) throw new Error("incomplete result");
+
+      addLine("result", code);
+      addLine("ledger", String(ledger));
+      addLine("fee", fee + " drops");
+      const shownSecs = (elapsedMs / 1000);
+      addLine("time", shownSecs.toFixed(1) + "s");
+
+      const txLine = addLine("tx", null);
+      const href = "https://testnet.xrpl.org/transactions/" + fields.hash;
+      if (txLine.node) {
+        const a = document.createElement("a");
+        a.className = "lj-x";
+        a.href = href;
+        a.title = fields.hash;
+        a.textContent = mid(fields.hash, 8);
+        a.rel = "noopener noreferrer";
+        a.target = "_blank";
+        txLine.node.append(a);
+      }
+      emit("tx", mid(fields.hash, 8));
+      emit("link", href);
+
+      lastResult = {
+        hash: fields.hash,
+        ledger: ledger,
+        seconds: Math.round(shownSecs * 1000) / 1000,
+        result: code
+      };
+    } catch (e) {
+      stopTicks();
+      if (e && e.code === "faucet-busy") {
+        nextAt = Date.now() + FAUCET_COOLDOWN_MS;
+        addLine("error", "testnet faucet is busy · try again in a minute");
+      } else if ((e && e.code === "timeout") || timedOut || (e && e.name === "AbortError")) {
+        addLine("error", "timed out");
+      } else {
+        addLine("error", publicMsg(e));
+      }
+    } finally {
+      clearTimeout(killer);
+      stopTicks();
+      dropClient();
+      walletA = null;
+      walletB = null;
+      signed = null;
+    }
+  }
+
+  function run(print) {
+    if (busyFlag) {
+      expand();
+      printFn = typeof print === "function" ? print : printFn;
+      addLine("busy", "a payment is already running");
+      return;
+    }
+    const now = Date.now();
+    if (nextAt && now < nextAt) {
+      expand();
+      printFn = typeof print === "function" ? print : null;
+      const left = Math.ceil((nextAt - now) / 1000);
+      addLine("wait", "one run per 30s · " + left + "s left");
+      return;
+    }
+    busyFlag = true;
+    nextAt = Date.now() + COOLDOWN_MS;
+    printFn = typeof print === "function" ? print : null;
+    if (goBtn) {
+      goBtn.disabled = true;
+      goBtn.textContent = "sending…";
+    }
+    expand();
+    if (root && root.scrollIntoView) {
+      try { root.scrollIntoView({ block: "nearest", behavior: "auto" }); } catch (e) {}
+    }
+    void doRun().finally(() => {
+      busyFlag = false;
+      printFn = null;
+      if (goBtn) {
+        goBtn.disabled = false;
+        goBtn.textContent = "send 10 test XRP";
+      }
+    });
+  }
+
+  function busy() { return busyFlag; }
+
+  function last() {
+    if (!lastResult) return null;
+    return {
+      hash: lastResult.hash,
+      ledger: lastResult.ledger,
+      seconds: lastResult.seconds,
+      result: lastResult.result
+    };
+  }
+
+  mount();
+
+  if (!lj.cmds.pay) {
+    lj.cmds.pay = {
+      help: "send 10 test XRP on the XRPL testnet",
+      run(args, print) {
+        expand();
+        run(print);
+      }
+    };
+  }
+
+  window.__pay = { run: run, busy: busy, last: last };
+
+  window.addEventListener("pagehide", () => { dropClient(); });
+})();
+</script>
+<script>
+/* lj-grep — grep <term>: search this page. literal, case-insensitive.
+   grep / grep -c / grep clear   clear highlights and results
+   grep -n / grep next           next match (wraps)
+   grep <same term> again        cycles to the next match
+   grep -- <term>                search a term that looks like a flag
+   Escape in the prompt input    clears too, without taking the prompt's blur
+   Highlights use the CSS Custom Highlight API (no content DOM edits). */
+(() => {
+  const lj = (window.__lj = window.__lj || {});
+  lj.cmds = lj.cmds || {};
+  if (lj.grep && lj.grep.on) return;
+
+  const HL = "lj-grep";
+  const CUR = "lj-grep-cur";
+  const SKIP = "script, style, canvas, svg, button, input, textarea, select, pre.tmap-art, .lj-x, .lj-prompt";
+  const MAX_LINES = 8;
+  const CTX = 50;
+  const state = { term: "", key: "", matches: [], cur: -1 };
+
+  function reduceMotion() {
+    return matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+  function scrollBehavior() {
+    if (reduceMotion()) return "auto";
+    try {
+      return getComputedStyle(document.documentElement).scrollBehavior === "smooth" ? "smooth" : "auto";
+    } catch (e) {
+      return "auto";
+    }
+  }
+  function headerOffset() {
+    const h = document.querySelector("header.bar");
+    const measured = h ? h.getBoundingClientRect().height : 0;
+    return Math.max(58, Math.ceil(measured || 0));
+  }
+  function hlOn() {
+    return typeof Highlight === "function" && window.CSS && CSS.highlights && typeof CSS.highlights.set === "function";
+  }
+  function rendered(el) {
+    if (!el || el.nodeType !== 1) return false;
+    if (typeof el.checkVisibility === "function") {
+      try {
+        return el.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true });
+      } catch (e1) {
+        try { return el.checkVisibility(); } catch (e2) {}
+      }
+    }
+    let cs;
+    try { cs = getComputedStyle(el); } catch (e) { return false; }
+    if (!cs || cs.display === "none" || cs.visibility === "hidden" || cs.visibility === "collapse") return false;
+    if (cs.opacity === "0") return false;
+    if (el.offsetParent !== null) return true;
+    const r = el.getBoundingClientRect();
+    return r.width > 0 || r.height > 0;
+  }
+  function sectionOf(node) {
+    const el = node.parentElement;
+    if (!el) return "page";
+    if (el.closest("#contact")) return "contact";
+    if (el.closest("#media")) return "media";
+    if (el.closest("#companies")) return "ventures";
+    if (el.closest("#roles")) return "roles";
+    if (el.closest(".block")) return "intro";
+    return "page";
+  }
+  function roots() {
+    const out = [];
+    const block = document.querySelector(".screen > .block");
+    if (block) out.push(block);
+    ["roles", "companies", "media", "contact"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) out.push(el);
+    });
+    return out;
+  }
+  function textNodes(root) {
+    const out = [];
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const p = node.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        if (p.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+        if (!node.nodeValue || !/\S/.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+        if (!rendered(p)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    let n;
+    while ((n = walker.nextNode())) out.push(n);
+    return out;
+  }
+  function escapeRe(s) {
+    return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+  function findIn(text, term) {
+    const hits = [];
+    if (!term) return hits;
+    const re = new RegExp(escapeRe(term), "gi");
+    let m;
+    while ((m = re.exec(text))) {
+      if (!m[0].length) { re.lastIndex += 1; continue; }
+      hits.push({ start: m.index, len: m[0].length });
+    }
+    return hits;
+  }
+  function collect(term) {
+    const hits = [];
+    if (!term) return hits;
+    roots().forEach(root => {
+      textNodes(root).forEach(node => {
+        const text = node.nodeValue;
+        findIn(text, term).forEach(hit => {
+          const range = document.createRange();
+          range.setStart(node, hit.start);
+          range.setEnd(node, hit.start + hit.len);
+          hits.push({
+            range: range,
+            node: node,
+            start: hit.start,
+            len: hit.len,
+            section: sectionOf(node),
+            text: text
+          });
+        });
+      });
+    });
+    return hits;
+  }
+  function parts(text, start, len) {
+    const norm = s => s.replace(/\s+/g, " ");
+    const mid = norm(text.slice(start, start + len));
+    let pre = norm(text.slice(0, start));
+    let post = norm(text.slice(start + len));
+    const budget = Math.max(0, CTX - mid.length);
+    const left = Math.floor(budget / 2);
+    const right = budget - left;
+    let le = false;
+    let re = false;
+    if (pre.length > left) {
+      pre = pre.slice(pre.length - left);
+      le = true;
+      const sp = pre.indexOf(" ");
+      if (sp >= 0 && sp < 8) pre = pre.slice(sp + 1);
+    }
+    if (post.length > right) {
+      post = post.slice(0, right);
+      re = true;
+      const sp = post.lastIndexOf(" ");
+      if (sp >= 0 && post.length - sp < 8) post = post.slice(0, sp);
+    }
+    pre = pre.replace(/^\s+/, "");
+    post = post.replace(/\s+$/, "");
+    return { pre: (le ? "\u2026" : "") + pre, mid: mid, post: post + (re ? "\u2026" : "") };
+  }
+  function clearHighlights() {
+    if (!(window.CSS && CSS.highlights)) return;
+    try { CSS.highlights.delete(HL); } catch (e) {}
+    try { CSS.highlights.delete(CUR); } catch (e) {}
+  }
+  function paint(matches, cur) {
+    clearHighlights();
+    if (!hlOn() || !matches.length) return;
+    try {
+      const rest = [];
+      matches.forEach((m, i) => { if (i !== cur) rest.push(m.range); });
+      if (rest.length) CSS.highlights.set(HL, new Highlight(...rest));
+      if (matches[cur]) {
+        const h = new Highlight(matches[cur].range);
+        if ("priority" in h) h.priority = 1;
+        CSS.highlights.set(CUR, h);
+      }
+    } catch (e) {
+      clearHighlights();
+    }
+  }
+  function scrollToMatch(m) {
+    if (!m || !m.range) return;
+    const behavior = scrollBehavior();
+    const head = headerOffset();
+    let rect = null;
+    try {
+      const rects = m.range.getClientRects();
+      if (rects && rects.length) rect = rects[0];
+    } catch (e) {}
+    if (!rect || (!rect.width && !rect.height)) {
+      const el = m.node && m.node.parentElement;
+      if (el && el.scrollIntoView) el.scrollIntoView({ block: "center", inline: "nearest", behavior: behavior });
+      return;
+    }
+    const view = Math.max(0, window.innerHeight - head);
+    let top = window.scrollY + rect.top - head - Math.max(0, (view - rect.height) / 2);
+    if (rect.top < head) top = window.scrollY + rect.top - head - 12;
+    window.scrollTo({ top: Math.max(0, top), behavior: behavior });
+    if (behavior !== "auto") return;
+    let again = null;
+    try {
+      const rects = m.range.getClientRects();
+      if (rects && rects.length) again = rects[0];
+    } catch (e) {}
+    if (again && again.top < head) {
+      window.scrollTo({ top: Math.max(0, window.scrollY + again.top - head - 12), behavior: "auto" });
+    }
+  }
+  function mount() {
+    const box = document.createElement("div");
+    box.className = "lj-x lj-grep";
+    box.setAttribute("role", "list");
+    box.setAttribute("aria-label", "search results");
+    const prompt = document.querySelector(".lj-prompt");
+    if (prompt && prompt.parentNode) prompt.insertAdjacentElement("afterend", box);
+    else {
+      const screen = document.querySelector(".screen");
+      (screen || document.body).appendChild(box);
+    }
+    return box;
+  }
+  function dropPanel() {
+    document.querySelectorAll(".lj-grep").forEach(el => el.remove());
+  }
+  function showLines(matches, cur) {
+    const focused = document.activeElement && document.activeElement.closest && document.activeElement.closest(".lj-grep");
+    dropPanel();
+    if (!matches.length) return;
+    const box = mount();
+    const n = matches.length;
+    let start = 0;
+    if (n > MAX_LINES) start = Math.max(0, Math.min(cur - 3, n - MAX_LINES));
+    const end = Math.min(n, start + MAX_LINES);
+    for (let i = start; i < end; i++) {
+      const m = matches[i];
+      const p = parts(m.text, m.start, m.len);
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "lj-x lj-grep-hit";
+      btn.setAttribute("data-idx", String(i));
+      btn.setAttribute("aria-posinset", String(i + 1));
+      btn.setAttribute("aria-setsize", String(n));
+      if (i === cur) btn.setAttribute("aria-current", "true");
+      const sec = document.createElement("span");
+      sec.className = "lj-x lj-grep-sec";
+      sec.textContent = m.section;
+      const dot = document.createElement("span");
+      dot.className = "lj-x";
+      dot.textContent = " \u00b7 ";
+      const ctx = document.createElement("span");
+      ctx.className = "lj-x lj-grep-ctx";
+      if (p.pre) {
+        const s = document.createElement("span");
+        s.className = "lj-x";
+        s.textContent = p.pre;
+        ctx.appendChild(s);
+      }
+      const mid = document.createElement("span");
+      mid.className = "lj-x lj-grep-mid";
+      mid.textContent = p.mid;
+      ctx.appendChild(mid);
+      if (p.post) {
+        const s = document.createElement("span");
+        s.className = "lj-x";
+        s.textContent = p.post;
+        ctx.appendChild(s);
+      }
+      btn.appendChild(sec);
+      btn.appendChild(dot);
+      btn.appendChild(ctx);
+      btn.addEventListener("click", () => go(i));
+      box.appendChild(btn);
+    }
+    if (focused) {
+      const curBtn = box.querySelector('[aria-current="true"]');
+      if (curBtn && curBtn.focus) curBtn.focus({ preventScroll: true });
+    }
+  }
+  function go(i) {
+    if (!state.matches.length) return;
+    const n = state.matches.length;
+    state.cur = ((i % n) + n) % n;
+    paint(state.matches, state.cur);
+    showLines(state.matches, state.cur);
+    scrollToMatch(state.matches[state.cur]);
+  }
+  function reset() {
+    clearHighlights();
+    dropPanel();
+    state.term = "";
+    state.key = "";
+    state.matches = [];
+    state.cur = -1;
+  }
+  function say(print, text) {
+    if (typeof print === "function") print(text);
+  }
+  function quoted(term) {
+    return '"' + term + '"';
+  }
+  function run(args, print) {
+    const a = Array.isArray(args) ? args.slice() : [];
+    if (!a.length) { reset(); say(print, "cleared"); return; }
+    const head = String(a[0] == null ? "" : a[0]);
+    const flag = head.toLowerCase();
+    if (flag === "-c" || flag === "--clear" || flag === "clear") {
+      reset();
+      say(print, "cleared");
+      return;
+    }
+    if (flag === "-n" || flag === "--next" || flag === "next") {
+      if (!state.matches.length) { say(print, "no active search"); return; }
+      go(state.cur + 1);
+      say(print, "match " + (state.cur + 1) + " of " + state.matches.length);
+      return;
+    }
+    const term = head === "--" ? a.slice(1).join(" ") : a.join(" ");
+    if (!term) { reset(); say(print, "cleared"); return; }
+    const key = term.toLowerCase();
+    const same = key === state.key && state.matches.length > 0;
+    const prev = state.cur;
+    const matches = collect(term);
+    state.term = term;
+    state.key = key;
+    state.matches = matches;
+    if (!matches.length) {
+      clearHighlights();
+      dropPanel();
+      state.cur = -1;
+      say(print, "no matches for " + quoted(term));
+      return;
+    }
+    state.cur = same ? (prev + 1) % matches.length : 0;
+    paint(matches, state.cur);
+    showLines(matches, state.cur);
+    say(print, matches.length + " matches for " + quoted(term));
+    scrollToMatch(matches[state.cur]);
+  }
+
+  lj.cmds.grep = { help: "search this page", run: run };
+
+  /* Prompt already blurs on Escape. Clear on the same key without stopping it. */
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape" && e.key !== "Esc") return;
+    if (document.querySelector(".lj-keys")) return;
+    const input = document.querySelector(".lj-prompt input.lj-in");
+    if (!input || e.target !== input) return;
+    if (!state.matches.length && !state.key) return;
+    reset();
+  });
+
+  lj.grep = {
+    on: true,
+    clear: reset,
+    state: () => ({
+      term: state.term,
+      n: state.matches.length,
+      cur: state.cur,
+      hl: hlOn(),
+      sections: state.matches.map(m => m.section)
+    })
+  };
+})();
+</script>
+<script>
+/* lj-lb runner leaderboard */
+(() => {
+  window.__lj = window.__lj || {};
+  var lj = window.__lj;
+  lj.cmds = lj.cmds || {};
+
+  var API = String(window.LJ_API || "/api").replace(/\/$/, "");
+  var BEST_KEY = "lj-lb-best";
+  var reduce = function () { return matchMedia("(prefers-reduced-motion: reduce)").matches; };
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    n.className = "lj-x" + (cls ? " " + cls : "");
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function scoreText(s) {
+    var roles = s.roles + (s.roles === 1 ? " role" : " roles");
+    var mics = s.media + (s.media === 1 ? " mic" : " mics");
+    if (s.done) return roles + " \u00b7 " + mics + " \u00b7 " + (s.ms / 1000).toFixed(1) + "s";
+    return "crash \u00b7 " + roles + " \u00b7 " + mics;
+  }
+  function better(a, b) {
+    if (!b) return true;
+    if ((a.done | 0) !== (b.done | 0)) return a.done > b.done;
+    if (a.roles !== b.roles) return a.roles > b.roles;
+    if (a.media !== b.media) return a.media > b.media;
+    if (a.done && b.done && a.ms !== b.ms) return a.ms < b.ms;
+    return false;
+  }
+  function same(a, b) {
+    return !!(a && b && a.name === b.name && a.roles === b.roles && a.media === b.media && (a.done | 0) === (b.done | 0) && a.ms === b.ms);
+  }
+  function loadBest() {
+    try {
+      var raw = JSON.parse(localStorage.getItem(BEST_KEY) || "null");
+      if (!raw || typeof raw.name !== "string") return null;
+      if (typeof raw.roles !== "number" || typeof raw.media !== "number" || typeof raw.done !== "number" || typeof raw.ms !== "number") return null;
+      return raw;
+    } catch (e) { return null; }
+  }
+  function saveBest(s, name) {
+    var next = { name: name, roles: s.roles, media: s.media, done: s.done, ms: s.ms, pending: true };
+    var cur = loadBest();
+    if (cur && !better(next, cur)) return cur;
+    try { localStorage.setItem(BEST_KEY, JSON.stringify(next)); } catch (e) {}
+    return next;
+  }
+
+  var scores = [];
+  var online = null;
+  var best = loadBest();
+  var offer = null;
+  var posting = false;
+
+  var runEl = document.getElementById("run");
+  var logEl = document.getElementById("log");
+  var box = null, list = null, you = null, form = null, nameIn = null, saveBtn = null, note = null;
+
+  function render() {
+    if (!list) return;
+    list.replaceChildren();
+    if (!scores.length) {
+      list.appendChild(el("li", "lj-lb-empty", "# no scores yet"));
+      return;
+    }
+    scores.forEach(function (s, i) {
+      var li = el("li", "");
+      li.appendChild(el("span", "lj-lb-rank", String(i + 1)));
+      var nm = el("span", "lj-lb-name", s.name || "");
+      nm.title = s.name || "";
+      li.appendChild(nm);
+      li.appendChild(el("span", "lj-lb-sc", scoreText(s)));
+      list.appendChild(li);
+    });
+  }
+  function renderYou() {
+    if (!you) return;
+    if (!best) { you.hidden = true; you.textContent = ""; return; }
+    var listed = scores.some(function (s) { return same(s, best); });
+    if (listed) {
+      you.hidden = true;
+      you.textContent = "";
+      best.pending = false;
+      try { localStorage.setItem(BEST_KEY, JSON.stringify(best)); } catch (e) {}
+      return;
+    }
+    you.hidden = false;
+    you.textContent = "you \u00b7 " + scoreText(best) + (best.pending ? " (pending)" : "");
+  }
+  function showOffer(s) {
+    if (!form || online !== true || !s) return;
+    offer = s;
+    if (note) { note.hidden = true; note.textContent = ""; }
+    form.hidden = false;
+    nameIn.value = best && best.name ? best.name : "";
+    saveBtn.disabled = false;
+    posting = false;
+  }
+  function hideOffer() {
+    if (form) form.hidden = true;
+    offer = null;
+  }
+  function sayNote(text) {
+    if (!note) return;
+    note.hidden = !text;
+    note.textContent = text || "";
+  }
+
+  function build() {
+    if (!runEl || !logEl || document.getElementById("lj-lb")) return;
+    box = el("div", "lj-lb");
+    box.id = "lj-lb";
+    box.hidden = true;
+    var top = el("div", "lj-lb-top");
+    top.append(el("span", "lj-lb-sig", "$"), document.createTextNode(" top --runner"));
+    list = el("ol", "lj-lb-list");
+    you = el("p", "lj-lb-you");
+    you.hidden = true;
+    form = el("form", "lj-lb-save");
+    form.hidden = true;
+    form.noValidate = true;
+    form.setAttribute("autocomplete", "off");
+    form.appendChild(document.createTextNode("save score? name ["));
+    nameIn = el("input", "lj-lb-in");
+    nameIn.type = "text";
+    nameIn.maxLength = 16;
+    nameIn.setAttribute("aria-label", "name");
+    nameIn.setAttribute("autocomplete", "off");
+    nameIn.setAttribute("autocapitalize", "off");
+    nameIn.setAttribute("autocorrect", "off");
+    nameIn.setAttribute("spellcheck", "false");
+    nameIn.setAttribute("enterkeyhint", "done");
+    nameIn.spellcheck = false;
+    saveBtn = el("button", "lj-lb-go", "save");
+    saveBtn.type = "submit";
+    form.append(nameIn, document.createTextNode("] ["), saveBtn, document.createTextNode("]"));
+    note = el("p", "lj-lb-note");
+    note.hidden = true;
+    note.setAttribute("role", "status");
+    box.append(top, list, you, form, note);
+    logEl.insertAdjacentElement("afterend", box);
+
+    nameIn.addEventListener("keydown", function (e) {
+      e.stopPropagation();
+      if (e.key === "Enter") {
+        e.preventDefault();
+        submit();
+        return;
+      }
+      if (e.key === "Escape" || e.key === "Esc") {
+        e.preventDefault();
+        hideOffer();
+        nameIn.blur();
+      }
+    });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      submit();
+    });
+  }
+
+  function submit() {
+    if (posting || !offer || online !== true) return;
+    var name = String(nameIn.value || "").replace(/^\s+|\s+$/g, "");
+    if (!name) return;
+    posting = true;
+    saveBtn.disabled = true;
+    var body = { name: name, roles: offer.roles | 0, media: offer.media | 0, done: offer.done | 0, ms: offer.ms | 0 };
+    var kept = { roles: body.roles, media: body.media, done: body.done, ms: body.ms };
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 8000);
+    fetch(API + "/scores", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      signal: ctrl.signal,
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) { return { res: res, data: data }; });
+    }).then(function (out) {
+      if (out.res.status === 202) {
+        best = saveBest(kept, name);
+        hideOffer();
+        sayNote("saved \u00b7 shows after review");
+        renderYou();
+        return load();
+      }
+      posting = false;
+      saveBtn.disabled = false;
+      if (out.res.status === 429) { sayNote("slow down"); return; }
+      if (out.data && out.data.error) sayNote(String(out.data.error));
+    }).catch(function () {
+      posting = false;
+      saveBtn.disabled = false;
+    }).finally(function () { clearTimeout(timer); });
+  }
+
+  function load() {
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 8000);
+    return fetch(API + "/scores", { cache: "no-store", signal: ctrl.signal })
+      .finally(function () { clearTimeout(timer); })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (!res.ok) throw new Error("bad");
+          return data;
+        });
+      })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.scores)) throw new Error("bad");
+        scores = data.scores;
+        online = true;
+        if (box) box.hidden = false;
+        render();
+        renderYou();
+        if (offer && form && form.hidden) showOffer(offer);
+        return true;
+      })
+      .catch(function () {
+        if (online !== true) {
+          online = false;
+          offer = null;
+          if (box) box.hidden = true;
+        }
+        return false;
+      });
+  }
+
+  function say(print, line) {
+    if (typeof print === "function") print(String(line));
+  }
+  lj.cmds.top = {
+    help: "runner leaderboard",
+    run: function (args, print) {
+      if (runEl) {
+        try { runEl.scrollIntoView({ behavior: reduce() ? "auto" : "smooth", block: "nearest" }); } catch (e) {}
+      }
+      if (online !== true) return;
+      if (!scores.length) { say(print, "# no scores yet"); return; }
+      scores.forEach(function (s, i) {
+        say(print, (i + 1) + "  " + (s.name || "") + "  " + scoreText(s));
+      });
+    }
+  };
+
+  build();
+
+  var runner = window.__run;
+  if (runner && logEl && typeof runner.step === "function" && typeof runner.state === "function") {
+    var clears = 0;
+    var seen = typeof WeakSet === "function" ? new WeakSet() : null;
+    var seenList = [];
+    var stepMs = 0, pollMs = 0, viaStep = false, ended = false, prev = "idle", lastPoll = 0;
+    function seenBefore(li) {
+      if (seen) return seen.has(li);
+      return seenList.indexOf(li) !== -1;
+    }
+    function markSeen(li) {
+      if (seen) seen.add(li);
+      else seenList.push(li);
+    }
+    function scan() {
+      logEl.querySelectorAll("li[data-run]").forEach(function (li) {
+        if (seenBefore(li)) return;
+        markSeen(li);
+        if ((li.textContent || "").indexOf("cleared") !== -1) clears += 1;
+      });
+    }
+    function resetRun() {
+      clears = 0;
+      stepMs = 0;
+      pollMs = 0;
+      viaStep = false;
+      ended = false;
+      lastPoll = 0;
+      hideOffer();
+    }
+    function finishScore(stateName) {
+      if (ended) return;
+      scan();
+      ended = true;
+      var done = stateName === "done" ? 1 : 0;
+      var snap = {
+        roles: done ? 9 : clears,
+        media: typeof runner.got === "function" ? (runner.got() | 0) : 0,
+        done: done,
+        ms: Math.max(0, Math.round(viaStep ? stepMs : pollMs))
+      };
+      if (online === false) return;
+      offer = snap;
+      if (online === true) showOffer(snap);
+    }
+    var origStep = runner.step;
+    runner.step = function (dt) {
+      var before = runner.state();
+      if (before === "run" && typeof dt === "number" && isFinite(dt) && dt > 0) {
+        viaStep = true;
+        stepMs += dt * 1000;
+      }
+      var out = origStep.apply(this, arguments);
+      scan();
+      var after = runner.state();
+      if (before === "run" && (after === "crash" || after === "done")) finishScore(after);
+      return out;
+    };
+    if (typeof runner.press === "function") {
+      var origPress = runner.press;
+      runner.press = function () {
+        var before = runner.state();
+        var out = origPress.apply(this, arguments);
+        if (before === "crash" || before === "done") resetRun();
+        return out;
+      };
+    }
+    function poll(now) {
+      var st = runner.state();
+      if (st === "run") {
+        if (prev !== "run") resetRun();
+        if (!viaStep && lastPoll) {
+          var dt = Math.min(0.033, (now - lastPoll) / 1000);
+          if (dt > 0) pollMs += dt * 1000;
+        }
+        lastPoll = now;
+      } else if (prev === "run" && (st === "crash" || st === "done")) {
+        finishScore(st);
+        lastPoll = 0;
+      } else {
+        lastPoll = 0;
+      }
+      prev = st;
+      requestAnimationFrame(poll);
+    }
+    requestAnimationFrame(poll);
+  }
+
+  if (runEl && logEl) load();
+})();
+</script>
+<script>
+/* lj-saver */
+(() => {
+  if (window.__saver) return;
+
+  const SERVERS = ["wss://xrplcluster.com", "wss://s1.ripple.com", "wss://s2.ripple.com"];
+  const IDLE_MS = 60000;
+  const FORCE_MS = 2000;
+  const OFFLINE_MS = 5000;
+  const FADE_MS = 320;
+  const SPAWN_PER_SEC = 6;
+  const MOVE2 = 64;
+  const FONT_PX = 15;
+  const FONT = FONT_PX + 'px "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+  const WATCH = "$ xrpl --watch \u00b7 live mainnet transactions \u00b7 any key to exit";
+  const OFFLINE_LINE = "feed offline \u00b7 any key to exit";
+
+  const fineQ = matchMedia("(hover: hover) and (pointer: fine)");
+  const reduceQ = matchMedia("(prefers-reduced-motion: reduce)");
+  const printQ = matchMedia("print");
+
+  let active = false;
+  let holding = false;
+  let swallowKeys = false;
+  let keyTimer = 0;
+  let idleTimer = 0;
+  let offlineTimer = 0;
+  let fadeTimer = 0;
+  let retry = 0;
+  let raf = 0;
+  let gen = 0;
+  let si = 0;
+  let ws = null;
+  let live = false;
+  let offline = false;
+  let server = "";
+  let txSeen = 0;
+  let ledger = null;
+  let printLock = false;
+  let savedX = 0;
+  let savedY = 0;
+  let startedAt = 0;
+  let lastBump = 0;
+  let origin = null;
+  let restoring = false;
+  let overlay = null;
+  let canvas = null;
+  let ctx = null;
+  let lineEl = null;
+  let statEl = null;
+  let dpr = 1;
+  let glyphW = 9;
+  let glyphH = 19;
+  let cols = 1;
+  let rows = 1;
+  let colors = ["rgb(232,232,232)", "rgb(77,77,77)"];
+  let bg = "#0a0a0a";
+  const columns = [];
+  const queue = [];
+  const seenAt = [];
+  const seenHash = new Set();
+  const seenOrder = [];
+  let spawnAcc = 0;
+  let lastFrame = 0;
+  let hudAt = 0;
+
+  function flag(name) {
+    try { return new URLSearchParams(location.search).has(name); }
+    catch (e) { return new RegExp("[?&]" + name + "(=|&|$)").test(location.search); }
+  }
+  function reduced() { return reduceQ.matches; }
+  function fineHover() { return fineQ.matches; }
+  function coarse() { return matchMedia("(pointer: coarse)").matches; }
+  function printing() { return printLock || printQ.matches; }
+  function running() {
+    try { return !!(window.__run && typeof window.__run.state === "function" && window.__run.state() === "run"); }
+    catch (e) { return false; }
+  }
+  function typing() {
+    const t = document.activeElement;
+    if (!t || t === document.body || t === document.documentElement) return false;
+    if (t.isContentEditable) return true;
+    const tag = t.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true;
+    return !!(t.closest && t.closest("input, textarea, select, [contenteditable]"));
+  }
+  function permanentBlock() {
+    if (flag("nosaver")) return "nosaver";
+    if (reduced()) return "reduced motion";
+    if (coarse()) return "pointer";
+    if (printing()) return "print";
+    return "";
+  }
+  function transientBlock() {
+    if (document.getElementById("ljb")) return "boot";
+    if (running()) return "run";
+    if (typing()) return "typing";
+    return "";
+  }
+  function commas(n) {
+    return String(Math.trunc(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  function el(tag, cls) {
+    const n = document.createElement(tag);
+    n.className = "lj-x" + (cls ? " " + cls : "");
+    return n;
+  }
+  function hexCur(cur) {
+    if (!cur) return "";
+    if (cur.length <= 3) return cur;
+    if (!/^[0-9A-Fa-f]{40}$/.test(cur)) return cur.slice(0, 4);
+    let s = "";
+    for (let i = 0; i < cur.length; i += 2) {
+      const c = parseInt(cur.substr(i, 2), 16);
+      if (c === 0) continue;
+      if (c < 32 || c > 126) return cur.slice(0, 3);
+      s += String.fromCharCode(c);
+    }
+    return s || cur.slice(0, 3);
+  }
+  function trimNum(v) {
+    const n = Number(v);
+    if (!isFinite(n)) return String(v == null ? "" : v).slice(0, 10);
+    const a = Math.abs(n);
+    if (a === 0) return "0";
+    if (a >= 1000) return String(Math.round(n));
+    if (a >= 1) return String(Math.round(n * 100) / 100);
+    return String(Math.round(n * 1e6) / 1e6);
+  }
+  function amountStr(a) {
+    if (a == null) return "";
+    if (typeof a === "string" || typeof a === "number") {
+      const drops = Number(a);
+      if (!isFinite(drops)) return "";
+      return trimNum(drops / 1e6) + " XRP";
+    }
+    if (typeof a !== "object") return "";
+    if (a.mpt_issuance_id) return trimNum(a.value) + " MPT";
+    if (a.currency) return trimNum(a.value) + " " + hexCur(String(a.currency));
+    return "";
+  }
+  function txText(msg) {
+    try {
+      const tx = msg.transaction || msg.tx_json || {};
+      const type = String(tx.TransactionType || "tx");
+      const hash = String(tx.hash || msg.hash || "");
+      const short = hash.length >= 8 ? hash.slice(0, 4) + "\u00b7" + hash.slice(-4) : "";
+      const meta = msg.meta || {};
+      let extra = "";
+      if (type === "Payment") extra = amountStr(meta.delivered_amount || meta.DeliveredAmount || tx.Amount);
+      else if (type === "OfferCreate") extra = amountStr(tx.TakerPays) || amountStr(tx.TakerGets);
+      else if (type === "TrustSet") extra = amountStr(tx.LimitAmount);
+      else if (tx.Amount) extra = amountStr(tx.Amount);
+      let s = type;
+      if (extra) s += " " + extra;
+      if (short) s += " " + short;
+      if (s.length > 32) s = s.slice(0, 32);
+      return s;
+    } catch (e) { return ""; }
+  }
+  function parseHex(hex, fb) {
+    const h = String(hex || "").trim().replace("#", "");
+    if (h.length === 3) return [parseInt(h[0] + h[0], 16), parseInt(h[1] + h[1], 16), parseInt(h[2] + h[2], 16)];
+    if (h.length === 6) return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+    return fb;
+  }
+  function mix(a, b, t) {
+    return [
+      Math.round(a[0] + (b[0] - a[0]) * t),
+      Math.round(a[1] + (b[1] - a[1]) * t),
+      Math.round(a[2] + (b[2] - a[2]) * t)
+    ];
+  }
+  function rgb(c) { return "rgb(" + c[0] + "," + c[1] + "," + c[2] + ")"; }
+  function readPalette() {
+    const cs = getComputedStyle(document.documentElement);
+    const ink = parseHex(cs.getPropertyValue("--ink"), [232, 232, 232]);
+    const dim = parseHex(cs.getPropertyValue("--dim"), [138, 138, 138]);
+    const faint = parseHex(cs.getPropertyValue("--faint"), [77, 77, 77]);
+    bg = (cs.getPropertyValue("--bg") || "#0a0a0a").trim() || "#0a0a0a";
+    const steps = 10;
+    colors = [];
+    for (let i = 0; i < steps; i++) {
+      const t = i / (steps - 1);
+      colors.push(rgb(t < 0.5 ? mix(ink, dim, t / 0.5) : mix(dim, faint, (t - 0.5) / 0.5)));
+    }
+  }
+  function build() {
+    if (overlay) return;
+    readPalette();
+    overlay = el("div");
+    overlay.id = "lj-saver";
+    overlay.setAttribute("role", "presentation");
+    overlay.setAttribute("aria-hidden", "true");
+    canvas = el("canvas");
+    canvas.setAttribute("aria-hidden", "true");
+    const hud = el("div", "lj-saver-hud");
+    lineEl = el("div", "lj-saver-line");
+    statEl = el("div", "lj-saver-stat");
+    lineEl.textContent = WATCH;
+    statEl.textContent = "connecting\u2026";
+    hud.appendChild(lineEl);
+    hud.appendChild(statEl);
+    overlay.appendChild(canvas);
+    overlay.appendChild(hud);
+    ctx = canvas.getContext("2d", { alpha: false });
+    document.body.appendChild(overlay);
+  }
+  function resize() {
+    if (!canvas || !ctx) return;
+    dpr = Math.min(2, Math.max(1, window.devicePixelRatio || 1));
+    const w = Math.max(1, window.innerWidth);
+    const h = Math.max(1, window.innerHeight);
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.font = FONT;
+    glyphW = Math.max(6, Math.ceil(ctx.measureText("M").width) || 9);
+    glyphH = FONT_PX + 4;
+    cols = Math.max(1, Math.floor(w / glyphW));
+    rows = Math.max(1, Math.ceil(h / glyphH) + 2);
+  }
+  function maxCols() {
+    return Math.max(4, Math.min(32, Math.floor(cols / 3) || 4));
+  }
+  function freeCol() {
+    if (cols < 2) return -1;
+    const taken = Object.create(null);
+    for (let i = 0; i < columns.length; i++) taken[columns[i].col] = 1;
+    const gap = cols > 40 ? 1 : 0;
+    const opts = [];
+    for (let i = 0; i < cols; i++) {
+      if (taken[i]) continue;
+      if (gap && (taken[i - 1] || taken[i + 1])) continue;
+      opts.push(i);
+    }
+    if (!opts.length) return -1;
+    return opts[(Math.random() * opts.length) | 0];
+  }
+  function rate() {
+    const now = Date.now();
+    while (seenAt.length && now - seenAt[0] > 4000) seenAt.shift();
+    return seenAt.length / 4;
+  }
+  function paintHud(force) {
+    if (!lineEl) return;
+    const now = Date.now();
+    if (!force && now < hudAt) return;
+    hudAt = now + 180;
+    if (offline && !live) {
+      lineEl.textContent = OFFLINE_LINE;
+      statEl.textContent = "ledger " + (ledger == null ? "--" : "#" + commas(ledger)) + " \u00b7 no feed";
+      return;
+    }
+    lineEl.textContent = WATCH;
+    if (!live) { statEl.textContent = "connecting\u2026"; return; }
+    statEl.textContent = "ledger " + (ledger == null ? "--" : "#" + commas(ledger)) + " \u00b7 " + rate().toFixed(1) + " tx/s";
+  }
+  function update(dt) {
+    spawnAcc += dt * SPAWN_PER_SEC;
+    let spawned = 0;
+    const cap = maxCols();
+    while (spawnAcc >= 1 && queue.length && columns.length < cap && spawned < 2) {
+      spawnAcc -= 1;
+      spawned++;
+      const text = queue.shift();
+      const col = freeCol();
+      if (col < 0) { queue.unshift(text); spawnAcc = 0; break; }
+      columns.push({ col: col, y: 0, chars: text, speed: 7 + Math.random() * 6 });
+    }
+    if (spawnAcc > 1.5) spawnAcc = 1.5;
+    for (let i = columns.length - 1; i >= 0; i--) {
+      const c = columns[i];
+      c.y += c.speed * dt;
+      if (c.y - c.chars.length > rows + 1) columns.splice(i, 1);
+    }
+  }
+  function draw() {
+    if (!ctx || !canvas) return;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, w, h);
+    if (!columns.length) return;
+    ctx.font = FONT;
+    ctx.textBaseline = "top";
+    const buckets = [];
+    for (let i = 0; i < colors.length; i++) buckets.push([]);
+    for (let ci = 0; ci < columns.length; ci++) {
+      const c = columns[ci];
+      const n = c.chars.length;
+      const head = Math.floor(c.y);
+      for (let i = 0; i < n; i++) {
+        const row = head - i;
+        if (row < 0 || row >= rows) continue;
+        const ch = c.chars.charAt(n - 1 - i);
+        if (ch === " ") continue;
+        const t = n <= 1 ? 0 : i / (n - 1);
+        const bi = Math.min(colors.length - 1, Math.round(t * (colors.length - 1)));
+        const b = buckets[bi];
+        b.push(c.col * glyphW, row * glyphH, ch);
+      }
+    }
+    for (let bi = colors.length - 1; bi >= 0; bi--) {
+      const b = buckets[bi];
+      if (!b.length) continue;
+      ctx.fillStyle = colors[bi];
+      for (let i = 0; i < b.length; i += 3) ctx.fillText(b[i + 2], b[i], b[i + 1]);
+    }
+  }
+  function frame(now) {
+    if (!active) return;
+    if (!lastFrame) lastFrame = now;
+    const dt = Math.min(0.05, (now - lastFrame) / 1000 || 0);
+    lastFrame = now;
+    if (document.hidden) {
+      raf = requestAnimationFrame(frame);
+      return;
+    }
+    if (window.scrollX !== savedX || window.scrollY !== savedY) restoreScroll();
+    if (running()) { stop(); return; }
+    update(dt);
+    draw();
+    paintHud(false);
+    if (active) raf = requestAnimationFrame(frame);
+  }
+  function hangup() {
+    gen++;
+    if (retry) { clearTimeout(retry); retry = 0; }
+    live = false;
+    const s = ws;
+    ws = null;
+    if (!s) return;
+    s.onopen = s.onmessage = s.onerror = s.onclose = null;
+    try {
+      if (s.readyState === 1) s.send(JSON.stringify({ command: "unsubscribe", id: "lj-saver-unsub", streams: ["transactions"] }));
+    } catch (e) {}
+    try { s.close(); } catch (e) {}
+  }
+  function armFailover(my) {
+    if (retry) clearTimeout(retry);
+    retry = setTimeout(() => {
+      retry = 0;
+      if (!active || document.hidden || gen !== my) return;
+      si = (si + 1) % SERVERS.length;
+      connect();
+    }, 400);
+  }
+  function markLive(url) {
+    live = true;
+    offline = false;
+    server = url;
+    if (offlineTimer) { clearTimeout(offlineTimer); offlineTimer = 0; }
+    paintHud(true);
+  }
+  function armOffline() {
+    if (offlineTimer) clearTimeout(offlineTimer);
+    offlineTimer = setTimeout(() => {
+      offlineTimer = 0;
+      if (!active || live) return;
+      if (document.hidden) { armOffline(); return; }
+      offline = true;
+      paintHud(true);
+    }, OFFLINE_MS);
+  }
+  function noteTx(msg, url) {
+    const tx = msg.transaction || msg.tx_json || {};
+    const hash = String(tx.hash || msg.hash || "");
+    if (hash) {
+      if (seenHash.has(hash)) return;
+      seenHash.add(hash);
+      seenOrder.push(hash);
+      if (seenOrder.length > 400) seenHash.delete(seenOrder.shift());
+    }
+    txSeen++;
+    seenAt.push(Date.now());
+    if (typeof msg.ledger_index === "number" && isFinite(msg.ledger_index)) ledger = msg.ledger_index;
+    const text = txText(msg);
+    if (text) {
+      queue.push(text);
+      if (queue.length > 48) queue.splice(0, queue.length - 48);
+    }
+    markLive(url);
+  }
+  function connect() {
+    if (!active || document.hidden) return;
+    if (typeof WebSocket !== "function") { offline = true; paintHud(true); return; }
+    hangup();
+    const my = gen;
+    const url = SERVERS[si % SERVERS.length];
+    let sock;
+    try { sock = new WebSocket(url); }
+    catch (e) { armFailover(my); return; }
+    ws = sock;
+    const kill = setTimeout(() => { if (my === gen) { try { sock.close(); } catch (e) {} } }, 4000);
+    sock.onopen = () => {
+      if (my !== gen) { try { sock.close(); } catch (e) {} return; }
+      try { sock.send(JSON.stringify({ command: "subscribe", id: "lj-saver-sub", streams: ["transactions"] })); }
+      catch (e) {}
+    };
+    sock.onmessage = (ev) => {
+      if (my !== gen) return;
+      let msg;
+      try { msg = JSON.parse(ev.data); } catch (e) { return; }
+      if (!msg || typeof msg !== "object") return;
+      if (msg.type === "response" || msg.id === "lj-saver-sub") {
+        if (msg.status === "success" && !msg.error) { clearTimeout(kill); markLive(url); }
+        else { try { sock.close(); } catch (e) {} }
+        return;
+      }
+      if (msg.type !== "transaction" || msg.validated === false) return;
+      if (!msg.transaction && !msg.tx_json) return;
+      clearTimeout(kill);
+      noteTx(msg, url);
+    };
+    sock.onerror = () => {};
+    sock.onclose = () => {
+      clearTimeout(kill);
+      if (my !== gen) return;
+      if (ws === sock) ws = null;
+      live = false;
+      if (!active || document.hidden) return;
+      armFailover(my);
+    };
+  }
+  function restoreScroll() {
+    if (Math.abs(window.scrollX - savedX) < 0.5 && Math.abs(window.scrollY - savedY) < 0.5) return;
+    restoring = true;
+    try { window.scrollTo({ left: savedX, top: savedY, behavior: "instant" }); }
+    catch (e) { window.scrollTo(savedX, savedY); }
+    if (Math.abs(window.scrollY - savedY) > 0.5 || Math.abs(window.scrollX - savedX) > 0.5) {
+      const root = document.documentElement;
+      const prev = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(savedX, savedY);
+      root.style.scrollBehavior = prev;
+    }
+    restoring = false;
+  }
+  function resetRain() {
+    columns.length = 0;
+    queue.length = 0;
+    seenAt.length = 0;
+    seenHash.clear();
+    seenOrder.length = 0;
+    spawnAcc = 0;
+    txSeen = 0;
+    ledger = null;
+    live = false;
+    offline = false;
+    server = "";
+    origin = null;
+    lastFrame = 0;
+  }
+  function begin() {
+    if (active || holding) return false;
+    if (permanentBlock() || transientBlock()) return false;
+    savedX = window.scrollX;
+    savedY = window.scrollY;
+    build();
+    resetRain();
+    readPalette();
+    resize();
+    startedAt = Date.now();
+    holding = true;
+    block(true);
+    active = true;
+    overlay.classList.add("hold");
+    void overlay.offsetWidth;
+    overlay.classList.add("on");
+    paintHud(true);
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(frame);
+    si = 0;
+    connect();
+    armOffline();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (active) resize(); });
+    return true;
+  }
+  function stop() {
+    if (!active) return;
+    active = false;
+    if (overlay) overlay.classList.remove("on");
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    if (offlineTimer) { clearTimeout(offlineTimer); offlineTimer = 0; }
+    hangup();
+    restoreScroll();
+    if (fadeTimer) clearTimeout(fadeTimer);
+    fadeTimer = setTimeout(() => {
+      fadeTimer = 0;
+      holding = false;
+      block(false);
+      origin = null;
+      if (overlay) overlay.classList.remove("hold");
+      restoreScroll();
+      armIdle();
+    }, FADE_MS);
+  }
+  // Blocking (non-passive) wheel/touch listeners exist only while the overlay holds the page,
+  // so scrolling everywhere else stays on the fast passive path.
+  const BLOCK = { capture: true, passive: false };
+  let blocking = false;
+  function block(on) {
+    if (on === blocking) return;
+    blocking = on;
+    const m = on ? "addEventListener" : "removeEventListener";
+    window[m]("wheel", onWheel, BLOCK);
+    window[m]("touchstart", onTouchStart, BLOCK);
+    window[m]("touchmove", onTouchMove, BLOCK);
+    window[m]("touchend", onTouchEnd, BLOCK);
+  }
+  function swallow(e, exit) {
+    if (!holding && !swallowKeys) return false;
+    if (e.cancelable) e.preventDefault();
+    e.stopPropagation();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    if (exit && active) stop();
+    return true;
+  }
+  function onKeyDown(e) {
+    if (holding || swallowKeys) {
+      if (e.cancelable) e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+      if (active) {
+        swallowKeys = true;
+        if (keyTimer) clearTimeout(keyTimer);
+        keyTimer = setTimeout(() => { swallowKeys = false; keyTimer = 0; }, 1200);
+        stop();
+      }
+      return;
+    }
+    onActivity();
+  }
+  function onKeyUp(e) {
+    if (!(holding || swallowKeys)) return;
+    if (e.cancelable) e.preventDefault();
+    e.stopPropagation();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    swallowKeys = false;
+    if (keyTimer) { clearTimeout(keyTimer); keyTimer = 0; }
+  }
+  function onKeyPress(e) { swallow(e, false); }
+  function onPointerDown(e) {
+    if (holding) { swallow(e, true); return; }
+    onActivity();
+  }
+  function onPointerUp(e) { if (holding) swallow(e, false); }
+  function onPointerMove(e) {
+    if (holding) {
+      if (Date.now() - startedAt < 600) { origin = { x: e.clientX, y: e.clientY }; return; }
+      if (!origin) { origin = { x: e.clientX, y: e.clientY }; return; }
+      const dx = e.clientX - origin.x, dy = e.clientY - origin.y;
+      if (dx * dx + dy * dy < MOVE2) return;
+      swallow(e, true);
+      return;
+    }
+    onActivity();
+  }
+  function onMouseDown(e) { if (holding) swallow(e, true); }
+  function onMouseUp(e) { if (holding) swallow(e, false); }
+  function onClick(e) { if (holding) swallow(e, true); }
+  function onContext(e) { if (holding) swallow(e, true); }
+  function onWheel(e) {
+    if (holding) { swallow(e, true); return; }
+    onActivity();
+  }
+  function onTouchStart(e) {
+    if (holding) { swallow(e, true); return; }
+    onActivity();
+  }
+  function onTouchMove(e) { if (holding) swallow(e, false); }
+  function onTouchEnd(e) { if (holding) swallow(e, false); }
+  function onScroll() {
+    if (restoring) return;
+    if (holding) { restoreScroll(); return; }
+    onActivity();
+  }
+  function onActivity() {
+    if (active || holding) return;
+    const now = Date.now();
+    if (now - lastBump < 400) return;
+    lastBump = now;
+    armIdle();
+  }
+  function armIdle() {
+    if (idleTimer) clearTimeout(idleTimer);
+    idleTimer = 0;
+    if (active || holding) return;
+    if (!fineHover() || permanentBlock() || transientBlock()) return;
+    idleTimer = setTimeout(onIdle, IDLE_MS);
+  }
+  function onIdle() {
+    idleTimer = 0;
+    if (!fineHover() || permanentBlock()) return;
+    if (transientBlock()) { idleTimer = setTimeout(onIdle, 4000); return; }
+    begin();
+  }
+  function onVis() {
+    if (document.hidden) {
+      if (active) {
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        hangup();
+      }
+      return;
+    }
+    if (active) {
+      lastFrame = 0;
+      connect();
+      if (!raf) raf = requestAnimationFrame(frame);
+      if (!live) armOffline();
+    } else armIdle();
+  }
+  function requestStart(explicit) {
+    if (active) return true;
+    if (holding) return false;
+    const why = permanentBlock();
+    if (why) return false;
+    if (explicit) {
+      const a = document.activeElement;
+      if (a && a !== document.body && a.blur) a.blur();
+    }
+    if (transientBlock()) return false;
+    return begin();
+  }
+  function forceTry(n) {
+    if (active || holding || permanentBlock()) return;
+    if (transientBlock()) {
+      if (n < 48) setTimeout(() => forceTry(n + 1), 250);
+      return;
+    }
+    begin();
+  }
+  function say(print, text) { if (typeof print === "function") print(text); }
+
+  window.__lj = window.__lj || {};
+  __lj.cmds = __lj.cmds || {};
+  __lj.cmds.saver = {
+    help: "watch live XRPL transactions",
+    run(args, print) {
+      const why = permanentBlock();
+      if (why) { say(print, "saver off \u00b7 " + why); return; }
+      const a = document.activeElement;
+      if (a && a !== document.body && a.blur) a.blur();
+      const soft = transientBlock();
+      if (soft) { say(print, "saver off \u00b7 " + soft); return; }
+      if (!begin()) { say(print, "saver off"); return; }
+      say(print, "saver on \u00b7 any key to exit");
+    }
+  };
+  window.__saver = {
+    start() { return requestStart(true); },
+    stop() { stop(); },
+    active() { return active; },
+    stats() {
+      return {
+        connected: !!(live && ws && ws.readyState === 1),
+        server: server || "",
+        txSeen: txSeen,
+        ledger: ledger
+      };
+    }
+  };
+
+  addEventListener("keydown", onKeyDown, true);
+  addEventListener("keyup", onKeyUp, true);
+  addEventListener("keypress", onKeyPress, true);
+  addEventListener("pointerdown", onPointerDown, true);
+  addEventListener("pointerup", onPointerUp, true);
+  addEventListener("pointermove", onPointerMove, true);
+  addEventListener("mousedown", onMouseDown, true);
+  addEventListener("mouseup", onMouseUp, true);
+  addEventListener("click", onClick, true);
+  addEventListener("auxclick", onClick, true);
+  addEventListener("contextmenu", onContext, true);
+  addEventListener("wheel", onActivity, { passive: true });
+  addEventListener("touchstart", onActivity, { passive: true });
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", () => { if (active) resize(); });
+  document.addEventListener("visibilitychange", onVis);
+  document.addEventListener("focusout", () => { if (!active) setTimeout(armIdle, 0); });
+  window.addEventListener("beforeprint", () => { printLock = true; stop(); });
+  window.addEventListener("afterprint", () => { printLock = false; armIdle(); });
+  const coarseQ = matchMedia("(pointer: coarse)");
+  if (fineQ.addEventListener) fineQ.addEventListener("change", () => { if (permanentBlock()) stop(); else armIdle(); });
+  if (coarseQ.addEventListener) coarseQ.addEventListener("change", () => { if (permanentBlock()) stop(); else armIdle(); });
+  if (reduceQ.addEventListener) reduceQ.addEventListener("change", () => { if (permanentBlock()) stop(); else armIdle(); });
+  if (printQ.addEventListener) printQ.addEventListener("change", () => { if (printing()) stop(); });
+
+  armIdle();
+  if (flag("saver")) setTimeout(() => forceTry(0), FORCE_MS);
+})();
+</script>
 </body>
 </html>
